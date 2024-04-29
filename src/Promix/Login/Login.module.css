@@ -1,0 +1,99 @@
+/* colors */
+:root{
+  --Deep-green: #164B2E;
+  --Light-green: #2D995F; 
+  --Gray:#f2f3f3;
+  --White: #ffffff;
+  --Black: #343A40;
+  --blackGray: #6C757D;
+}
+
+
+.background {
+    background-image: url('../../assets/promix/Login.svg');
+    background-size: cover; /* Cover the entire container */
+    width: 100%;
+    background-position:center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    height: 100vh; /* 100% of the viewport height */
+    overflow: hidden;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    padding-right: 7rem;
+
+  }
+
+  .mainContainerx {
+    background-color: rgba(0, 0, 0, 0.8);
+    width: 100%;
+    max-width: 500px;
+    height: 523px;
+    border-radius: 20px;
+    
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+  }
+  .thecntnt{
+    display: flex;
+    flex-direction: column;
+    color: var(--White);
+    gap: 10px;
+  }
+  .thecntnt form{
+    display: flex;
+    flex-direction: column;
+    color: var(--White);
+    gap: 20px;
+    width: 100%;
+   
+  }
+
+  .head{
+    text-align: center;
+  }
+  .thecntnt p{
+    color: var(--White);
+  }
+
+  .SignUptxt {
+    font-family: 'inter';
+    font-weight: 800;
+    font-size: 40px;
+    margin-bottom: 10px;
+    margin-top: 20px;
+  }
+
+  .SignUptxtsub {
+    font-family: 'inter';
+    font-weight: 400;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding-bottom: 15px;
+  }
+
+  .snupbtn {
+    /* background-color: #2D995F; */
+    color: white;
+    width: 100%;
+    margin-top: 32px;
+    font-size: 14px;
+    font-weight: 400;
+    font-family: 'inter';
+    padding: 12px 190px;
+  }
+
+  .lgin {
+    font-weight: 400;
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .lgin span {
+    color: #2D995F;
+  }
