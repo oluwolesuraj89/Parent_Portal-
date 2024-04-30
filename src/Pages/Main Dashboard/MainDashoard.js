@@ -269,7 +269,7 @@ import React, { useState, useEffect } from 'react';
 import classes from '../Main Dashboard/MinDashboard.module.css';
 // import RegLogo from '../../Images/RegistrationLogo.svg'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { Tab, Tabs, Form, Spinner } from 'react-bootstrap';
+import { Tab, Tabs, Form, Spinner, Button } from 'react-bootstrap';
 // import Folder from '../../Images/folder-2.svg';
 // import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
@@ -285,14 +285,14 @@ import axios from 'axios';
 // import UserLogo from '../../Images/user-edit.svg';
 // import Swal from 'sweetalert2';
 // import { useRegistration } from '../RegistrationContext';
-import dashIcon from '../../assets/promix/dash-icon1.svg'
-import dIcon2 from '../../assets/promix/dIcon2.svg'
-import dIcon3 from '../../assets/promix/dIcon3.svg'
-import dIcon4 from '../../assets/promix/dIcon4.svg'
-import dIcon5 from '../../assets/promix/dIcon5.svg'
-import dIcon6 from '../../assets/promix/dIcon6.svg'
+import dashIcon1 from '../../assets/promix/PDicon1.svg'
+import dashIcon2 from '../../assets/promix/PDicon2.svg'
+import dashIcon3 from '../../assets/promix/PDicon3.svg'
+import dashIcon4 from '../../assets/promix/PDicon4.svg'
+import userI from '../../assets/promix/PDicon-user.svg'
 import Arrow from '../../assets/promix/dArrow-down.svg'
 import Logo from '../../assets/promix/dLogoWhite.svg'
+import Out from '../../assets/promix/loginss.svg'
 
 
 
@@ -422,11 +422,11 @@ export default function MainDashoard() {
 
     return (
         <div className={classes.sideNavBody}>
+            <div className={classes.logoCont}>
+                <span>G</span>
+                <p style={{color:'black'}}>Ajanla Farms and Pastry</p>
+            </div>
             <div className={classes.sideNav}>
-                <div className={classes.logoCont}>
-                    <img src={Logo} alt='Logo' className={`${classes.img} ${classes.webshow}`} />
-                    <img src={Logo} alt='Logo' className={`${classes.img} ${classes.mobileshow}`} />
-                </div>
                 {/* {`${classes.mainMenu} ${isMenuOpen ? classes.menuOpen : ''}`} */}
 
                 <div className={`${classes.regMenu} ${isMenuOpen ? '' : classes.menuOpen}`}>
@@ -436,40 +436,52 @@ export default function MainDashoard() {
                         className={activeLink === 'Dashboard' ? classes.active : ''}
                     >
                         <p>
-                            <img src={dIcon2} alt='icon' className={classes.webshow} />
-                            <img src={dIcon2} alt='icon' className={classes.mobileshow} />
+                            <img src={dashIcon1} alt='icon' className={classes.webshow} />
+                            <img src={dashIcon1} alt='icon' className={classes.mobileshow} />
                             Dashboard</p>
                     </Link>
                     <Link
                         to={'#'}
                         className={activeLink === 'My Profile' ? classes.active : ''}
                     >
-                        <p> <img src={dIcon6} alt='icon' /> Profile</p>
+                        <p> <img src={dashIcon2} alt='icon' /> Payment</p>
                     </Link>
 
                     <Link
                         to={'#'}
                         className={activeLink === 'Loan' ? classes.active : ''}
                     >
-                        <p><img src={dIcon3} alt='icon' /> Loans</p>
+                        <p><img src={dashIcon3} alt='icon' /> Result</p>
                     </Link>
                     <Link
                         to={'#'}
                         className={activeLink === 'Grants' ? classes.active : ''}
                     >
-                        <p> <img src={dIcon4} alt='icon' /> Grants</p>
+                        <p> <img src={dashIcon4} alt='icon' /> Attendance</p>
                     </Link>
                     <Link
                         to={'#'}
                         className={activeLink === 'Invoices' ? classes.active : ''}
                     >
-                        <p> <img src={dIcon5} alt='icon' /> Invoices</p>
+                        <p> <img src={dashIcon3} alt='icon' /> Infractions</p>
+                    </Link>
+                    <Link
+                        to={'#'}
+                        className={activeLink === 'Invoices' ? classes.active : ''}
+                    >
+                        <p> <img src={dashIcon4} alt='icon' /> Announcements</p>
+                    </Link>
+                    <Link
+                        to={'#'}
+                        className={activeLink === 'Invoices' ? classes.active : ''}
+                    >
+                        <p> <img src={userI} alt='icon' /> Profile</p>
                     </Link>
 
 
-                    <Link
+                    {/* <Link
                         onClick={handleLogout}
-                        // to={'/sign_in'}
+                        
                         className={activeLink === 'Logout' ? classes.active : ''}
                     >
                         <p>
@@ -482,7 +494,7 @@ export default function MainDashoard() {
                                 'Log out'
                             )}
                         </p>
-                    </Link>
+                    </Link> */}
                 </div>
                 <div className={classes.harmborgers} onClick={toggleMenu}>
                 {isMenuOpen ? (
@@ -495,13 +507,26 @@ export default function MainDashoard() {
                   </span>
                 )}
               </div>
+
+              <div className={classes.dFooter}>
+                    {/* <div className={classes.logoPic}>
+                        <img src={Logo} alt='Logo' className={classes.imgs}/>
+                    </div> */}
+                    <Link>
+                        <Button variant='light' className={classes.logout}>
+                            <img src={Out} alt='Logo' style={{width:'20px', height:'20px'}}/>
+                            Logout
+                        </Button>
+                    </Link>
+                </div>
             </div>
-            <div className={classes.formSection}>
+
+            {/* <div className={classes.formSection}>
                 <div className={classes.formSectionHeader}>
                     <h1>Welcome {user}</h1>
                     <p>Apply for grants or loans from the Ogun State Government</p>
                 </div>
-            </div>
+            </div> */}
         </div>
         // </div>
     )

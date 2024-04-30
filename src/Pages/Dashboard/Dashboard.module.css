@@ -1,5 +1,5 @@
 body {
-    background-color: rgba(172, 231, 199, 0.05) !important;
+    background-color:#E9ECEF !important;
 
 }
 *,
@@ -17,35 +17,184 @@ body {
     --Gray:#f2f3f3;
     --White: #ffffff;
     --Black: #343A40;
-    --Black: #343A40;
+    --P-Black:#6C757D;
     --Background:rgba(172, 231, 199, 0.05);
 }
-
+p{
+    color: var(--P-Black);
+}
 .formSection{
     width: 100%;
-    padding-left: 20rem;
+    padding-left: 22rem;
     /* background-color: #4b9483; */
     padding-right: 3rem;
 }
 .formSectionHeader{
   width: 100%;
-  padding-top: 40px;
-  margin-bottom: 10px;
+  padding: 31px 25px;
+  margin: 25px 0;
+  /* padding-top: 40px; */
+  /* margin-bottom: 10px; */
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: var(--White);
 }
 .formSection p{
-    font-size: 14px;
+    font-size: 12px;
 }
 .formSectionHeader h3{
-    color: var(--Light-green);
+    color: var(--Black);
     font-size: 20px;
     font-weight: 700;
 }
-.formSectionHeader h4{
+.formSectionHeader .users{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 17px;
+}
+.formSectionHeader .users i{
+    font-size: 24px;
+    color: var(--Black);
+    font-weight: lighter;
+}
+/* .formSectionHeader h5{
+    font-weight: 700;
+} */
+.group1{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 25px;
+}
+.group1 .stID{
+    margin-bottom: 50px;
+}
+.group1 .stID h3{
+    font-size: 24px;
     font-weight: 700;
 }
+.group1 .stID p{
+    font-size: 14px;
+    font-weight: 400;
+}
+.sideImg{
+    width:260px;
+    height: 240;
+    overflow: hidden;
+    border-radius: 8px;
+}
+.flex1{
+    /* background-color: var(--White); */
+}
+.details{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+.detailsCard{
+    background-color: #E9ECEF;
+    width: 195px;
+    border-radius: 8px;
+    /* height: 160px; */
+    /* padding: 14px 19px 24px 19px; */
+}
+.detailsCard h6{
+    font-weight: 700;
+}
+.detailsCard .icon{
+    width: 45px;
+    height: 45px;
+}
+.detailsCard .curveCont{
+    display: flex;
+    justify-content: space-around;
+    align-items: baseline;
+    gap: 51px;
+    margin: 0;
+}
+.detailsCard .Curve{
+    width: 100px;
+    height: 55px;
+}
+.detailsCard div{
+    margin  : 14px 19px 24px 19px;
+}
+.detailsCard div p{
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.flex1 .Bio{
+    width: 40px;
+    border-bottom: 1px solid var(--Black);
+    margin-bottom: 16px;
+    font-weight: 600;
+}
+.flex1 .stuDeta{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+.flex1 .stuDatCard{
+    border: 1px solid var(--P-Black);
+    border-radius: 8px;
+    padding: 24px 19px;
+}
+.group1 small{
+    font-size: 12px;
+    color: var(--P-Black);
+}
+.group1 .stuDeta h6{
+    color: var(--Black);
+    font-size: 14px;
+    font-weight: 600;
+    margin: 3px;
+}
+.upCommingEvent{
+    
+}
+.events{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.upCommingEvent h5{
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+.upCommingEvent h5 span{
+    border-bottom: 1px solid var(--Black);
+}
+.upCommingEvent .event{
+    border: 1px solid var(--Black);
+    border-radius: 8px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 14px;
+}
+.event h6{
+    margin:0;
+}
+.event span{
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--Black);
+    color: var(--White);
+    border-radius: 50%;
+}
+
+
+
+
+
+
 .formSecCont{
     padding: 24px 32px;
     background-color: var(--White);
@@ -84,10 +233,10 @@ body {
 
 
 .chartCont{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    padding-left: 20rem;
-    padding-right: 3rem;
+    
+    padding: 28px;
+    background-color: var(--White);
+    margin-bottom: 3rem;
 }
 .chartBox{
     width: 100%;
