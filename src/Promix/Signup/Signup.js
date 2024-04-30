@@ -25,14 +25,14 @@ function SignUp() {
                     <p className={classes.SignUptxt}>Sign Up</p>
                     <p className={classes.SignUptxtsub}>Enter your Information to continue</p>
 
-                    <Form>
+                    <Form className={classes.formClasses}>
                     <Form.Group className={classes.formGroup}>
                         <Form.Label  >Full Name</Form.Label>
                         <Form.Control type='text' id="date" placeholder="Enter your name" />
                     </Form.Group>
                     <Form.Group className={classes.formGroup}>
-                        <Form.Label  >Email address</Form.Label>
-                        <Form.Control type='email' id="date" placeholder="Enter your email address" />
+                        <Form.Label  >Last Name</Form.Label>
+                        <Form.Control type='text' id="date" placeholder="Enter your email address" />
                     </Form.Group>
                     <Form.Group className={classes.formGroup}>
                         <Form.Label  >Phone Number</Form.Label>
@@ -48,17 +48,19 @@ function SignUp() {
                     </Form.Group> */}
 
                     <Form.Group className={classes.formGroup}>
-                        <Form.Label  >Full Company Name</Form.Label>
-                        <Form.Control type='text' id="date" placeholder="Enter your name" />
-                    </Form.Group>
-                    <Form.Group className={classes.formGroup}>
-                        <Form.Label  >Compay Email address</Form.Label>
+                        <Form.Label  >Email address</Form.Label>
                         <Form.Control type='email' id="date" placeholder="Enter your email address" />
                     </Form.Group>
-                    <Form.Group className={classes.formGroup}>
+
+                    {/* <Form.Group className={classes.formGroup}>
+                        <Form.Label  >Compay Email address</Form.Label>
+                        <Form.Control type='email' id="date" placeholder="Enter your email address" />
+                    </Form.Group> */}
+
+                    {/* <Form.Group className={classes.formGroup}>
                         <Form.Label  >Company Phone Number</Form.Label>
                         <Form.Control type='number' id="date" placeholder="Enter your email address" />
-                    </Form.Group>
+                    </Form.Group> */}
                     <Form.Group className={classes.formGroup}>
                         <Form.Label  >Enter Password</Form.Label>
                         <Form.Control type='password' id="date" placeholder="Enter your password" />
@@ -69,7 +71,7 @@ function SignUp() {
                     </Form.Group>
                     <Button variant="success" className={classes.snupbtn}>Sign Up</Button>
                     </Form>
-               <p className={classes.lgin}>Alr have an account? <Link to={'/login'} style={{textDecoration:'none'}}><span style={{color:'black'}}>Log In</span></Link></p>
+               <p className={classes.lgin}>Already have an account? <Link to={'/login'} style={{textDecoration:'none'}}><span style={{color:'black'}}>Log In</span></Link></p>
                 {/* <p className={classes.lgin}>Don't have an account? <Link to={'/login'} style={{textDecoration:'none'}}><span>Log In</span></Link></p> */}
             </div>
         </div>
