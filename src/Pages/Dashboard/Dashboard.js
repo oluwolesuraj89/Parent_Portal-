@@ -25,6 +25,7 @@ import Payment from '../../assets/promix/detailsIcon1.svg'
 import Payment2 from '../../assets/promix/detailsIcon2.svg'
 import Curve from '../../assets/promix/curve1.svg'
 import Boy from '../../assets/promix/FineBoy.svg'
+import Form from 'react-bootstrap/Form';
 
 const Dashboard = () => {
     
@@ -45,9 +46,15 @@ const Dashboard = () => {
                         <h3 style={{color:'black'}}>Dashboard</h3>
                     </div>
                     <div className={classes.users}>
-                        <h6 >Mosumola Lawanson</h6>
+                    <Form.Select aria-label="Default select example">
+                        <option>Mosumola Lawanson</option>
+                        <option value="1">Michael Lawanson</option>
+                        <option value="2">Joshua Lawanson</option>
+                        {/* <option value="3">Three</option> */}
+                    </Form.Select>
+                        {/* <h6 >Mosumola Lawanson</h6>
                         <img src={USER} alt='User'/>
-                        <i class='bx bxs-chevron-down'></i>
+                        <i class='bx bxs-chevron-down'></i> */}
                     </div>
                 </div>
                 
