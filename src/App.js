@@ -17,6 +17,7 @@ import Dashboard from './Pages/Dashboard/Dashboard.js';
 import Payments from './Pages/Payments/PaymentsHistory.js';
 import PaymentsHistory from './Pages/Payments/PaymentsHistory.js';
 import MakePayment from './Pages/Payments/MakePayment.js';
+import Result from './Pages/Resullt/Result.js';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         
         <Route path='/login' element={<Login/>} />
         <Route path='/signup' element={<SignUp/>} />
+        <Route path='/results' element={<Result/>} />
       </Routes>
   );
 }

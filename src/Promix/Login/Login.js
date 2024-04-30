@@ -10,6 +10,7 @@ import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import crossedEyeIcon from '../../assets/promix/eye-slash.png';
+import eduImg from '../../assets/eduImg.png';
 
 function Login() {
     const [email, setEmail] = useState("");
@@ -88,7 +89,7 @@ function Login() {
                 <div className={classes.thecntnt}>
                     <div className={classes.head}>
                         <p className={classes.SignUptxt}>Login</p>
-                        <p className={classes.SignUptxtsub}>Login to your portal</p>
+                        <p className={classes.SignUptxtsub}>Enter your Information to continue</p>
                     </div>
                     <Form>
                         <Form.Group className={classes.formGroup}>
@@ -127,12 +128,29 @@ function Login() {
                                 <span style={{ marginLeft: '5px' }}>Signing in...</span>
                             </>
                         ) : (
-                            "Sign in"
+                            "Log In"
                         )}
                     </Button>
                     <p className={classes.lgin}>Don't have an account? <Link to={'/signup'} style={{ textDecoration: 'none' }}><span>Sign Up</span></Link></p>
                 </div>
             </div>
+
+            <div className={classes.mainContainerx2}>
+            <div className={classes.thecntnt}>
+                <img src={eduImg} className={classes.eduImg}/>
+                <p className={classes.welcomeTo}>Welcome to our Parents Portal</p>
+                <ul className={classes.listOf}>
+                    <li>View all your children's information</li>
+                    <li>Generate your invoice to pay your child's school fees</li>
+                    <li>View payment history for your children </li>
+                    <li>View your children's result</li>
+                    <li>Read school announcements</li>
+                    <li>See your children's school attendance</li>
+                </ul>
+
+            </div>
+        </div> 
+
         </div>
     );
 
