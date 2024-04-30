@@ -54,28 +54,30 @@ const Dashboard = () => {
                 <div className={classes.chartCont}>
                     <div className={classes.group1}>
                         <div className={classes.flex1}>
-                            <div>
+                            <div className={classes.stID}>
                                 <h3>Mosunmola Lawanson</h3>
                                 <p>Class: Primary 2A</p>
                             </div>   
                             <div className={classes.details}>
                                 <div className={classes.detailsCard}>
-                                    <img src={Payment} alt='payment'/>
+                                    <img src={Payment} alt='payment' className={classes.icon}/>
                                     <div>
                                         <p>N0.00</p>
                                         <h5>Outstanding Payment</h5>
                                     </div>
                                 </div>    
                                 <div className={classes.detailsCard}>
-                                    <img src={Payment2} alt='payment'/><br/>
-                                    <img src={Curve} alt='img'/>
+                                    <img src={Payment2} alt='payment' className={classes.icon}/><br/>
                                     <div>
-                                        <p>89%</p>
+                                        <div className={classes.curveCont}>
+                                            <img src={Curve} alt='img' className={classes.Curve}/>
+                                            <p>89%</p>
+                                        </div>
                                         <h5>Attendance rate</h5>
                                     </div>
                                 </div>    
                                 <div className={classes.detailsCard}>
-                                    <img src={Payment2} alt='payment'/>
+                                    <img src={Payment2} alt='payment' className={classes.icon}/>
                                     {/* <img></img> */}
                                     <div>
                                         <p>Title</p>
@@ -85,7 +87,7 @@ const Dashboard = () => {
                             </div>
                         </div>
                         <div className={classes.sideImg}>
-                            <img src={Boy} alt='img'/>
+                            <img src={Boy} alt='img' className={classes.imgs}/>
                         </div>
                         <div className={classes.flex2}></div>
                     </div>

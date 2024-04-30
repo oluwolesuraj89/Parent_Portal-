@@ -17,10 +17,12 @@ body {
     --Gray:#f2f3f3;
     --White: #ffffff;
     --Black: #343A40;
-    --Black: #343A40; 
+    --P-Black:#6C757D;
     --Background:rgba(172, 231, 199, 0.05);
 }
-
+p{
+    color: var(--P-Black);
+}
 .formSection{
     width: 100%;
     padding-left: 22rem;
@@ -29,11 +31,14 @@ body {
 }
 .formSectionHeader{
   width: 100%;
-  padding-top: 40px;
-  margin-bottom: 10px;
+  padding: 31px 25px;
+  margin: 25px 0;
+  /* padding-top: 40px; */
+  /* margin-bottom: 10px; */
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: var(--White);
 }
 .formSection p{
     font-size: 12px;
@@ -62,9 +67,19 @@ body {
     grid-template-columns: 2fr 1fr;
     gap: 33px;
 }
+.group1 .stID h3{
+    font-size: 24px;
+    font-weight: 700;
+}
+.group1 .stID p{
+    font-size: 14px;
+    font-weight: 400;
+}
+.sideImg{
+    /* width: ; */
+}
 .flex1{
-    background-color: var(--White);
-    
+    /* background-color: var(--White); */
 }
 .details{
     display: grid;
@@ -73,8 +88,20 @@ body {
 }
 .detailsCard{
     background-color: #E9ECEF;
-    
-
+    width: 200px;
+    height: 160px;
+    /* padding: 14px 19px 24px 19px; */
+}
+.detailsCard .icon{
+    width: 45px;
+    height: 45px;
+}
+.detailsCard .Curve{
+    width: 100px;
+    height: 61px;
+}
+.detailsCard div{
+    margin  : 14px 19px 24px 19px;
 }
 
 
@@ -116,10 +143,8 @@ body {
 
 
 .chartCont{
-    /* display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    padding-left: 20rem;
-    padding-right: 3rem; */
+    
+    padding: 28px;
     background-color: var(--White);
 }
 .chartBox{
