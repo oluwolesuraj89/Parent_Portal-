@@ -1,0 +1,109 @@
+body {
+    background-color: rgba(172, 231, 199, 0.05) !important;
+
+}
+*,
+::after,
+::before{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* colors */
+:root{
+    --Deep-green: #164B2E;
+    --Light-green: #2D995F; 
+    --Gray:#f2f3f3;
+    --White: #ffffff;
+    --Black: #343A40;
+    --P-Black:#6C757D;
+    --Background:rgba(172, 231, 199, 0.05);
+}
+p{
+    color: var(--P-Black);
+}
+.formSection{
+    width: 100%;
+    padding-left: 22rem;
+    /* background-color: #4b9483; */
+    padding-right: 3rem;
+    
+}
+.formSectionHeader{
+  width: 100%;
+  padding: 31px 25px;
+  margin-top: 25px ;
+  /* padding-top: 40px; */
+  /* margin-bottom: 10px; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--White);
+}
+.formSection p{
+    font-size: 12px;
+}
+.formSectionHeader h3{
+    color: var(--Black);
+    font-size: 20px;
+    font-weight: 700;
+}
+.formSectionHeader .users{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 17px;
+}
+.formSectionHeader .users i{
+    font-size: 24px;
+    color: var(--Black);
+    font-weight: lighter;
+}
+
+.chartCont{
+    
+    margin-top: 28px;
+    padding: 28px;
+    background-color: var(--White);
+}
+
+.sessionresult {
+
+}
+
+.frsttxt {
+    font-size: 14px;
+    font-weight: 400;
+    font-family: 'inter';
+    color: black;
+    margin-bottom: 33px;
+}
+.scndtxt {
+    font-size: 14px;
+    font-weight: 400;
+    font-family: 'inter';
+    color: #6C757D;
+    margin-bottom: 47px;
+}
+
+.rsltbtn {
+    width: 378px;
+    height: 41px;
+    background-color: black;
+    color: white;
+    border-radius: 4px;
+    margin-top: 60px;
+}
+
+.hrlne {
+    border-bottom: 1.2px solid #CED4DA;
+    margin-top: 23px;
+    margin-bottom: 25px;
+    width: 100% !important;
+}
+
+.childsinfo {
+    display: flex;
+    justify-content: space-between;
+}
