@@ -13,23 +13,55 @@
     --Gray:#f2f3f3;
     --White: #ffffff;
     --Black: #343A40;
+    --PGray: #6C757D; 
     /* --Background:rgba(172, 231, 199, 0.05); */
 }
-
+.sideNavBody{
+    background-color: var(--White);
+    height: 1800px;
+    position: fixed;
+    max-width: 350px;
+}
 .logoCont{
+    width: 100%;
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+    border-bottom: 2px solid var(--Gray);
+    padding: 31px 34px 26px 23px;
+    font-size: 14px;
+    color: var(--Black);
+    margin-bottom: 17px;
+    gap: 20px;
+}
+.logoCont span{
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: #b1afaf;
+    font-size: 16px;
+    font-weight: 700;
+    color: #000000;
+}
+.logoCont p{
+    font-size: 20px;
+    margin: 0;
+}
+
+/* .logoCont{
     width: 100%;
     max-width: 228px;
     height: 77px;
     overflow: hidden;
     margin-bottom: 48px;
-}
+} */
 .img{
     width: 100%;
     height: 100%;
     object-fit: contain;
-}
-.sideNavBody{
-    /* max-width: 367px; */
 }
 .regContainer{
     display: flex;
@@ -38,10 +70,7 @@
     /* gap: 30px; */
 }
 .sideNav{
-    background-color: var(--White);
-    padding: 37px 27px 0 24px;
-    height: 1800px;
-    position: fixed;
+    padding: 17px 27px 0 24px;
 }
 .regMenu{
     display: flex;
@@ -50,7 +79,7 @@
 }
 .regMenu a{
     text-decoration: none;
-    padding: 12px 34px 12px 20px;
+    padding: 5px 34px 5px 20px;
 }
 .regMenu .active {
     /* background: linear-gradient(to right, #4b9483, #2d998050); */
@@ -67,7 +96,7 @@
   margin-right: 20px;
 }
 .regMenu p{
-    color: var(--Black);
+    color: var(--PGray);
     font-size: 18px;
     font-weight: 400;
     margin:0;
@@ -94,7 +123,6 @@
     padding: 24px 32px;
     background-color: var(--White);
     border-radius: 12px;
-    
     width: 100%;
 }
 .shadow{
@@ -114,6 +142,21 @@
 }
 .harmborgers i{
     font-size: 24px;
+}
+.logout{
+    width: 100%;
+    padding: 10px 0;
+    display: flex;
+    gap: 25px;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    border: 1px solid var(--PGray);
+    border-radius: 8px;
+    margin-top: 4rem;
+}
+.dFooter a{
+    text-decoration: none;
 }
     @media(max-width:800px){
 
@@ -138,6 +181,7 @@
             /* overflow: hidden; */
             margin-bottom: 0;
         }
+        
         .img{
             /* width: 100%; */
             /* height: 100%; */
@@ -157,6 +201,7 @@
             width: 100%;
             /* position: fixed; */
         }
+        
         .regMenu{
             display: flex;
             flex-direction: column;

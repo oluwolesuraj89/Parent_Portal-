@@ -20,6 +20,11 @@ import dChart6 from '../../assets/promix/dShart6.svg'
 import dChart7 from '../../assets/promix/dShart7.svg'
 import dChart8 from '../../assets/promix/dShart8.svg'
 import Arrow from '../../assets/promix/dArrow-down.svg'
+import USER from '../../assets/promix/MyUser.svg'
+import Payment from '../../assets/promix/detailsIcon1.svg'
+import Payment2 from '../../assets/promix/detailsIcon2.svg'
+import Curve from '../../assets/promix/curve1.svg'
+import Boy from '../../assets/promix/FineBoy.svg'
 
 const Dashboard = () => {
     
@@ -29,72 +34,65 @@ const Dashboard = () => {
             
             <div className={classes.formSection}>
                 <div className={classes.formSectionHeader}>
-                    <div>
-                        <h4 style={{color:'black'}}>Dashboard</h4>
-                        
-                    </div>
-                    <div style={{textAlign:'right'}}>
+                    <div style={{textAlign:'left'}}>
                         <p style={{margin:'0'}}>Welcome</p>
                         <h3>
-                            user
+                            Ololade Lawanson
                         </h3>
                         
                     </div>
+                    <div>
+                        <h3 style={{color:'black'}}>Dashboard</h3>
+                    </div>
+                    <div className={classes.users}>
+                        <h6 >Mosumola Lawanson</h6>
+                        <img src={USER} alt='User'/>
+                        <i class='bx bxs-chevron-down'></i>
+                    </div>
                 </div>
-                <div className={classes.analysis}>
-                    <div className={classes.analysisCont}>
-                        <p style={{paddingBottom:'5px'}}>TOTAL INCOME</p>
-                        <h5>N232,096,635.05</h5>
-                        <div className={classes.perceCont}>
-                            <p className={classes.percent}><img src={Arrow} alt="arrowDown"/> 5%</p>
-                            <p>vs average</p>
+                
+                <div className={classes.chartCont}>
+                    <div className={classes.group1}>
+                        <div className={classes.flex1}>
+                            <div>
+                                <h3>Mosunmola Lawanson</h3>
+                                <p>Class: Primary 2A</p>
+                            </div>   
+                            <div className={classes.details}>
+                                <div className={classes.detailsCard}>
+                                    <img src={Payment} alt='payment'/>
+                                    <div>
+                                        <p>N0.00</p>
+                                        <h5>Outstanding Payment</h5>
+                                    </div>
+                                </div>    
+                                <div className={classes.detailsCard}>
+                                    <img src={Payment2} alt='payment'/><br/>
+                                    <img src={Curve} alt='img'/>
+                                    <div>
+                                        <p>89%</p>
+                                        <h5>Attendance rate</h5>
+                                    </div>
+                                </div>    
+                                <div className={classes.detailsCard}>
+                                    <img src={Payment2} alt='payment'/>
+                                    {/* <img></img> */}
+                                    <div>
+                                        <p>Title</p>
+                                        <h5>Class Prefect</h5>
+                                    </div>
+                                </div>    
+                            </div>
                         </div>
-                    </div>
-                    <div className={classes.analysisCont}>
-                        <p style={{paddingBottom:'5px'}}>TOTAL LODGE</p>
-                        <h5>N232,096,635.05</h5>
-                        <div className={classes.perceCont}>
-                            <p className={classes.percent}><img src={Arrow} alt="arrowDown"/> 5%</p>
-                            <p>vs average</p>
+                        <div className={classes.sideImg}>
+                            <img src={Boy} alt='img'/>
                         </div>
+                        <div className={classes.flex2}></div>
                     </div>
-                    <div className={classes.analysisCont}>
-                        <p style={{paddingBottom:'5px'}}>TOTAL OUTSTANDING</p>
-                        <h5>N232,096,635.05</h5>
-                        <div className={classes.perceCont}>
-                            <p className={classes.percent}><img src={Arrow} alt="arrowDown"/> 5%</p>
-                            <p>vs average</p>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
 
-            <div className={classes.chartCont}>
-                <div className={classes.chartBox}>
-                    <img src={dChart1} alt='chart' className={classes.imgs}/>
-                </div>
-                <div className={classes.chartBox}>
-                    <img src={dChart2} alt='chart' className={classes.imgs}/>
-                </div>
-                <div className={classes.chartBox}>
-                    <img src={dChart3} alt='chart' className={classes.imgs}/>
-                </div>
-                <div className={classes.chartBox}>
-                    <img src={dChart4} alt='chart' className={classes.imgs}/>
-                </div>
-                <div className={classes.chartBox}>
-                    <img src={dChart5} alt='chart' className={classes.imgs}/>
-                </div>
-                <div className={classes.chartBox}>
-                    <img src={dChart6} alt='chart' className={classes.imgs}/>
-                </div>
-                <div className={`${classes.chartBox} ${classes.twoCole}`}>
-                    <img src={dChart7} alt='chart' className={classes.imgs}/>
-                </div>
-                <div className={classes.chartBox}>
-                    <img src={dChart8} alt='chart' className={classes.imgs}/>
-                </div>
-            </div>
         </div>
 
     );
