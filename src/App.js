@@ -14,6 +14,9 @@ import SignUp from './Promix/Signup/Signup.js';
 import Login from './Promix/Login/Login.js';
 import MainDashboard from './Pages/Main Dashboard/MainDashoard.js';
 import Dashboard from './Pages/Dashboard/Dashboard.js';
+import Payments from './Pages/Payments/PaymentsHistory.js';
+import PaymentsHistory from './Pages/Payments/PaymentsHistory.js';
+import MakePayment from './Pages/Payments/MakePayment.js';
 import Result from './Pages/Resullt/Result.js';
 
 function App() {
@@ -23,6 +26,9 @@ function App() {
         {/* <Route path='/dashboard' element={<Dashboard/>} /> */}
         <Route path='/main_dashboard' element={<MainDashboard />} />
         <Route path='/dashboard' element={<Dashboard/>} />
+        <Route path='/payments_hisroy' element={<PaymentsHistory/>}/>
+        <Route path='/make_payment' element={<MakePayment/>}/>
+        
         <Route path='/login' element={<Login/>} />
         <Route path='/signup' element={<SignUp/>} />
         <Route path='/results' element={<Result/>} />
