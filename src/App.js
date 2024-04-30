@@ -14,6 +14,7 @@ import SignUp from './Promix/Signup/Signup.js';
 import Login from './Promix/Login/Login.js';
 import MainDashboard from './Pages/Main Dashboard/MainDashoard.js';
 import Dashboard from './Pages/Dashboard/Dashboard.js';
+import Result from './Pages/Resullt/Result.js';
 
 function App() {
   return (
@@ -22,9 +23,9 @@ function App() {
         {/* <Route path='/dashboard' element={<Dashboard/>} /> */}
         <Route path='/main_dashboard' element={<MainDashboard />} />
         <Route path='/dashboard' element={<Dashboard/>} />
-        
         <Route path='/login' element={<Login/>} />
         <Route path='/signup' element={<SignUp/>} />
+        <Route path='/results' element={<Result/>} />
       </Routes>
   );
 }
