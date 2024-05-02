@@ -18,7 +18,7 @@ import Payments from './Pages/Payments/PaymentsHistory.js';
 import PaymentsHistory from './Pages/Payments/PaymentsHistory.js';
 import MakePayment from './Pages/Payments/MakePayment.js';
 import Result from './Pages/Resullt/Result.js';
-
+import ResultSheet from './Pages/Results Sheet/ResultSheet.js';
 function App() {
   return (
       <Routes>
@@ -28,6 +28,7 @@ function App() {
         <Route path='/dashboard' element={<Dashboard/>} />
         <Route path='/payments_hisroy' element={<PaymentsHistory/>}/>
         <Route path='/make_payment' element={<MakePayment/>}/>
+        <Route path='/Result_Sheet' element={<ResultSheet/>}/>
         
         <Route path='/login' element={<Login/>} />
         <Route path='/signup' element={<SignUp/>} />

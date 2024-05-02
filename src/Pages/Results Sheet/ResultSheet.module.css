@@ -1,0 +1,53 @@
+
+/* colors */
+:root{
+    --Deep-green: #164B2E;
+    --Light-green: #2D995F; 
+    --Gray:#f2f3f3;
+    --White: #ffffff;
+    --Black: #343A40;
+    --blackGray: #6C757D;
+}
+
+.mainDiv{
+    padding-left: 9rem;
+    padding-right: 9rem;
+    padding-top: 48px;
+}
+.logoPlaceholder{
+    width: 129px;
+    height: 129px;
+}
+.header{
+    display: flex;
+    gap: 111px;
+}
+.headerTxt{
+    justify-content: center;
+    text-align: center;
+    line-height: 25px;
+}
+.fedTxt{
+    color: var(--Black);
+    font-size: 28px;
+    font-weight: 700;
+}
+.intTxt{
+    font-size: 18px;
+    color: var(--Black);
+    font-weight: 700;
+}
+.adrTxt{
+    font-size: 16px;
+    color: var(--Black);
+    font-weight: 700; 
+}
+.emailtxt{
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--Black);
+}
+.HeaderLine{
+    border: 2px solid #6C757D;
+    
+}
