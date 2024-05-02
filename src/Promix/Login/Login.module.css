@@ -207,6 +207,9 @@
     width: 100%;
     overflow-y  : auto;
   }
+  .thecntnt form label{
+    color: var(--Black);
+  }
   .thecntnt .formGroup{
     margin-right: 10px;
   }

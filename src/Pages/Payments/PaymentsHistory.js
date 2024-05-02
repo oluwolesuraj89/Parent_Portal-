@@ -98,7 +98,8 @@ const PaymentsHistory = () => {
                     <div className={classes.tableSection}>
                         <div className={classes.tHead}>
                             <h5 className={classes.i}>Payment History</h5>
-                            <Button variant='dark'>Make a new payment</Button>
+                            <Link to={'/make_payment'}><Button variant='dark'>Make a new payment</Button></Link>
+                            
                         </div>    
                         <Table striped bordered hover className={classes.table}>
                             <thead>

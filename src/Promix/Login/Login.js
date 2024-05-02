@@ -93,7 +93,7 @@ function Login() {
                     </div>
                     <Form>
                         <Form.Group className={classes.formGroup}>
-                            <Form.Label  >Email Address</Form.Label>
+                            <Form.Label>Email Address</Form.Label>
                             <Form.Control onChange={(e) => setEmail(e.target.value)} type='text'  placeholder="Enter your email address" style={{ backgroundColor: 'rgba(0, 0, 0, 0.8)', color: "#fff" }} />
                         </Form.Group>
                         <Form.Group className={classes.formGroup}>
