@@ -20,12 +20,13 @@
 }
 .header{
     display: flex;
-    gap: 111px;
+    gap: 211px;
 }
 .headerTxt{
     justify-content: center;
     text-align: center;
     line-height: 25px;
+    
 }
 .fedTxt{
     color: var(--Black);
@@ -38,7 +39,7 @@
     font-weight: 700;
 }
 .adrTxt{
-    font-size: 16px;
+    font-size: 18px;
     color: var(--Black);
     font-weight: 700; 
 }
@@ -49,5 +50,216 @@
 }
 .HeaderLine{
     border: 2px solid #6C757D;
-    
+    width: 100%;
+}
+.underLineTxt{
+    line-height: 15px;
+    padding-top: 20px;
+    text-align: center;
+    margin-left: -100px;
+    font-size: 18px;
+    color: pink;
+    /* color: var(--White); */
+}
+.co{
+    color: var(--Black);
+}
+.flexing{
+    display: flex;
+    gap: 120px;
+}
+.value1{
+    margin-left: -43px;
+}
+.value2{
+    margin-left: 43px;
+}
+.value3{
+    margin-left: 23px;
+}
+.labelFlex{
+    padding-top: 10px;
+    padding-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+    line-height: 20px;
+    /* gap: 650px; */
+}
+.student{
+    width: 151px;
+    height: 150px;
+    /* padding-bottom: 20px; */
+}
+.resultTable{
+    /* border: 2px solid var(--Black); */
+    border-collapse: collapse;
+    width: 100%;
+}
+
+
+.resultTable th td {
+    border: 1px solid var(--Black);
+    text-align: center;
+    /* border-left: 1px solid var(--Black); */
+    /* border-right: 1px solid var(--Black); */
+}
+.resultTable th{
+    border-right: 2px solid var(--Black);
+    width: 60px;
+    /* padding: 8px; */
+}
+.resultTable td{
+    /* border-bottom: 2px solid var(--Black); */
+    /* width: 5%; */
+}
+.resultTable .smaller{
+    border: 2px solid var(--Black);
+    transform: rotate(360deg);
+    writing-mode: vertical-lr;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    text-align: center;
+    width: 50px;
+}
+/* .resultTable .smaller th{
+    border: 2px solid var(--Black);
+} */
+.resultTable thead{
+    /* border-left: 2px solid var(--Black); */
+    /* border-right: 2px solid var(--Black); */
+}
+.resultTable .jead{
+    border: 2px solid var(--Black);
+    color: var(--Black);
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-align: center;
+}
+
+.resultTable .aanone{
+    border: none;
+}
+
+.resultTable .remarkRow{
+    border: 2px solid var(--Black);
+    width: 150px;
+    text-align: center;
+    width: 250px;
+}
+.resultTable .rowing{
+    border: 2px solid var(--Black);
+    /* border-left:1px solid pink ; */
+    text-align: center;
+}
+.resultTable .rowing1{
+    padding-left: 30px;
+    border: 2px solid var(--Black);
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.resultTable .heros{
+    border: 2px solid var(--Black);
+    height: 10px!important;
+    text-align: center;
+    width: 5px;
+}
+.resultTable .subject{
+    border: 2px solid var(--Black);
+    height: 1px!important;
+    width: 350px;
+    text-align: center;   
+}
+.info{
+    display: flex;
+    width: 100%;
+    gap: 5px;
+}
+.performance{
+    padding-top: 30px;
+}
+.lativeTable{
+    /* border: 1px solid var(--Black); */
+    width: 100%;
+}
+.lativeTable td, th{
+    border: 1px solid var(--Black);
+    /* border-bottom: 1px solid pink; */
+}
+.lativeTable .doja{
+    width: 300px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 70px;
+    white-space: nowrap;
+    text-align: center;
+}
+.lativeTable .credit{
+    padding-left: 60px;
+    padding-right: 60px;
+}
+.lativeTable .noSub{
+    padding-top: 15px;
+    padding-bottom: 8px;
+    text-align: center;
+    padding-left: 10px;
+    padding-right: 20px;
+}
+.next{
+    display: flex;
+    /* justify-content: center; */
+    width: 30%;
+}
+.key{
+    width: 173px;
+    height: 27px;
+    border: 1px solid var(--Black);
+    text-align: center;
+    /* padding-top: 5px; */
+    margin-top: 10px;
+    justify-self: center;
+    justify-content: center;
+    margin-bottom: 8px;
+    margin-left: 30%;
+}
+.keyTxt{
+    color: var(--Black);
+    color: #000;
+    font-size: 16px;
+}
+
+.keyTable td{
+    border: 1px solid var(--Black);
+    /* width: 100%; */
+    border-collapse: collapse;
+}
+.keysTale{
+    border: 1px solid var(--Black);
+    padding: 10px;
+    width: fit-content;
+    margin: 0;
+    width: fit-content;
+}
+.keyTable th,
+.keyTable td {
+  /* border: 1px solid #000; */
+  /* padding: 15px; */
+  padding-left: 35px;
+  padding-right: 28px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  white-space: nowrap;
+}
+.last{
+    padding-left: 20px;
+    padding-right: 20px;
+
+}
+.deep{
+    font-size: 16px;
+    font-weight: 700;
+    font-family: inter;
+    padding-left: 35px;
+    padding-top: 7px;
+    padding-bottom: 7px;
 }
