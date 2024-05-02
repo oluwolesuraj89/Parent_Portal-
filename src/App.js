@@ -18,6 +18,8 @@ import Payments from './Pages/Payments/PaymentsHistory.js';
 import PaymentsHistory from './Pages/Payments/PaymentsHistory.js';
 import MakePayment from './Pages/Payments/MakePayment.js';
 import Result from './Pages/Resullt/Result.js';
+import Attendance from './Pages/Attendance/Attendance.js';
+import Announcements from './Pages/Announcements/Announcements.js';
 
 function App() {
   return (
@@ -32,6 +34,8 @@ function App() {
         <Route path='/login' element={<Login/>} />
         <Route path='/signup' element={<SignUp/>} />
         <Route path='/results' element={<Result/>} />
+        <Route path='/attendance' element={<Attendance/>} />
+        <Route path='/annoucements' element={<Announcements/>} />
       </Routes>
   );
 }

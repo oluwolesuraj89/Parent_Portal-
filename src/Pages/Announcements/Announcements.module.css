@@ -62,48 +62,7 @@ p{
 }
 
 .chartCont{
-    
     margin-top: 28px;
     padding: 28px;
     background-color: var(--White);
-}
-
-.sessionresult {
-
-}
-
-.frsttxt {
-    font-size: 14px;
-    font-weight: 400;
-    font-family: 'inter';
-    color: black;
-    margin-bottom: 33px;
-}
-.scndtxt {
-    font-size: 14px;
-    font-weight: 400;
-    font-family: 'inter';
-    color: #6C757D;
-    margin-bottom: 47px;
-}
-
-.rsltbtn {
-    width: 378px;
-    height: 41px;
-    background-color: black;
-    color: white;
-    border-radius: 4px;
-    margin-top: 60px;
-}
-
-.hrlne {
-    border-bottom: 1.2px solid #CED4DA;
-    margin-top: 23px;
-    margin-bottom: 25px;
-    width: 100% !important;
-}
-
-.childsinfo {
-    display: flex;
-    justify-content: space-between;
 }
