@@ -31,10 +31,34 @@ const Announcements = () => {
 
 
                 <div className={classes.chartCont}>
-<p>Announcement 1</p>
-<p>School Bus will now leave to pick kids by 6am</p>
-<p>Starting from the 1st of February 2024, the school bus will now leave the school premises to go and pick kids by 6am and not 6.30am, please ensure to get your kids ready for school on time,
-as the bus will not wait for any child that is not ready when the school bus passes our area. Thanks.</p>
+                    <div className={classes.anncemntalldtls}>
+                        <p className={classes.anncemnt}>Announcement 1</p>
+                        <p className={classes.anncemnttitle}>School Bus will now leave to pick kids by 6am</p>
+                        <p className={classes.anncemntdtls}>Starting from the 1st of February 2024, the school bus will now leave the school premises to go and pick kids by 6am and not 6.30am, please ensure to get your kids ready for school on time,
+                            as the bus will not wait for any child that is not ready when the school bus passes our area. Thanks.</p>
+                        <div className={classes.anncemntdte}><p>25th January, 2024</p></div>
+                    </div>
+                    <div className={classes.anncemntalldtls2}>
+                        <p className={classes.anncemnt}>Announcement 1</p>
+                        <p className={classes.anncemnttitle}>School Bus will now leave to pick kids by 6am</p>
+                        <p className={classes.anncemntdtls}>Starting from the 1st of February 2024, the school bus will now leave the school premises to go and pick kids by 6am and not 6.30am, please ensure to get your kids ready for school on time,
+                            as the bus will not wait for any child that is not ready when the school bus passes our area. Thanks.</p>
+                        <div className={classes.anncemntdte}><p>25th January, 2024</p></div>
+                    </div>
+                    <div className={classes.anncemntalldtls3}>
+                        <p className={classes.anncemnt}>Announcement 1</p>
+                        <p className={classes.anncemnttitle}>School Bus will now leave to pick kids by 6am</p>
+                        <p className={classes.anncemntdtls}>Starting from the 1st of February 2024, the school bus will now leave the school premises to go and pick kids by 6am and not 6.30am, please ensure to get your kids ready for school on time,
+                            as the bus will not wait for any child that is not ready when the school bus passes our area. Thanks.</p>
+                        <div className={classes.anncemntdte}><p>25th January, 2024</p></div>
+                    </div>
+                    <div className={classes.anncemntalldtls4}>
+                        <p className={classes.anncemnt}>Announcement 1</p>
+                        <p className={classes.anncemnttitle}>School Bus will now leave to pick kids by 6am</p>
+                        <p className={classes.anncemntdtls}>Starting from the 1st of February 2024, the school bus will now leave the school premises to go and pick kids by 6am and not 6.30am, please ensure to get your kids ready for school on time,
+                            as the bus will not wait for any child that is not ready when the school bus passes our area. Thanks.</p>
+                        <div className={classes.anncemntdte}><p>25th January, 2024</p></div>
+                    </div>
                 </div>
             </div>
         </div>
