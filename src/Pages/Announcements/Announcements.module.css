@@ -62,48 +62,52 @@ p{
 }
 
 .chartCont{
-    
     margin-top: 28px;
     padding: 28px;
     background-color: var(--White);
 }
 
-.sessionresult {
-
-}
-
-.frsttxt {
-    font-size: 14px;
+.anncemnt {
     font-weight: 400;
-    font-family: 'inter';
-    color: black;
-    margin-bottom: 33px;
-}
-.scndtxt {
-    font-size: 14px;
-    font-weight: 400;
-    font-family: 'inter';
+    font-size: 12px;
     color: #6C757D;
-    margin-bottom: 47px;
+    font-family: 'inter';
 }
 
-.rsltbtn {
-    width: 378px;
-    height: 41px;
-    background-color: black;
-    color: white;
-    border-radius: 4px;
-    margin-top: 60px;
+.anncemnttitle {
+    font-weight: 700;
+    font-size: 16px;
+    color: #343A40;
+    font-family: 'inter';
+    margin-top: -12px;
 }
 
-.hrlne {
-    border-bottom: 1.2px solid #CED4DA;
-    margin-top: 23px;
-    margin-bottom: 25px;
-    width: 100% !important;
+.anncemntdtls {
+    font-weight: 400;
+    font-size: 12px;
+    color: #6C757D;
+    font-family: 'inter';
+    margin-top: -6px;
 }
 
-.childsinfo {
+.anncemntdte {
     display: flex;
-    justify-content: space-between;
+    justify-content: right;
+   margin-top: -15px;
+}
+
+.anncemntalldtls {
+    border-bottom: 1.5px solid #CED4DA;
+}
+.anncemntalldtls2 {
+    border-bottom: 1.5px solid #CED4DA;
+    margin-top: 24px;
+}
+.anncemntalldtls3 {
+    border-bottom: 1.5px solid #CED4DA;
+    margin-top: 24px;
+}
+.anncemntalldtls4 {
+    border-bottom: 1.5px solid #CED4DA;
+    margin-top: 24px;
 }

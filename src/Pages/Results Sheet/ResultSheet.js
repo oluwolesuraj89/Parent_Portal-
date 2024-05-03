@@ -434,7 +434,7 @@ const Result_Sheet = () => {
                                         <th className={classes.credit} rowSpan="2">No. Credit<br/>and Above</th>
                                     </tr>
                                         <tr>
-                                            <td  className={classes.noSub}>No of Subjects</td>
+                                            <td  className={classes.noSub1}>No of Subjects</td>
                                             <td className={classes.noSub}>A1</td>
                                             <td className={classes.noSub}>B2</td>
                                             <td className={classes.noSub}>B3</td>
@@ -450,8 +450,8 @@ const Result_Sheet = () => {
 
                                     <tbody>
                                         <tr>
-                                            <td className={classes.noSub}>No of Subjects</td>
-                                            <td>17</td>
+                                            <td className={classes.noSub}>17</td>
+                                            <td> </td>
                                             <td> </td>
                                             <td> </td>
                                             {/* <td> </td> */}
@@ -553,24 +553,32 @@ const Result_Sheet = () => {
                     <div className={classes.last}>
                             <table>
                                 <tr>
-                                    <td>TOTAL SCORE:</td>
-                                    <td>920.5</td>
+                                    <td className={classes.local}>TOTAL SCORE:</td>
+                                    <td className={classes.inside}>920.5</td>
                                 </tr>
                                 <tr>
-                                    <td>AVERAGE:</td>
-                                    <td>54.15%</td>
+                                    <td className={classes.local}>AVERAGE:</td>
+                                    <td className={classes.inside}>54.15%</td>
                                 </tr>
                                 <tr>
-                                    <td>OVERALL GRADE:</td>
-                                    <td>E8</td>
+                                    <td className={classes.local}>OVERALL GRADE:</td>
+                                    <td className={classes.inside}>E8</td>
                                 </tr>
                                 <tr>
-                                    <td>OVERALL RATING:</td>
-                                    <td>WEAK PASS</td>
+                                    <td className={classes.local}>OVERALL RATING:</td>
+                                    <td className={classes.inside}>WEAK PASS</td>
                                 </tr>
                             </table>
-                            <div className={classes.headerLine}/>
+                            <div className={classes.principal}>
+                                <p className={classes.principalName}>MR ISAAC OGUNBUNMI</p>
+                                <p className={classes.principalTxt}>PRINCIPAL</p>
+                            </div>
                     </div>
+                    <div className={classes.tree}>
+                        <div className={classes.HeaderLine2}/>
+                    <p className={classes.excellenceTxt}>Excellence and Integrity</p>
+                    </div>
+                    
             </div>
         </div>
 

@@ -19,6 +19,10 @@ import PaymentsHistory from './Pages/Payments/PaymentsHistory.js';
 import MakePayment from './Pages/Payments/MakePayment.js';
 import Result from './Pages/Resullt/Result.js';
 import ResultSheet from './Pages/Results Sheet/ResultSheet.js';
+import Attendance from './Pages/Attendance/Attendance.js';
+import Announcements from './Pages/Announcements/Announcements.js';
+import Infractions from "./Pages/Infactions/Infractions.js";
+
 function App() {
   return (
       <Routes>
@@ -31,8 +35,11 @@ function App() {
         <Route path='/Result_Sheet' element={<ResultSheet/>}/>
         
         <Route path='/login' element={<Login/>} />
+        <Route path='/infractions' element={<Infractions/>} />
         <Route path='/signup' element={<SignUp/>} />
         <Route path='/results' element={<Result/>} />
+        <Route path='/attendance' element={<Attendance/>} />
+        <Route path='/annoucements' element={<Announcements/>} />
       </Routes>
   );
 }

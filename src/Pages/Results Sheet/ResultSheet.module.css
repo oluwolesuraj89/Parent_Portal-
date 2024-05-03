@@ -179,7 +179,7 @@
 }
 .lativeTable{
     /* border: 1px solid var(--Black); */
-    width: 100%;
+    width: 60%;
 }
 .lativeTable td, th{
     border: 1px solid var(--Black);
@@ -197,6 +197,7 @@
 .lativeTable .credit{
     padding-left: 60px;
     padding-right: 60px;
+    white-space: nowrap;
 }
 .lativeTable .noSub{
     padding-top: 15px;
@@ -205,10 +206,18 @@
     padding-left: 10px;
     padding-right: 20px;
 }
+.lativeTable .noSub1{
+    padding-top: 15px;
+    padding-bottom: 8px;
+    text-align: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    white-space: nowrap ;
+}
 .next{
     display: flex;
     /* justify-content: center; */
-    width: 30%;
+    width: 40%;
 }
 .key{
     width: 173px;
@@ -251,8 +260,11 @@
   white-space: nowrap;
 }
 .last{
-    padding-left: 20px;
+    padding-left: 100px;
     padding-right: 20px;
+    display: flex;
+    padding-top: none;
+    /* margin-top: -30px; */
 
 }
 .deep{
@@ -262,4 +274,61 @@
     padding-left: 35px;
     padding-top: 7px;
     padding-bottom: 7px;
+}
+.local{
+    padding-right: 10px;
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--Black);
+    font-family: inter;
+    text-align: end;
+
+}
+.inside{
+    border: 1.6px solid var(--Black);
+    padding-left: 100px;
+    padding-right: 100px;
+    text-align: center;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: inter;
+    color: var(--Black);
+    /* margin-left: 10px; */
+}
+.principal{
+    padding-left: 30px;
+    line-height: 1px;
+    padding-top: 86px;
+    /* margin-top: 30px; */
+    text-align: center;
+}
+.principalName{
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--Black);
+    font-family: inter;
+}
+.principalTxt{
+    font-size: 10px;
+    font-weight: 300;
+    color: var(--Black);
+    font-family: inter;
+}
+.HeaderLine2{
+    /* padding-top: 30px; */
+    margin-top: 20px;
+    border: 2px solid #6C757D;
+    width: 100%;
+    display: block;
+    
+}
+.tree{
+    text-align: center;
+    padding-left: 80px;
+    padding-right: 10px;
+}
+.excellenceTxt{
+    margin-top: 10px;
 }
