@@ -23,6 +23,7 @@ import Attendance from './Pages/Attendance/Attendance.js';
 import Announcements from './Pages/Announcements/Announcements.js';
 import Profile from './Pages/Profile/Profile.js';
 import Infractions from "./Pages/Infactions/Infractions.js";
+import Infractions2 from "./Pages/Infactions2/Infractions2.js";
 
 function App() {
   return (
@@ -35,8 +36,8 @@ function App() {
         <Route path='/make_payment' element={<MakePayment/>}/>
         <Route path='/Result_Sheet' element={<ResultSheet/>}/>
         
-        <Route path='/login' element={<Login/>} />
         <Route path='/infractions' element={<Infractions/>} />
+        <Route path='/infractions2' element={<Infractions2/>} />
         <Route path='/signup' element={<SignUp/>} />
         <Route path='/results' element={<Result/>} />
         <Route path='/attendance' element={<Attendance/>} />

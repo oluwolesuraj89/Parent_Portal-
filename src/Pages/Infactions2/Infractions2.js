@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 // import OnbImg from '../../Images/image bg.png';
-import classes from "./Infractions.module.css"
+import classes from "../Infactions/Infractions.module.css"
 // import loanicon from '../../Images/moneys.png'
 // import loaniconblue from '../../Images/moneysblue.png'
 // import loanicongreen from '../../Images/receipt-2.png'
@@ -26,8 +26,9 @@ import Payment2 from '../../assets/promix/detailsIcon2.svg'
 import Curve from '../../assets/promix/curve1.svg'
 import Boy from '../../assets/promix/FineBoy.svg'
 import Form from 'react-bootstrap/Form';
+import yayy from '../../assets/promix/yayy.png';
 
-const Infractions = () => {
+const Infractions2 = () => {
     
     return (
         <div style={{backgroundColor:'#E9ECEF'}}>
@@ -59,7 +60,7 @@ const Infractions = () => {
                 </div>
                 
                 <div className={classes.chartCont}>
-                   <p>Infraction 1</p>
+                   {/* <p>Infraction 1</p>
                    <p className={classes.damages}>Damage to School Property</p>
                    <p className={classes.onthe}>On the 10th of April, while playing with her friends during break time, Mosunmola threw a stone at one of the glass windows of class 2C, and broke the glass window.</p>
                    <p className={classes.damages}>Action</p>
@@ -71,7 +72,13 @@ const Infractions = () => {
                    <p className={classes.onthe}>On the 26th of March, Mosunmola and three other girls bullied a fellow student in her class. Mosunmola and her friends hit this student till she sustained bruises on her hands and legs.</p>
                    <p className={classes.damages}>Action</p>
                    <p  className={classes.onthe}>Please visit the school as soon as possible to see the school principal.</p>
-                   <div className={classes.line}/>
+                   <div className={classes.line}/> */}
+                   <div className={classes.yayDiv}>
+                        <img src={yayy} className={classes.yayy}/>
+                        <p className={classes.noInfr}>No Infractions</p>
+                        <p>Your child has no Infractions, welldone, and keep it up</p>
+                   </div>
+                   
                 </div>
             </div>
 
@@ -80,4 +87,4 @@ const Infractions = () => {
     );
 }
 
-export default Infractions;
+export default Infractions2;

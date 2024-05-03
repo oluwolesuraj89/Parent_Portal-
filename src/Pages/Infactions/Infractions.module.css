@@ -254,3 +254,62 @@ p{
     /* grid-row: ; */
     
 }
+.line{
+    width: 100%;
+    border: 1px solid #CED4DA;
+    padding: none;
+}
+.damages{
+    font-size: 16px!important;
+    font-weight: 700;
+    color: var(--Black);
+    margin-top: -10px;
+    font-family: inter;
+}
+.onthe{
+    margin-top: -12px;
+    font-size: 12px;
+    font-weight: 400;
+    color: #6C757D;
+    font-family: inter;
+}
+.line{
+    position: absolute;
+    left: 0;
+    /* top: 50px; */
+}
+.InfractionsTxt{
+    margin-top: 35px;
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--Black);
+    font-family: inter;
+}
+.chartCont{
+    position: relative;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.yayDiv{
+    /* display: flex; */
+    display: block;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    line-height: 10px;
+
+}
+.yayy{
+    width: 182px;
+    height: 296px;
+}
+.noInfr{
+    font-size: 18px!important;
+    font-weight: 700;
+    color: var(--Black);
+    margin-top: 25px;
+    font-family: inter;
+}
