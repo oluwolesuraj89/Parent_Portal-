@@ -18,8 +18,8 @@ import Logo from '../../assets/promix/dLogoWhite.svg'
 import Out from '../../assets/promix/loginss.svg'
 
 
-
-export default function MainDashoard() {
+const MainDashboard = ({ schoolName }) => {
+// export default function MainDashoard() {
     const location = useLocation();
     const navigate = useNavigate();
     const [bearer, setBearer] = useState('');
@@ -107,7 +107,7 @@ export default function MainDashoard() {
         <div className={classes.sideNavBody}>
             <div className={classes.logoCont}>
                 <span>G</span>
-                <p style={{color:'black'}}>Ajanla Farms and Pastry</p>
+                <p style={{color:'black'}}>{schoolName}</p>
             </div>
             <div className={classes.sideNav}>
                 {/* {`${classes.mainMenu} ${isMenuOpen ? classes.menuOpen : ''}`} */}
@@ -214,4 +214,5 @@ export default function MainDashoard() {
         // </div>
     )
 }
-
+export default MainDashboard;
+// expot default MainDashboard;

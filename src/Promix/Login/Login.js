@@ -35,30 +35,17 @@ function Login() {
                 }
             );
             //  console.log(response);
-            const result = response.data?.data?.user?.name;
-            const addresses = response.data?.data?.user?.company?.address;
-            const phones = response.data?.data?.user?.company?.phone_number;
-            const emails = response.data?.data?.user?.company?.email;
-            const resultx = response.data?.data?.user?.email;
-            const results = response.data?.data?.token;
-            const permit = response.data?.data?.permissions;
-            const isAdmin = response.data?.data?.user?.is_admin === "1";
-            const companyName = response.data?.data?.company_name;
-            AsyncStorage.setItem('permissions', permit);
-            AsyncStorage.setItem('admin', isAdmin);
-            AsyncStorage.setItem('companyName', companyName);
-            AsyncStorage.setItem('tobi', result);
-            AsyncStorage.setItem('userToken', results);
-            AsyncStorage.setItem('userEmail', resultx);
-            AsyncStorage.setItem('companyEmail', emails);
-            AsyncStorage.setItem('companyPhone', phones);
-            AsyncStorage.setItem('companyAddress', addresses);
+            const name = response.data?.data?.user?.name;
+            const token = response.data?.data?.token;
+           
+            AsyncStorage.setItem('userToken', token);
+            AsyncStorage.setItem('userName', name);
 
 
             if (location.state && location.state.from) {
                 navigate(location.state.from);
             } else {
-                navigate('/main_dashboard');
+                navigate('/dashboard');
             }
 
         } catch (error) {

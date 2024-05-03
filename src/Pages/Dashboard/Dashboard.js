@@ -1,69 +1,173 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect, Children} from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-// import OnbImg from '../../Images/image bg.png';
 import classes from './Dashboard.module.css';
-// import loanicon from '../../Images/moneys.png'
-// import loaniconblue from '../../Images/moneysblue.png'
-// import loanicongreen from '../../Images/receipt-2.png'
-// import axios from 'axios';
-// import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Button } from 'react-bootstrap';
 // import RegLogo from '../../Images/RegistrationLogo.svg'
 import { Link } from 'react-router-dom'
 import MainDashboard from '../Main Dashboard/MainDashoard';
-import dChart1 from '../../assets/promix/dShart1.svg'
-import dChart2 from '../../assets/promix/dShart2.svg'
-import dChart3 from '../../assets/promix/dShart3.svg'
-import dChart4 from '../../assets/promix/dShart4.svg'
-import dChart5 from '../../assets/promix/dShart5.svg'
-import dChart6 from '../../assets/promix/dShart6.svg'
-import dChart7 from '../../assets/promix/dShart7.svg'
-import dChart8 from '../../assets/promix/dShart8.svg'
-import Arrow from '../../assets/promix/dArrow-down.svg'
-import USER from '../../assets/promix/MyUser.svg'
+// import dChart1 from '../../assets/promix/dShart1.svg'
+// import dChart2 from '../../assets/promix/dShart2.svg'
+// import dChart3 from '../../assets/promix/dShart3.svg'
+// import dChart4 from '../../assets/promix/dShart4.svg'
+// import dChart5 from '../../assets/promix/dShart5.svg'
+// import dChart6 from '../../assets/promix/dShart6.svg'
+// import dChart7 from '../../assets/promix/dShart7.svg'
+// import dChart8 from '../../assets/promix/dShart8.svg'
+// import Arrow from '../../assets/promix/dArrow-down.svg'
+// import USER from '../../assets/promix/MyUser.svg'
 import Payment from '../../assets/promix/detailsIcon1.svg'
 import Payment2 from '../../assets/promix/detailsIcon2.svg'
 import Curve from '../../assets/promix/curve1.svg'
 import Boy from '../../assets/promix/FineBoy.svg'
 import Form from 'react-bootstrap/Form';
+import { BASE_URL } from '../../Promix/api/api';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const Dashboard = () => {
+    const [bearer, setBearer] = useState('');
+    const [children, setChildren] = useState([]);
+    const [childrenDetails, setChildrenDetails] = useState([]);
+    const [childrenSubjects, setChildrenSubjects] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const [isLoadings, setIsLoadings] = useState(false);
+    const [selectedChild, setSelectedChild] = useState("")
+
+
+    const handleChildrenChange = (event) => {
+        setSelectedChild(event.target.value)
+    }
+
+    const readData = async () => {
+        try {
+          const details = await AsyncStorage.getItem('userToken');
+                 
+          if (details !== null) {
+            setBearer(details);
+          }
+        } catch (e) {
+          alert('Failed to fetch the input from storage');
+        }
+      };
+    
+      useEffect(() => {
+        readData();
+      }, []);
+    
+
+    const headers = {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${bearer}`
+      };
+
+    const fetchAllChildren = async () => {
+        setLoading(true);
+        try {
+            const response = await axios.get(`${BASE_URL}/get-all-children`, {headers});
+            const result = response.data?.data
+            setChildren(result);
+            setSelectedChild(result[0]?.id);
+        } catch (error) {
+            let errorMessage = error.response?.data?.message || 'An error occurred';
+            if (error.message === 'Network Error') {
+                errorMessage = 'Connection error. Please check your internet connection.';
+            }
+            toast.error(errorMessage);
+        } finally {
+            setLoading(false);
+        }
+    }
+
+
+    const fetchChildrenDetail = async () => {
+        setIsLoading(true);
+        try {
+            const response = await axios.get(`${BASE_URL}/get-student-by-id?student_id=${selectedChild}`,
+            {headers});
+            const details = response.data?.data
+            setChildrenDetails(details);
+            console.log(details, "wehereh");
+            setChildrenSubjects(details?.classes?.assigned);
+            console.log(details?.classes?.assigned, "hereee");
+        } catch (error) {
+            let errorMessage = error.response?.data?.message || 'An error occurred';
+            if (error.message === 'Network Error') {
+                errorMessage = 'Connection error. Please check your internet connection.';
+            }
+            toast.error(errorMessage);
+        } finally {
+            setIsLoading(false);
+        }
+    }
+
+    
+    useEffect(() => {
+        if (bearer) {
+            fetchAllChildren();
+        }
+      }, [bearer]);
+
+    useEffect(() => {
+        if (bearer) {
+            fetchChildrenDetail(selectedChild);
+        }
+      }, [selectedChild, bearer]);
+
+
     
     return (
-        <div style={{backgroundColor:'#E9ECEF'}}>
-            <MainDashboard/>
+        <div >
+            < MainDashboard schoolName={childrenDetails?.school?.name}/>
             
             <div className={classes.formSection} >
-                <div className={classes.formSectionHeader}>
-                    <div style={{textAlign:'left'}}>
-                        <p style={{margin:'0'}}>Welcome</p>
-                        <h3>
-                            Ololade Lawanson
-                        </h3>
-                        
-                    </div>
-                    <div>
-                        <h3 style={{color:'black'}}>Dashboard</h3>
-                    </div>
-                    <div className={classes.users}>
-                    <Form.Select aria-label="Default select example">
-                        <option>Mosumola Lawanson</option>
-                        <option value="1">Michael Lawanson</option>
-                        <option value="2">Joshua Lawanson</option>
-                        {/* <option value="3">Three</option> */}
-                    </Form.Select>
-                        {/* <h6 >Mosumola Lawanson</h6>
-                        <img src={USER} alt='User'/>
-                        <i class='bx bxs-chevron-down'></i> */}
+            <div className={classes.formSectionHeaderContainer}>
+                    <div className={classes.formSectionHeader}>
+                        <div style={{textAlign:'left'}}>
+                            <p style={{margin:'0'}}>Welcome</p>
+                            <h3>
+                            {childrenDetails.parent_id}
+                            </h3>
+                            
+                        </div>
+                        <div>
+                            <h3 style={{color:'black'}}>Dashboard</h3>
+                        </div>
+                        <div className={classes.users}>
+                        <Form.Select aria-label="Default select example" 
+                            value={selectedChild} 
+                            onChange={handleChildrenChange}
+                        >
+                            {/* <option>Mosumola Lawanson</option> */}
+                            {children.map((item) =>(
+                                <option key={item.id} value={item.id}>
+                                    {item.first_name} {item.last_name}
+                                </option>
+                            ))}
+                        </Form.Select>
+                            {/* <h6 >Mosumola Lawanson</h6>
+                            <img src={USER} alt='User'/>
+                            <i class='bx bxs-chevron-down'></i> */}
+                        </div>
                     </div>
                 </div>
                 
                 <div className={classes.chartCont}>
                     <div className={classes.group1}>
                         <div className={classes.flex1}>
+                            {/* {children.map((item)=>{
+                            if ((item.id) === selectedChild){
+                                return(
+                                    <div key={(item.id)}></div>
+                                )
+                            }
+                            })} */}
                             <div className={classes.stID}>
-                                <h3>Mosunmola Lawanson</h3>
-                                <p>Class: Primary 2A</p>
+                                <h3>{childrenDetails.first_name} {childrenDetails.last_name}</h3>
+                                <p>Class: {childrenDetails.classes?.description}</p>
                             </div>   
                             <div className={classes.details}>
                                 <div className={classes.detailsCard}>
@@ -94,7 +198,13 @@ const Dashboard = () => {
                             </div>
                         </div>
                         <div className={classes.sideImg}>
+                            
+                        {childrenDetails && childrenDetails.image ? (
+                            <img src={childrenDetails.image} alt='img' className={classes.imgs}/>
+                        ) : (
                             <img src={Boy} alt='img' className={classes.imgs}/>
+                        )}
+                            {/* <img src={Boy} alt='img' className={classes.imgs}/> */}
                         </div>
                         <div className={classes.flex2}></div>
                     </div>
@@ -105,15 +215,15 @@ const Dashboard = () => {
                                 <div className={classes.stuDatCard}>
                                     <div>
                                         <small>Name</small>
-                                        <h6>Mosumola Lawanson</h6>
+                                        <h6>{childrenDetails.first_name} {childrenDetails.last_name}</h6>
                                     </div>
                                     <div>
                                         <small>Class</small>
-                                        <h6>Primary 2A</h6>
+                                        <h6>{childrenDetails.classes?.description}</h6>
                                     </div>
                                     <div>
                                         <small>Home address</small>
-                                        <h6>No 15, Chief close, Liberty estate, Lekki phase 1, Lagos</h6>
+                                        <h6>{childrenDetails.address}</h6>
                                     </div>
                                     <div>
                                         <small>Age</small>
@@ -135,7 +245,7 @@ const Dashboard = () => {
                                     </div>
                                     <div>
                                         <small>Blood Group</small>
-                                        <h6>0+</h6>
+                                        <h6>{childrenDetails.blood_group}</h6>
                                     </div>
                                     <div>
                                         <small>Class Teacher</small>
@@ -157,15 +267,12 @@ const Dashboard = () => {
                                 <div className={classes.stuDatCard}>
                                     <div>
                                         <small>Subjects enrolled</small>
-                                        <h6>Mathematics</h6>
-                                        <h6>English Language</h6>
-                                        <h6>Computer</h6>
-                                        <h6>Social Studies</h6>
-                                        <h6>Yoruba</h6>
-                                        <h6>Music</h6>
-                                        <h6>Fine Art</h6>
-                                        <h6>Integrated science</h6>
-                                        <h6>Christian Religious Studies</h6>
+                                        {childrenSubjects.map((item, index) =>(
+                                            <div key={index}>
+                                                <h6>{item.subject?.name}</h6>
+                                            </div> 
+                                        ))}
+                                       
                                     </div>
                                 </div>    
                                 
