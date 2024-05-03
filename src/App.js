@@ -21,6 +21,7 @@ import Result from './Pages/Resullt/Result.js';
 import ResultSheet from './Pages/Results Sheet/ResultSheet.js';
 import Attendance from './Pages/Attendance/Attendance.js';
 import Announcements from './Pages/Announcements/Announcements.js';
+import Profile from './Pages/Profile/Profile.js';
 import Infractions from "./Pages/Infactions/Infractions.js";
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
         <Route path='/results' element={<Result/>} />
         <Route path='/attendance' element={<Attendance/>} />
         <Route path='/annoucements' element={<Announcements/>} />
+        <Route path='/profile' element={<Profile/>} />
       </Routes>
   );
 }
