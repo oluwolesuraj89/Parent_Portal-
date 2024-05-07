@@ -37,6 +37,7 @@ function Login() {
             //  console.log(response);
             const name = response.data?.data?.user?.name;
             const token = response.data?.data?.token;
+            
            
             AsyncStorage.setItem('userToken', token);
             AsyncStorage.setItem('userName', name);
@@ -78,7 +79,7 @@ function Login() {
                         <p className={classes.SignUptxt}>Login</p>
                         <p className={classes.SignUptxtsub}>Enter your Information to continue</p>
                     </div>
-                    <Form>
+                    <Form className={classes.formz}>
                         <Form.Group className={classes.formGroup}>
                             <Form.Label>Email Address</Form.Label>
                             <Form.Control onChange={(e) => setEmail(e.target.value)} type='text'  placeholder="Enter your email address" style={{ backgroundColor: 'rgba(0, 0, 0, 0.8)', color: "#fff" }} />

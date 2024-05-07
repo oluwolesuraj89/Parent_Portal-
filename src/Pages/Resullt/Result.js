@@ -35,9 +35,9 @@ const Result = () => {
 
     const options = [
         { value: 'option1', label: 'View result:Full session' },
-        { value: 'option2', label: 'Session 1' },
-        { value: 'option3', label: 'Session 2' },
-        { value: 'option4', label: 'Session 3' },
+        { value: 'option2', label: 'One term' },
+        { value: 'option3', label: 'Subject' },
+        { value: 'option4', label: 'Mid term' },
     ];
     const classOptions = [
         { value: 'option1', label: 'Select class' },

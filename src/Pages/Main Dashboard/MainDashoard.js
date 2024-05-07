@@ -137,7 +137,7 @@ const MainDashboard = ({ schoolName }) => {
                         <p><img src={dashIcon3} alt='icon' /> Result</p>
                     </Link>
                     <Link
-                        to={'#'}
+                        to={'/attendance'}
                         className={activeLink === 'Grants' ? classes.active : ''}
                     >   
                         <p> <img src={dashIcon4} alt='icon' /> Attendance</p>
@@ -149,13 +149,13 @@ const MainDashboard = ({ schoolName }) => {
                         <p> <img src={dashIcon3} alt='icon' /> Infractions</p>
                     </Link>
                     <Link
-                        to={'#'}
+                        to={'/annoucements'}
                         className={activeLink === 'Invoices' ? classes.active : ''}
                     >
                         <p> <img src={dashIcon4} alt='icon' /> Announcements</p>
                     </Link>
                     <Link
-                        to={'#'}
+                        to={'/profile'}
                         className={activeLink === 'Invoices' ? classes.active : ''}
                     >
                         <p> <img src={userI} alt='icon' /> Profile</p>

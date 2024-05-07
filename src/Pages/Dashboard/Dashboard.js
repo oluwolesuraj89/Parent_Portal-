@@ -7,16 +7,8 @@ import { Button } from 'react-bootstrap';
 // import RegLogo from '../../Images/RegistrationLogo.svg'
 import { Link } from 'react-router-dom'
 import MainDashboard from '../Main Dashboard/MainDashoard';
-// import dChart1 from '../../assets/promix/dShart1.svg'
-// import dChart2 from '../../assets/promix/dShart2.svg'
-// import dChart3 from '../../assets/promix/dShart3.svg'
-// import dChart4 from '../../assets/promix/dShart4.svg'
-// import dChart5 from '../../assets/promix/dShart5.svg'
-// import dChart6 from '../../assets/promix/dShart6.svg'
-// import dChart7 from '../../assets/promix/dShart7.svg'
-// import dChart8 from '../../assets/promix/dShart8.svg'
-// import Arrow from '../../assets/promix/dArrow-down.svg'
-// import USER from '../../assets/promix/MyUser.svg'
+import FemaleIcon from '../../assets/promix/MyUser.svg'
+import MaleIcon from '../../assets/promix/MaleIcon.svg'
 import Payment from '../../assets/promix/detailsIcon1.svg'
 import Payment2 from '../../assets/promix/detailsIcon2.svg'
 import Curve from '../../assets/promix/curve1.svg'
@@ -25,6 +17,23 @@ import Form from 'react-bootstrap/Form';
 import { BASE_URL } from '../../Promix/api/api';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
+
+
+
+function calculateAge(dateOfBirth) {
+    const dob = new Date(dateOfBirth);
+    const currentDate = new Date();
+    
+    let age = currentDate.getFullYear() - dob.getFullYear();
+    
+    if (currentDate.getMonth() < dob.getMonth() ||
+        (currentDate.getMonth() === dob.getMonth() && currentDate.getDate() < dob.getDate())) {
+        age--;
+    }
+    
+    return age;
+}
 
 
 const Dashboard = () => {
@@ -36,6 +45,17 @@ const Dashboard = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [isLoadings, setIsLoadings] = useState(false);
     const [selectedChild, setSelectedChild] = useState("")
+    const [parentName, setParentName] = useState("")
+
+
+    const renderAge = () => {
+        const selectedChildObj = children.find(child => child.id === selectedChild);
+        if (selectedChildObj) {
+            const age = calculateAge(selectedChildObj.date_of_birth);
+            return <span>{age} years old</span>;
+        }
+        return null;
+    }
 
 
     const handleChildrenChange = (event) => {
@@ -45,9 +65,13 @@ const Dashboard = () => {
     const readData = async () => {
         try {
           const details = await AsyncStorage.getItem('userToken');
+          const parent = await AsyncStorage.getItem('userName')
                  
           if (details !== null) {
             setBearer(details);
+          }
+          if(parent !==null){
+            setParentName(parent)
           }
         } catch (e) {
           alert('Failed to fetch the input from storage');
@@ -129,7 +153,7 @@ const Dashboard = () => {
                         <div style={{textAlign:'left'}}>
                             <p style={{margin:'0'}}>Welcome</p>
                             <h3>
-                            {childrenDetails.parent_id}
+                                {parentName}
                             </h3>
                             
                         </div>
@@ -145,9 +169,14 @@ const Dashboard = () => {
                             {children.map((item) =>(
                                 <option key={item.id} value={item.id}>
                                     {item.first_name} {item.last_name}
+                                    {item.gender === 'male' ? (
+                                        <img src={MaleIcon} alt='Male'/> 
+                                    ) : (
+                                        <img src={FemaleIcon} alt='Female'/>
+                                    )}
                                 </option>
                             ))}
-                        </Form.Select>
+                            </Form.Select>
                             {/* <h6 >Mosumola Lawanson</h6>
                             <img src={USER} alt='User'/>
                             <i class='bx bxs-chevron-down'></i> */}
@@ -200,9 +229,9 @@ const Dashboard = () => {
                         <div className={classes.sideImg}>
                             
                         {childrenDetails && childrenDetails.image ? (
-                            <img src={childrenDetails.image} alt='img' className={classes.imgs}/>
+                            <img src={childrenDetails.image} alt='img' className={classes.imgss}/>
                         ) : (
-                            <img src={Boy} alt='img' className={classes.imgs}/>
+                            <img src={Boy} alt='img' className={classes.imgss}/>
                         )}
                             {/* <img src={Boy} alt='img' className={classes.imgs}/> */}
                         </div>
@@ -226,8 +255,14 @@ const Dashboard = () => {
                                         <h6>{childrenDetails.address}</h6>
                                     </div>
                                     <div>
+                                        <small>Date of birth</small>
+                                        <h6>{childrenDetails.date_of_birth}</h6>
+                                        {/* <h6>7years old</h6> */}
+                                    </div>
+                                    <div>
                                         <small>Age</small>
-                                        <h6>7years old</h6>
+                                        <h6>{selectedChild && renderAge()}</h6>
+                                        {/* <h6>7years old</h6> */}
                                     </div>
                                     <div>
                                         <small>Height</small>
@@ -249,7 +284,7 @@ const Dashboard = () => {
                                     </div>
                                     <div>
                                         <small>Class Teacher</small>
-                                        <h6>Mrs. Adigun</h6>
+                                        <h6>{childrenDetails.teacher.name}</h6>
                                     </div>
                                     <div>
                                         <small>Team</small>

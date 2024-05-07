@@ -1,0 +1,113 @@
+body {
+    background-color: #E9ECEF !important;
+
+}
+*,
+::after,
+::before{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* colors */
+:root{
+    --Deep-green: #164B2E;
+    --Light-green: #2D995F; 
+    --Gray:#f2f3f3;
+    --White: #ffffff;
+    --Black: #343A40;
+    --P-Black:#6C757D;
+    --Background:rgba(172, 231, 199, 0.05);
+}
+p{
+    color: var(--P-Black);
+}
+.formSection{
+    width: 100%;
+    padding-left: 22rem;
+    /* background-color: #4b9483; */
+    padding-right: 3rem;
+    
+}
+.formSectionHeader{
+  width: 100%;
+  padding: 31px 25px;
+  margin-top: 25px ;
+  /* padding-top: 40px; */
+  /* margin-bottom: 10px; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--White);
+}
+.formSection p{
+    font-size: 12px;
+}
+.formSectionHeader h3{
+    color: var(--Black);
+    font-size: 20px;
+    font-weight: 700;
+}
+.formSectionHeader .users{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 17px;
+}
+.formSectionHeader .users i{
+    font-size: 24px;
+    color: var(--Black);
+    font-weight: lighter;
+}
+
+.chartCont{
+    margin-top: 28px;
+    padding: 28px;
+    background-color: var(--White);
+}
+
+.anncemnt {
+    font-weight: 400;
+    font-size: 12px;
+    color: #6C757D;
+    font-family: 'inter';
+}
+
+.anncemnttitle {
+    font-weight: 700;
+    font-size: 16px;
+    color: #343A40;
+    font-family: 'inter';
+    margin-top: -12px;
+}
+
+.anncemntdtls {
+    font-weight: 400;
+    font-size: 12px;
+    color: #6C757D;
+    font-family: 'inter';
+    margin-top: -6px;
+}
+
+.anncemntdte {
+    display: flex;
+    justify-content: right;
+   margin-top: -15px;
+}
+
+.anncemntalldtls {
+    border-bottom: 1.5px solid #CED4DA;
+}
+.anncemntalldtls2 {
+    border-bottom: 1.5px solid #CED4DA;
+    margin-top: 24px;
+}
+.anncemntalldtls3 {
+    border-bottom: 1.5px solid #CED4DA;
+    margin-top: 24px;
+}
+.anncemntalldtls4 {
+    border-bottom: 1.5px solid #CED4DA;
+    margin-top: 24px;
+}
