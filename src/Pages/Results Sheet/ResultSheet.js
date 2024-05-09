@@ -25,8 +25,8 @@ const ResultSheet = () => {
     const [bearer, setBearer] = useState('');
     const [children, setChildren] = useState('');
 
-    // console.log
-    // console.log(details, "student details");
+    console.log(childrenScores);
+    
     // const readData = async () => {
     //     try {
     //       const details = await AsyncStorage.getItem('userToken');
