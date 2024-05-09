@@ -1,73 +1,177 @@
-import React from "react";
+import React, {useState, useEffect, Children} from 'react';
 import classes from '../../Pages/Results Sheet/ResultSheet.module.css';
 import logoPlaceholder from '../../assets/promix/logoPlaceholder.png';
 import student from '../../assets/promix/student.png';
+import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { BASE_URL } from '../../Promix/api/api';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useLocation } from 'react-router-dom';
 
 
-const Result_Sheet = () => {
+
+
+const ResultSheet = () => {
+    
+    const location = useLocation();
+    const { childrenScores, selectedChild, selectedSession, selectedTerm } = location.state || {};
+    const [schools, setSchools] = useState([childrenScores?.school]);
+    const [details, setDetails] = useState([childrenScores?.studentScores[0]]);
+    const [childrenDetails, setChildrenDetails] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+    const [loading, setLoading] = useState(false);
+    // const [selectedChild, setSelectedChild] = useState('');
+    const [bearer, setBearer] = useState('');
+    const [children, setChildren] = useState('');
+
+    // console.log
+    // console.log(details, "student details");
+    // const readData = async () => {
+    //     try {
+    //       const details = await AsyncStorage.getItem('userToken');
+    //     //   const parent = await AsyncStorage.getItem('userName')
+                 
+    //       if (details !== null) {
+    //         setBearer(details);
+    //       }
+    //     //   if(parent !==null){
+    //     //     setParentName(parent)
+    //     //   }
+    //     } catch (e) {
+    //       alert('Failed to fetch the input from storage');
+    //     }
+    //   };
+    
+    //   useEffect(() => {
+    //     readData();
+    //   }, []);
+    
+
+    // const headers = {
+    //     'Content-Type': 'application/json',
+    //     'Authorization': `Bearer ${bearer}`
+    //   };
+
+    //   const fetchAllChildren = async () => {
+    //     setLoading(true);
+    //     try {
+    //         const response = await axios.get(`${BASE_URL}/get-all-children`, {headers});
+    //         const result = response.data?.data
+    //         setChildren(result);
+    //         setSelectedChild(result[0]?.id);
+    //     } catch (error) {
+    //         let errorMessage = error.response?.data?.message || 'An error occurred';
+    //         if (error.message === 'Network Error') {
+    //             errorMessage = 'Connection error. Please check your internet connection.';
+    //         }
+    //         toast.error(errorMessage);
+    //     } finally {
+    //         setLoading(false);
+    //     }
+    // }
+
+    // const fetchChildrenDetail = async () => {
+    //     setIsLoading(true);
+    //     try {
+    //         const response = await axios.get(`${BASE_URL}/get-student-by-id?student_id=${selectedChild}`,
+    //         {headers});
+    //         const details = response.data?.data
+    //         setChildrenDetails(details);
+    //         // console.log(details, "wehereh");
+    //         console.log(details, "wehereh");
+    //         // setChildrenSubjects(details?.classes?.assigned);
+    //         // console.log(details?.classes?.assigned, "hereee");
+    //         // console.log("childrenDetails:", childrenDetails);
+    //         // console.log("school:", childrenDetails?.school);
+    //         // console.log("school name:", childrenDetails?.school?.name);
+    //     } catch (error) {
+    //         let errorMessage = error.response?.data?.message || 'An error occurred';
+    //         if (error.message === 'Network Error') {
+    //             errorMessage = 'Connection error. Please check your internet connection.';
+    //         }
+    //         toast.error(errorMessage);
+    //     } finally {
+    //         setIsLoading(false);
+    //     }
+    // }
+
+    
+    // useEffect(() => {
+    //     if (bearer) {
+    //         fetchAllChildren();
+    //     }
+    //   }, [bearer]);
+
+    // useEffect(() => {
+    //     if (bearer) {
+    //         fetchChildrenDetail(selectedChild);
+    //     }
+    //   }, [selectedChild, bearer]);
     
     return (
-        <div>         
+        <div className={classes.generalCont}>         
             <div className={classes.mainDiv}>
                 <div className={classes.header}>
-                    <img src={logoPlaceholder} className={classes.logoPlaceholder}/>
+                    <div className={classes.sideImg}>         
+                        {schools && schools[0]?.school_logo ? (
+                            <img src={schools[0]?.school_logo} alt='img' className={classes.imgs}/>
+                        ) : (
+                            <img src={logoPlaceholder} className={classes.imgs}/>
+                        )}
+                            {/* <img src={Boy} alt='img' className={classes.imgs}/> */}
+                    </div>
+                    {/* <img src={logoPlaceholder} className={classes.logoPlaceholder}/> */}
                     <div className={classes.headerTxt}>
-                        <p className={classes.fedTxt}>FEDERAL UNIVERSITY OF AGRICULTURE</p>
-                        <p className={classes.intTxt}>INTERNATIONAL SCHOOL (FUNNIS), ABEOKUTA</p>
-                        <p className={classes.adrTxt}>Address: Alabata Road, Abeokuta Ogun State</p>
-                        <p className={classes.emailtxt}>Email: funis2004@yahoo.co.uk | Tel: 08055108853, 08162955615</p>
+                        <p className={classes.fedTxt}>{schools[0]?.name}</p>
+                        {/* <p className={classes.intTxt}>INTERNATIONAL SCHOOL (FUNNIS), ABEOKUTA</p> */}
+                        <p className={classes.adrTxt}>Address: {schools[0]?.address}</p>
+                        <p className={classes.emailtxt} style={{margin:'0'}}>Email: {schools[0]?.email}</p>
                     </div>
                 </div>
                 <div className={classes.HeaderLine}/>
 
                 <div className={classes.underLineTxt}>
                     <p className={classes.co}>JUNIOR SECONDARY SCHOOL (JSS) REPORT SHEET</p>
-                    <p className={classes.co}>1ST TERM 2022/2023 SESSION</p>
+                    <p className={classes.co}>{details[0]?.term?.description}</p>
                 </div>
 
                 <div className={classes.labelFlex}>
-                    {/* <div>
-                        <div className={classes.flexing}>
-                            <p className={classes.label}>STUDENT:</p>
-                            <p className={classes.value}>OWUMI, FOLASOPE</p>
-                        </div>
-                        <div className={classes.flexing}>
-                            <p>ADMISSION NO:</p>
-                            <p className={classes.value1}>US/21/179</p>
-                        </div>
-                        <div className={classes.flexing}>
-                            <p>SEX:</p>
-                            <p className={classes.value2}>F</p>
-                        </div>
-                        <div className={classes.flexing}>
-                            <p>CLASS:</p>
-                            <p className={classes.value3}>JS2BLUE</p>
-                        </div>
-                    </div> */}
+                    
 
                     <div>
                     <table>
                                 <tr>
                                     <td>STUDENT:</td>
-                                    <td className={classes.deep}>OWUMI, FOLASOPE</td>
+                                    <td className={classes.deep}>{selectedChild} {childrenDetails.last_name}</td>
                                 </tr>
                                 <tr>
                                     <td>ADMISSION NO:</td>
-                                    <td className={classes.deep}>US/21/179</td>
+                                    <td className={classes.deep}>{details[0]?.matric_id}</td>
                                 </tr>
                                 <tr>
                                     <td>SEX:</td>
-                                    <td className={classes.deep}>F</td>
+                                    <td className={classes.deep}>{childrenDetails.gender}</td>
                                 </tr>
                                 <tr>
                                     <td>CLASS:</td>
-                                    <td className={classes.deep}>JS2BLUE</td>
+                                    <td className={classes.deep}>{details[0]?.class?.description}</td>
                                 </tr>
                             </table>
                     </div>
+
+                    <div className={classes.sideImg2}>
+                            
+                        {childrenDetails && childrenDetails.image ? (
+                            <img src={childrenDetails.image} alt='img' className={classes.imgss}/>
+                        ) : (
+                            <img src={student} className={classes.student}/>
+                        )}
+                            {/* <img src={Boy} alt='img' className={classes.imgs}/> */}
+                    </div>
                     
 
-                    <img src={student} className={classes.student}/>
+                    {/* <img src={student} className={classes.student}/> */}
                 </div>
 
                     <div className={classes.resultTable}>
@@ -80,6 +184,7 @@ const Result_Sheet = () => {
                                 <th className={classes.jead} colSpan="4" style={{whiteSpace:'nowrap'}}>SUMMARY OF TERM’S WORK</th>
                             </tr>
                           </thead>
+                          
                           <tbody>
 
                             <tr>
@@ -99,10 +204,11 @@ const Result_Sheet = () => {
                             <td className={classes.remarkRow}>REMARK</td>
                             </tr>
 
-                            <tr>
-                                <td className={classes.rowing}>1</td>
-                                <td className={classes.rowing1}>**ENGLISH LANGUAGE</td>
-                                <td className={classes.rowing}>12</td>
+                            {details.map((item, index)=>(
+                            <tr key={index}>
+                                <td className={classes.rowing}>{index + 1}</td>
+                                <td className={classes.rowing1}>{item?.subject?.name}</td>
+                                <td className={classes.rowing}>{item?.assessment_category?.score}</td>
                                 <td className={classes.rowing}>9</td>
                                 {/* <td className={classes.rowing}>12</td> */}
                                 <td className={classes.rowing}>12</td>
@@ -112,315 +218,14 @@ const Result_Sheet = () => {
                                 <td className={classes.rowing}>C6</td>
                                 <td className={classes.rowing}>62</td>
                                 <td className={classes.rowing}>C6</td>
-                                <td className={classes.rowing}>C6</td>
+                                <td className={classes.rowing}>{item?.grade}</td>
                                 <td className={classes.rowing}>GS</td>
-                                <td className={classes.rowing}>WEAK CREDIT</td>
+                                <td className={classes.rowing}>{item?.remark}</td>
                                 {/* <td>12</td> */}
                             </tr>
+                            ))}
 
-                            <tr>
-                                <td className={classes.rowing}>2</td>
-                                <td className={classes.rowing1}>*MATHEMATICS</td>
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>9</td>
-                                {/* <td className={classes.rowing}>12</td> */}
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>C6</td>
-                                <td className={classes.rowing}>62</td>
-                                <td className={classes.rowing}>C6</td>
-                                <td className={classes.rowing}>C6</td>
-                                <td className={classes.rowing}>GS</td>
-                                <td className={classes.rowing}>WEAK PASS</td>
-                                {/* <td>12</td> */}
-                            </tr>
-
-                            <tr>
-                                <td className={classes.rowing}>3</td>
-                                <td className={classes.rowing1}>AGRICULTURAL SCIENCE</td>
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>9</td>
-                                {/* <td className={classes.rowing}>12</td> */}
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>C6</td>
-                                <td className={classes.rowing}>62</td>
-                                <td className={classes.rowing}>C6</td>
-                                <td className={classes.rowing}>C6</td>
-                                <td className={classes.rowing}>GS</td>
-                                <td className={classes.rowing}>WEAK CREDIT</td>
-                                {/* <td>12</td> */}
-                            </tr>
-
-                            <tr>
-                                <td className={classes.rowing}>4</td>
-                                <td className={classes.rowing1}>BASIC SCIENCE</td>
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>9</td>
-                                {/* <td className={classes.rowing}>12</td> */}
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>C6</td>
-                                <td className={classes.rowing}>62</td>
-                                <td className={classes.rowing}>C6</td>
-                                <td className={classes.rowing}>C6</td>
-                                <td className={classes.rowing}>GS</td>
-                                <td className={classes.rowing}>WEAK CREDIT</td>
-                                {/* <td>12</td> */}
-                            </tr>
-
-                            <tr>
-                                <td className={classes.rowing}>5</td>
-                                <td className={classes.rowing1}>BASIC TECHNOLOGY</td>
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>9</td>
-                                {/* <td className={classes.rowing}>12</td> */}
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>C6</td>
-                                <td className={classes.rowing}>62</td>
-                                <td className={classes.rowing}>C6</td>
-                                <td className={classes.rowing}>C6</td>
-                                <td className={classes.rowing}>GS</td>
-                                <td className={classes.rowing}>PASS</td>
-                                {/* <td>12</td> */}
-                            </tr>
-
-                            <tr>
-                                <td className={classes.rowing}>6</td>
-                                <td className={classes.rowing1}>BUSINESS STUDIES</td>
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>9</td>
-                                {/* <td className={classes.rowing}>12</td> */}
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>C6</td>
-                                <td className={classes.rowing}>62</td>
-                                <td className={classes.rowing}>C6</td>
-                                <td className={classes.rowing}>C6</td>
-                                <td className={classes.rowing}>GS</td>
-                                <td className={classes.rowing}>PASS</td>
-                                {/* <td>12</td> */}
-                            </tr>
-
-                            <tr>
-                                <td className={classes.rowing}>7</td>
-                                <td className={classes.rowing1}>CHRISTAIND RELIGIOUS STUDIES</td>
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>9</td>
-                                {/* <td className={classes.rowing}>12</td> */}
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>C6</td>
-                                <td className={classes.rowing}>62</td>
-                                <td className={classes.rowing}>C6</td>
-                                <td className={classes.rowing}>C6</td>
-                                <td className={classes.rowing}>GS</td>
-                                <td className={classes.rowing}>PASS</td>
-                                {/* <td>12</td> */}
-                            </tr>
-
-                            <tr>
-                                <td className={classes.rowing}>8</td>
-                                <td className={classes.rowing1}>CIVIC EDUCATION</td>
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>9</td>
-                                {/* <td className={classes.rowing}>12</td> */}
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>C6</td>
-                                <td className={classes.rowing}>62</td>
-                                <td className={classes.rowing}>C6</td>
-                                <td className={classes.rowing}>C6</td>
-                                <td className={classes.rowing}>GS</td>
-                                <td className={classes.rowing}>FAIR CREDIT</td>
-                                {/* <td>12</td> */}
-                            </tr>
-
-                            <tr>
-                                <td className={classes.rowing}>9</td>
-                                <td className={classes.rowing1}>COMPUTER STUDIES</td>
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>9</td>
-                                {/* <td className={classes.rowing}>12</td> */}
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>C6</td>
-                                <td className={classes.rowing}>62</td>
-                                <td className={classes.rowing}>C6</td>
-                                <td className={classes.rowing}>C6</td>
-                                <td className={classes.rowing}>GS</td>
-                                <td className={classes.rowing}>WEAK CREDIT</td>
-                                {/* <td>12</td> */}
-                            </tr>
-
-                            <tr>
-                                <td className={classes.rowing}>10</td>
-                                <td className={classes.rowing1}>CREATIVE ARTS</td>
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>9</td>
-                                {/* <td className={classes.rowing}>12</td> */}
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>C6</td>
-                                <td className={classes.rowing}>62</td>
-                                <td className={classes.rowing}>C6</td>
-                                <td className={classes.rowing}>C6</td>
-                                <td className={classes.rowing}>GS</td>
-                                <td className={classes.rowing}>WEAK PASS</td>
-                                {/* <td>12</td> */}
-                            </tr>
-
-                            <tr>
-                                <td className={classes.rowing}>11</td>
-                                <td className={classes.rowing1}>FRENCH</td>
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>9</td>
-                                {/* <td className={classes.rowing}>12</td> */}
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>C6</td>
-                                <td className={classes.rowing}>62</td>
-                                <td className={classes.rowing}>C6</td>
-                                <td className={classes.rowing}>C6</td>
-                                <td className={classes.rowing}>GS</td>
-                                <td className={classes.rowing}>FAIL</td>
-                                {/* <td>12</td> */}
-                            </tr>
-
-                            <tr>
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing1}>HISTORY</td>
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>9</td>
-                                {/* <td className={classes.rowing}>12</td> */}
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>C6</td>
-                                <td className={classes.rowing}>62</td>
-                                <td className={classes.rowing}>C6</td>
-                                <td className={classes.rowing}>C6</td>
-                                <td className={classes.rowing}>GS</td>
-                                <td className={classes.rowing}>FAIL</td>
-                                {/* <td>12</td> */}
-                            </tr>
-
-                            <tr>
-                                <td className={classes.rowing}>13</td>
-                                <td className={classes.rowing1}>HOME ECONOMICS</td>
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>9</td>
-                                {/* <td className={classes.rowing}>12</td> */}
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>C6</td>
-                                <td className={classes.rowing}>62</td>
-                                <td className={classes.rowing}>C6</td>
-                                <td className={classes.rowing}>C6</td>
-                                <td className={classes.rowing}>GS</td>
-                                <td className={classes.rowing}>PASS</td>
-                                {/* <td>12</td> */}
-                            </tr>
-
-                            <tr>
-                                <td className={classes.rowing}>14</td>
-                                <td className={classes.rowing1}>MUSIC</td>
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>9</td>
-                                {/* <td className={classes.rowing}>12</td> */}
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>C6</td>
-                                <td className={classes.rowing}>62</td>
-                                <td className={classes.rowing}>C6</td>
-                                <td className={classes.rowing}>C6</td>
-                                <td className={classes.rowing}>GS</td>
-                                <td className={classes.rowing}>FAIL</td>
-                                {/* <td>12</td> */}
-                            </tr>
-
-                            <tr>
-                                <td className={classes.rowing}>15</td>
-                                <td className={classes.rowing1}>PHYSICAL HEALTH EDUCATION</td>
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>9</td>
-                                {/* <td className={classes.rowing}>12</td> */}
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>C6</td>
-                                <td className={classes.rowing}>62</td>
-                                <td className={classes.rowing}>C6</td>
-                                <td className={classes.rowing}>C6</td>
-                                <td className={classes.rowing}>GS</td>
-                                <td className={classes.rowing}>FAIL</td>
-                                {/* <td>12</td> */}
-                            </tr>
-
-                            <tr>
-                                <td className={classes.rowing}>16</td>
-                                <td className={classes.rowing1}>SOCIAL STUDIES</td>
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>9</td>
-                                {/* <td className={classes.rowing}>12</td> */}
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>C6</td>
-                                <td className={classes.rowing}>62</td>
-                                <td className={classes.rowing}>C6</td>
-                                <td className={classes.rowing}>C6</td>
-                                <td className={classes.rowing}>GS</td>
-                                <td className={classes.rowing}>PASS</td>
-                                {/* <td>12</td> */}
-                            </tr>
-
-                            <tr>
-                                <td className={classes.rowing}>17</td>
-                                <td className={classes.rowing1}>YORUBA LANGUAGE</td>
-                                <td className={classes.rowing}>7</td>
-                                <td className={classes.rowing}>7</td>
-                                {/* <td className={classes.rowing}>12</td> */}
-                                <td className={classes.rowing}>7</td>
-                                <td className={classes.rowing}>7</td>
-                                <td className={classes.rowing}>7</td>
-                                <td className={classes.rowing}>7</td>
-                                <td className={classes.rowing}>F9</td>
-                                <td className={classes.rowing}>49</td>
-                                <td className={classes.rowing}>F9</td>
-                                <td className={classes.rowing}>F9</td>
-                                <td className={classes.rowing}>NGS</td>
-                                <td className={classes.rowing}>FAIL</td>
-                                {/* <td>12</td> */}
-                            </tr>
+                            
                         </tbody>
                         </table>
                     </div>
@@ -585,4 +390,4 @@ const Result_Sheet = () => {
     );
 }
 
-export default Result_Sheet;
+export default ResultSheet;

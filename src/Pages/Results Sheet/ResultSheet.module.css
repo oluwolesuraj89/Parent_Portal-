@@ -8,11 +8,19 @@
     --Black: #343A40;
     --blackGray: #6C757D;
 }
-
+.generalCont{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--White);
+}
 .mainDiv{
-    padding-left: 9rem;
-    padding-right: 9rem;
+    /* padding-left: 9rem; */
+    /* padding-right: 9rem; */
+    width: 100%;
+    max-width: 80%;
     padding-top: 48px;
+
 }
 .logoPlaceholder{
     width: 129px;
@@ -27,6 +35,27 @@
     text-align: center;
     line-height: 25px;
     
+}
+.sideImg{
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+}
+.sideImg2{
+    width: 210px;
+    /* height: 250px; */
+    overflow: hidden;
+    border-radius: 8px;
+}
+.imgss{
+    width: 210px;
+    height: 250px;
+    object-fit: cover;
+}
+.imgs{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 .fedTxt{
     color: var(--Black);
@@ -179,7 +208,7 @@
 }
 .lativeTable{
     /* border: 1px solid var(--Black); */
-    width: 60%;
+    /* width: 60%; */
 }
 .lativeTable td, th{
     border: 1px solid var(--Black);
@@ -217,7 +246,7 @@
 .next{
     display: flex;
     /* justify-content: center; */
-    width: 40%;
+    /* width: 40%; */
 }
 .key{
     width: 173px;

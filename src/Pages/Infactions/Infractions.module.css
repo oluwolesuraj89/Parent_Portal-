@@ -230,11 +230,8 @@ p{
     gap: 10px;
     /* color: var(--White); */
 }
-
-
 .chartCont{
-    
-    padding: 28px;
+    /* padding: 28px; */
     background-color: var(--White);
     margin-bottom: 3rem;
 }
@@ -254,11 +251,19 @@ p{
     /* grid-row: ; */
     
 }
-.line{
+.Infraction1{
+    padding: 28px 28px 0 28px;
+}
+.Infraction2{
+    border-top: 2px solid #CED4DA;
+    border-bottom: 2px solid #CED4DA;
+    padding: 28px;
+}
+/* .line{
     width: 100%;
     border: 1px solid #CED4DA;
     padding: none;
-}
+} */
 .damages{
     font-size: 16px!important;
     font-weight: 700;
@@ -274,12 +279,12 @@ p{
     font-family: inter;
 }
 .line{
-    position: absolute;
-    left: 0;
+    /* position: absolute; */
+    /* left: 0; */
     /* top: 50px; */
 }
 .InfractionsTxt{
-    margin-top: 35px;
+    /* margin-top: 35px; */
     font-size: 12px;
     font-weight: 400;
     color: var(--Black);
@@ -289,14 +294,14 @@ p{
     position: relative;
     height: 600px;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    /* justify-content: center; */
+    /* align-items: center; */
     flex-direction: column;
 }
 .yayDiv{
     /* display: flex; */
     display: block;
-    text-align: center;
+    /* text-align: center; */
     justify-content: center;
     align-items: center;
     line-height: 10px;

@@ -114,9 +114,13 @@ const Dashboard = () => {
             {headers});
             const details = response.data?.data
             setChildrenDetails(details);
-            console.log(details, "wehereh");
+            // console.log(details, "wehereh");
+            console.log(details?.school?.name, "wehereh");
             setChildrenSubjects(details?.classes?.assigned);
-            console.log(details?.classes?.assigned, "hereee");
+            // console.log(details?.classes?.assigned, "hereee");
+            // console.log("childrenDetails:", childrenDetails);
+            // console.log("school:", childrenDetails?.school);
+            // console.log("school name:", childrenDetails?.school?.name);
         } catch (error) {
             let errorMessage = error.response?.data?.message || 'An error occurred';
             if (error.message === 'Network Error') {
@@ -145,7 +149,7 @@ const Dashboard = () => {
     
     return (
         <div >
-            < MainDashboard schoolName={childrenDetails?.school?.name}/>
+            < MainDashboard/>
             
             <div className={classes.formSection} >
             <div className={classes.formSectionHeaderContainer}>
@@ -247,6 +251,10 @@ const Dashboard = () => {
                                         <h6>{childrenDetails.first_name} {childrenDetails.last_name}</h6>
                                     </div>
                                     <div>
+                                        <small>school</small>
+                                        <h6>{childrenDetails?.school?.name}</h6>
+                                    </div>
+                                    <div>
                                         <small>Class</small>
                                         <h6>{childrenDetails.classes?.description}</h6>
                                     </div>
@@ -268,12 +276,13 @@ const Dashboard = () => {
                                         <small>Height</small>
                                         <h6>100cm</h6>
                                     </div>
+                                    
+                                </div>    
+                                <div className={classes.stuDatCard}>
                                     <div>
                                         <small>House color</small>
                                         <h6>Yellow</h6>
                                     </div>
-                                </div>    
-                                <div className={classes.stuDatCard}>
                                     <div>
                                         <small>Genotype</small>
                                         <h6>AA</h6>
@@ -284,7 +293,7 @@ const Dashboard = () => {
                                     </div>
                                     <div>
                                         <small>Class Teacher</small>
-                                        <h6>{childrenDetails.teacher.name}</h6>
+                                        <h6>{childrenDetails.teacher?.name}</h6>
                                     </div>
                                     <div>
                                         <small>Team</small>

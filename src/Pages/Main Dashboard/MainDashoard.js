@@ -8,17 +8,19 @@ import { Tab, Tabs, Form, Spinner, Button } from 'react-bootstrap';
 
 import axios from 'axios';
 
-import dashIcon1 from '../../assets/promix/PDicon1.svg'
-import dashIcon2 from '../../assets/promix/PDicon2.svg'
-import dashIcon3 from '../../assets/promix/PDicon3.svg'
-import dashIcon4 from '../../assets/promix/PDicon4.svg'
-import userI from '../../assets/promix/PDicon-user.svg'
-import Arrow from '../../assets/promix/dArrow-down.svg'
-import Logo from '../../assets/promix/dLogoWhite.svg'
-import Out from '../../assets/promix/loginss.svg'
+import dashIcon from '../../assets/promix/Dash_icon.svg';
+import dashIcon1 from '../../assets/promix/PDicon1.svg';
+import dashIcon2 from '../../assets/promix/PDicon2.svg';
+import dashIcon3 from '../../assets/promix/PDicon3.svg';
+import dashIcon4 from '../../assets/promix/PDicon4.svg';
+import userI from '../../assets/promix/PDicon-user.svg';
+// import Arrow from '../../assets/promix/dArrow-down.svg'
+// import Logo from '../../assets/promix/dLogoWhite.svg'
+import Out from '../../assets/promix/loginss.svg';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
-const MainDashboard = ({ schoolName }) => {
+const MainDashboard = () => {
 // export default function MainDashoard() {
     const location = useLocation();
     const navigate = useNavigate();
@@ -28,7 +30,28 @@ const MainDashboard = ({ schoolName }) => {
     const [loading, setLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [parentName, setParentName] = useState('');
     // const { isReg, retrieveRegStatus } = useRegistration();
+
+    const readData = async () => {
+        try {
+          const details = await AsyncStorage.getItem('userToken');
+          const parent = await AsyncStorage.getItem('userName')
+                 
+          if (details !== null) {
+            setBearer(details);
+          }
+          if(parent !==null){
+            setParentName(parent)
+          }
+        } catch (e) {
+          alert('Failed to fetch the input from storage');
+        }
+      };
+    
+      useEffect(() => {
+        readData();
+      }, []);
 
 
     const toggleMenu = () => {
@@ -45,18 +68,18 @@ const MainDashboard = ({ schoolName }) => {
         const pathname = location.pathname;
         if (pathname.includes('dashboard')) {
             setActiveLink('Dashboard');
-        } else if (pathname.includes('payments_hisroy')) {
+        } else if (pathname.includes('payments_invoice')) {
             setActiveLink('Payment');
         } else if (pathname.includes('results')) {
             setActiveLink('Results');
-        } else if (pathname.includes('my_profile')) {
-            setActiveLink('My Profile');
-        } else if (pathname.includes('grant')) {
-            setActiveLink('Grants');
-        } else if (pathname.includes('invoice')) {
-            setActiveLink('Invoices');
-        } else if (pathname === '/sign_in') {
-            setActiveLink('Logout');
+        } else if (pathname.includes('attendance')) {
+            setActiveLink('Attendance');
+        } else if (pathname.includes('infractions')) {
+            setActiveLink('Infractions');
+        } else if (pathname.includes('annoucements')) {
+            setActiveLink('Annoucements');
+        } else if (pathname === 'profile') {
+            setActiveLink('Profile');
         } else {
             setActiveLink(null);
         }
@@ -106,8 +129,8 @@ const MainDashboard = ({ schoolName }) => {
     return (
         <div className={classes.sideNavBody}>
             <div className={classes.logoCont}>
-                <span>G</span>
-                <p style={{color:'black'}}>{schoolName}</p>
+                <span>{parentName.charAt(0)}</span>
+                <p style={{color:'black'}}>{parentName}</p>
             </div>
             <div className={classes.sideNav}>
                 {/* {`${classes.mainMenu} ${isMenuOpen ? classes.menuOpen : ''}`} */}
@@ -119,12 +142,12 @@ const MainDashboard = ({ schoolName }) => {
                         className={activeLink === 'Dashboard' ? classes.active : ''}
                     >
                         <p>
-                            <img src={dashIcon1} alt='icon' className={classes.webshow} />
+                            <img src={dashIcon} alt='icon' className={classes.webshow} />
                             <img src={dashIcon1} alt='icon' className={classes.mobileshow} />
                             Dashboard</p>
                     </Link>
                     <Link
-                        to={'/payments_hisroy'}
+                        to={'/payments_invoice'}
                         className={activeLink === 'Payment' ? classes.active : ''}
                     >
                         <p> <img src={dashIcon2} alt='icon' /> Payment</p>
@@ -132,31 +155,31 @@ const MainDashboard = ({ schoolName }) => {
 
                     <Link
                         to={'/results'}
-                        className={activeLink === 'Result' ? classes.active : ''}
+                        className={activeLink === 'Results' ? classes.active : ''}
                     >
-                        <p><img src={dashIcon3} alt='icon' /> Result</p>
+                        <p><img src={dashIcon3} alt='icon' /> Results</p>
                     </Link>
                     <Link
                         to={'/attendance'}
-                        className={activeLink === 'Grants' ? classes.active : ''}
+                        className={activeLink === 'Attendance' ? classes.active : ''}
                     >   
                         <p> <img src={dashIcon4} alt='icon' /> Attendance</p>
                     </Link>
                     <Link
-                        to={'#'}
-                        className={activeLink === 'Invoices' ? classes.active : ''}
+                        to={'/infractions'}
+                        className={activeLink === 'Infractions' ? classes.active : ''}
                     >
                         <p> <img src={dashIcon3} alt='icon' /> Infractions</p>
                     </Link>
                     <Link
                         to={'/annoucements'}
-                        className={activeLink === 'Invoices' ? classes.active : ''}
+                        className={activeLink === 'Annoucements' ? classes.active : ''}
                     >
                         <p> <img src={dashIcon4} alt='icon' /> Announcements</p>
                     </Link>
                     <Link
                         to={'/profile'}
-                        className={activeLink === 'Invoices' ? classes.active : ''}
+                        className={activeLink === 'Profile' ? classes.active : ''}
                     >
                         <p> <img src={userI} alt='icon' /> Profile</p>
                     </Link>
