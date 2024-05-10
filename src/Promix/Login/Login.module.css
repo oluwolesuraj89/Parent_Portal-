@@ -10,20 +10,16 @@
 
 
 .background {
-    /* background-image: url('../../assets/promix/Login.svg'); */
     background-size: cover; /* Cover the entire container */
     width: 100%;
-    /* background-position:center; Center the image */
-    /* background-repeat: no-repeat; Do not repeat the image */
     height: 100vh; /* 100% of the viewport height */
     overflow: hidden;
     display: flex;
-    /* justify-content: right; */
-    /* align-items: center; */
-    padding-right: 2rem;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-    padding-left: 3rem;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2% 2%;
+    
+
   }
 
   .mainContainerx {
@@ -36,8 +32,8 @@
     /* display: flex; */
     /* justify-content: center; */
     /* align-items: center; */
-    padding-top: 120px;
-    margin-right: 230px;
+    /* padding-top: 120px; */
+    /* margin-right: 230px; */
     /* padding-right: 100px; */
     /* margin-top: 100px; */
   }
@@ -65,17 +61,14 @@
   .mainContainerx2 {
     /* background-color: rgba(0, 0, 0, 0.8); */
     background-color: black;
-    width: 45%;
-    /* max-width: 571px; */
-    /* height: 523px; */
-    /* padding: 20px 0; */
-    /* border-radius: 20px; */
+    width: 40%;
     color: var(--White);
     display: flex;
     justify-content: center;
     align-items: center;
     margin-left: 30px;
     border-radius: 8px;
+    padding: 2% 0;
   }
 
   .SignUptxt {
@@ -123,55 +116,43 @@
   .eduImg{
     width: 202px;
     margin-top: 40px;
-    margin-left: 36%;
+    margin-left: 30%;
   }
 
   .thecntnt{
+    /* display: flex;
+    flex-direction: column; */
+    
+    /* gap: 5px; */
+    /* height: 500px; */
+  }
+  .thecntnt{
     display: flex;
     flex-direction: column;
-    /* color: var(--White); */
+    /* justify-content: center; */
+    /* align-items: center; */
     gap: 5px;
-    height: 500px;
+    /* height: 500px; */
   }
   .welcomeTo{
-    /* color: #ffffff; */
+    color: #ffffff;
     font-weight: 700;
-    font-size: 28px;
-    margin-top: 30px;
+    font-size: 24px;
+    margin: 30px 0 10px 0;
   }
   .listOf{
     font-size: 18px;
     font-weight: 400;
-    /* color: #ffffff; */
+    padding-left: 25px;
     line-height: 36px;
   }
 
   .mainContainerx {
-    /* background-color: pink; */
-    width: 48%;
-    /* max-width: 571px; */
-    /* height: 523px; */
-    /* padding: 20px 0; */
-    /* border-radius: 20px; */
+    width: 50%;
     display: flex;
-    /* justify-content: center; */
     align-items: center;
-    padding-left: 4rem;
+    margin-right: 4%;
     color: black!important;
-  }
-
-.eduImg{
-  width: 202px;
-  margin-top: 40px;
-  margin-left: 36%;
-}
-
-  .thecntnt{
-    display: flex;
-    flex-direction: column;
-    /* color: var(--White); */
-    gap: 5px;
-    height: 500px;
   }
   .thecntnt form{
     display: flex;
@@ -203,6 +184,7 @@
     /* text-align: center; */
   }
   .thecntnt p{
+    /* width: 100%; */
     /* color: var(--White); */
   }
 
