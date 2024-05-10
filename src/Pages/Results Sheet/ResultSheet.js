@@ -15,99 +15,108 @@ import { useLocation } from 'react-router-dom';
 const ResultSheet = () => {
     
     const location = useLocation();
-    const { childrenScores, selectedChild, selectedSession, selectedTerm } = location.state || {};
+    const { childrenScores, selectedChild, selectedClass, selectedSession, selectedTerm } = location.state || {};
     const [schools, setSchools] = useState([childrenScores?.school]);
-    const [details, setDetails] = useState([childrenScores?.studentScores[0]]);
-    const [childrenDetails, setChildrenDetails] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
-    const [loading, setLoading] = useState(false);
+    const [details, setDetails] = useState([childrenScores?.studentScores]);
+    const [subjects, getSubjects] = useState([childrenScores?.subjects]);
+    const [grades, getGrades] = useState([childrenScores?.grade]);
+    const [allvaraibles, getAllDatas] = useState([childrenScores]);
+    const [childrenDetails, setChildrenDetails] = useState([childrenScores?.student]);
+    const [caLoading, setCaLoading] = useState(false);
+    // const [loading, setLoading] = useState(false);
+    // const [scoLoading, setScoLoading] = useState(false);
     // const [selectedChild, setSelectedChild] = useState('');
     const [bearer, setBearer] = useState('');
-    const [children, setChildren] = useState('');
+    const [childrenCa, setChildrenCa] = useState([]);
+    // const [caScore, setCaScore] = useState([]);
+    // const [children, setChildren] = useState('');
 
-    console.log(childrenScores);
+    // console.log('scores', grades)
+    // console.log('student', childrenDetails)
+    // console.log('class', childrenScores?.student?.class)
     
-    // const readData = async () => {
-    //     try {
-    //       const details = await AsyncStorage.getItem('userToken');
-    //     //   const parent = await AsyncStorage.getItem('userName')
+
+    const readData = async () => {
+        try {
+          const details = await AsyncStorage.getItem('userToken');
                  
-    //       if (details !== null) {
-    //         setBearer(details);
-    //       }
-    //     //   if(parent !==null){
-    //     //     setParentName(parent)
-    //     //   }
-    //     } catch (e) {
-    //       alert('Failed to fetch the input from storage');
-    //     }
-    //   };
+          if (details !== null) {
+            setBearer(details);
+          }
     
-    //   useEffect(() => {
-    //     readData();
-    //   }, []);
+        } catch (e) {
+          alert('Failed to fetch the input from storage');
+        }
+      };
+    
+      useEffect(() => {
+        readData();
+      }, []);
     
 
-    // const headers = {
-    //     'Content-Type': 'application/json',
-    //     'Authorization': `Bearer ${bearer}`
-    //   };
-
-    //   const fetchAllChildren = async () => {
-    //     setLoading(true);
-    //     try {
-    //         const response = await axios.get(`${BASE_URL}/get-all-children`, {headers});
-    //         const result = response.data?.data
-    //         setChildren(result);
-    //         setSelectedChild(result[0]?.id);
-    //     } catch (error) {
-    //         let errorMessage = error.response?.data?.message || 'An error occurred';
-    //         if (error.message === 'Network Error') {
-    //             errorMessage = 'Connection error. Please check your internet connection.';
-    //         }
-    //         toast.error(errorMessage);
-    //     } finally {
-    //         setLoading(false);
-    //     }
-    // }
-
-    // const fetchChildrenDetail = async () => {
-    //     setIsLoading(true);
-    //     try {
-    //         const response = await axios.get(`${BASE_URL}/get-student-by-id?student_id=${selectedChild}`,
-    //         {headers});
-    //         const details = response.data?.data
-    //         setChildrenDetails(details);
-    //         // console.log(details, "wehereh");
-    //         console.log(details, "wehereh");
-    //         // setChildrenSubjects(details?.classes?.assigned);
-    //         // console.log(details?.classes?.assigned, "hereee");
-    //         // console.log("childrenDetails:", childrenDetails);
-    //         // console.log("school:", childrenDetails?.school);
-    //         // console.log("school name:", childrenDetails?.school?.name);
-    //     } catch (error) {
-    //         let errorMessage = error.response?.data?.message || 'An error occurred';
-    //         if (error.message === 'Network Error') {
-    //             errorMessage = 'Connection error. Please check your internet connection.';
-    //         }
-    //         toast.error(errorMessage);
-    //     } finally {
-    //         setIsLoading(false);
-    //     }
-    // }
+    const headers = {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${bearer}`
+      };
 
     
-    // useEffect(() => {
-    //     if (bearer) {
-    //         fetchAllChildren();
-    //     }
-    //   }, [bearer]);
+    const fetchScoreForCa = (itemId, scoreId) => {
+        const Alldata = details[0];
+        const SubjectId = itemId;
+        const caId = scoreId;
+        const foundItem = Alldata.filter(item => item['subject_id'] == itemId && item['status'] == scoreId);
+        
+        return  foundItem?.[0]?.['score'] || 0;
+    };
+    const fetchGradeForCa = (itemId) => {
+        const Alldata = grades[0];
+        console.log(Alldata);
+        const SubjectId = itemId;
+        const foundItem = Alldata.filter(item => item['subject'] == itemId);
+        
+        return  foundItem?.[0]?.['grade'] || "";
+    };
+    const fetchCommentForCa = (itemId) => {
+        const Alldata = grades[0];
+        console.log(Alldata);
+        const SubjectId = itemId;
+        const foundItem = Alldata.filter(item => item['subject'] == itemId);
+        
+        return  foundItem?.[0]?.['comment'] || "";
+    };
+    const fetchTotalScoreForCa = (itemId) => {
+        const Alldata = details[0];
+        const columnToSum = 'score';
+        const SubjectId = itemId;
+        const foundItem = Alldata.filter(item => item['subject_id'] == itemId);
+        const totalSum = foundItem.reduce((acc, curr) => acc + parseInt(curr[columnToSum]), 0);
+        return  totalSum || 0;
+    };
 
-    // useEffect(() => {
-    //     if (bearer) {
-    //         fetchChildrenDetail(selectedChild);
-    //     }
-    //   }, [selectedChild, bearer]);
+    const fetchAllCa = async () => {
+        setCaLoading(true);
+        try {
+            const response = await axios.get(`${BASE_URL}/get-class-ca?class_id=${selectedClass}`,
+            {headers});
+            const caData = response.data?.data
+            setChildrenCa(caData);
+      
+        } catch (error) {
+            let errorMessage = error.response?.data?.message || 'An error occurred';
+            if (error.message === 'Network Error') {
+                errorMessage = 'Connection error. Please check your internet connection.';
+            }
+            toast.error(errorMessage);
+        } finally {
+            setCaLoading(false);
+        }
+    }
+
+    useEffect(() => {
+        if (bearer) {
+            fetchAllCa(selectedClass);
+        }
+      }, [selectedClass, bearer]);
     
     return (
         <div className={classes.generalCont}>         
@@ -119,12 +128,9 @@ const ResultSheet = () => {
                         ) : (
                             <img src={logoPlaceholder} className={classes.imgs}/>
                         )}
-                            {/* <img src={Boy} alt='img' className={classes.imgs}/> */}
                     </div>
-                    {/* <img src={logoPlaceholder} className={classes.logoPlaceholder}/> */}
                     <div className={classes.headerTxt}>
                         <p className={classes.fedTxt}>{schools[0]?.name}</p>
-                        {/* <p className={classes.intTxt}>INTERNATIONAL SCHOOL (FUNNIS), ABEOKUTA</p> */}
                         <p className={classes.adrTxt}>Address: {schools[0]?.address}</p>
                         <p className={classes.emailtxt} style={{margin:'0'}}>Email: {schools[0]?.email}</p>
                     </div>
@@ -137,41 +143,36 @@ const ResultSheet = () => {
                 </div>
 
                 <div className={classes.labelFlex}>
-                    
-
                     <div>
                     <table>
-                                <tr>
-                                    <td>STUDENT:</td>
-                                    <td className={classes.deep}>{selectedChild} {childrenDetails.last_name}</td>
-                                </tr>
-                                <tr>
-                                    <td>ADMISSION NO:</td>
-                                    <td className={classes.deep}>{details[0]?.matric_id}</td>
-                                </tr>
-                                <tr>
-                                    <td>SEX:</td>
-                                    <td className={classes.deep}>{childrenDetails.gender}</td>
-                                </tr>
-                                <tr>
-                                    <td>CLASS:</td>
-                                    <td className={classes.deep}>{details[0]?.class?.description}</td>
-                                </tr>
-                            </table>
+                        <tr>
+                            <td>STUDENT:</td>
+                            <td className={classes.deep}>{childrenDetails[0].first_name} {childrenDetails[0].last_name}</td>
+                        </tr>
+                        <tr>
+                            <td>ADMISSION NO:</td>
+                            <td className={classes.deep}>{childrenDetails[0]?.student_id}</td>
+                        </tr>
+                        <tr>
+                            <td>SEX:</td>
+                            <td className={classes.deep}>{childrenDetails[0].gender}</td>
+                        </tr>
+                        <tr>
+                            <td>CLASS:</td>
+                            {/* <td className={classes.deep}>{childrenDetails[0]?.student?.class}</td> */}
+                            <td className={classes.deep}>{childrenScores?.student?.class}</td>
+                        </tr>
+                    </table>
                     </div>
 
                     <div className={classes.sideImg2}>
                             
-                        {childrenDetails && childrenDetails.image ? (
-                            <img src={childrenDetails.image} alt='img' className={classes.imgss}/>
+                        {childrenDetails && childrenDetails[0].image ? (
+                            <img src={childrenDetails[0].image} alt='img' className={classes.imgss}/>
                         ) : (
                             <img src={student} className={classes.student}/>
                         )}
-                            {/* <img src={Boy} alt='img' className={classes.imgs}/> */}
                     </div>
-                    
-
-                    {/* <img src={student} className={classes.student}/> */}
                 </div>
 
                     <div className={classes.resultTable}>
@@ -183,44 +184,52 @@ const ResultSheet = () => {
                                 <th className={classes.jead} colSpan="8">CURRENT TERM’S WORK</th>
                                 <th className={classes.jead} colSpan="4" style={{whiteSpace:'nowrap'}}>SUMMARY OF TERM’S WORK</th>
                             </tr>
+                            
                           </thead>
                           
                           <tbody>
 
                             <tr>
-                            <td className={classes.heros}>S/N</td>
-                            <td className={classes.subject}>SUBJECT</td>
-                            <td className={classes.smaller}>1ST CA</td>
-                            <td className={classes.smaller}>2ND CA</td>
-                            <td className={classes.smaller}>EXAM</td>
-                            <td className={classes.smaller}>TOTAL</td>
-                            <td className={classes.smaller}>CLASS AVERAGE</td>
-                            <td className={classes.smaller}>CLASS HIGHEST</td>
-                            <td className={classes.smaller}>CLASS LOWEST</td>
-                            <td className={classes.smaller}>GRADE</td>
-                            <td className={classes.smaller}>1ST TERM TOTAL</td>
-                            <td className={classes.smaller}>GRADE</td>
-                            <td className={classes.smaller}>GS/NGS</td>
-                            <td className={classes.remarkRow}>REMARK</td>
+                                <td className={classes.heros}>S/N</td>
+                                <td className={classes.subject}>SUBJECT</td>
+                                {childrenCa.map((item, index)=>(
+                                    // <div key={index}>
+                                        <td className={classes.smaller}>{item?.name}</td>
+                                    // </div>
+                                ))}
+                                
+                                <td className={classes.smaller}>TOTAL</td>
+                                <td className={classes.smaller}>CLASS AVERAGE</td>
+                                <td className={classes.smaller}>CLASS HIGHEST</td>
+                                <td className={classes.smaller}>CLASS LOWEST</td>
+                                <td className={classes.smaller}>GRADE</td>
+                                <td className={classes.smaller}>1ST TERM TOTAL</td>
+                                <td className={classes.smaller}>GRADE</td>
+                                <td className={classes.smaller}>GS/NGS</td>
+                                <td className={classes.remarkRow}>REMARK</td>
                             </tr>
 
-                            {details.map((item, index)=>(
+                            {subjects[0].map((item, index)=>(
                             <tr key={index}>
                                 <td className={classes.rowing}>{index + 1}</td>
-                                <td className={classes.rowing1}>{item?.subject?.name}</td>
-                                <td className={classes.rowing}>{item?.assessment_category?.score}</td>
-                                <td className={classes.rowing}>9</td>
-                                {/* <td className={classes.rowing}>12</td> */}
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>12</td>
+                                <td className={classes.rowing1}>{item?.name}</td>
+
+                               {childrenCa.map((score, index)=>(
+                                    // <div key={index}>
+                                        <td key={index} className={classes.rowing}>{fetchScoreForCa(item.id, score.id)}</td>
+                                    // </div>
+                                ))}
+
+                          
+                                <td className={classes.rowing}>{fetchTotalScoreForCa(item.id)}</td>
                                 <td className={classes.rowing}>12</td>
                                 <td className={classes.rowing}>12</td>
                                 <td className={classes.rowing}>C6</td>
                                 <td className={classes.rowing}>62</td>
                                 <td className={classes.rowing}>C6</td>
-                                <td className={classes.rowing}>{item?.grade}</td>
+                                <td className={classes.rowing}>{fetchGradeForCa(item.id)}</td>
                                 <td className={classes.rowing}>GS</td>
-                                <td className={classes.rowing}>{item?.remark}</td>
+                                <td className={classes.rowing}>{fetchCommentForCa(item.id)}</td>
                                 {/* <td>12</td> */}
                             </tr>
                             ))}

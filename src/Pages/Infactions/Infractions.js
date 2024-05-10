@@ -34,27 +34,29 @@ const Infractions = () => {
             <MainDashboard/>
             
             <div className={classes.formSection} >
-                <div className={classes.formSectionHeader}>
-                    <div style={{textAlign:'left'}}>
-                        <p style={{margin:'0'}}>Welcome</p>
-                        <h3>
-                            Ololade Lawanson
-                        </h3>
-                        
-                    </div>
-                    <div>
-                        <h3 style={{color:'black'}}>Infractions</h3>
-                    </div>
-                    <div className={classes.users}>
-                    <Form.Select aria-label="Default select example">
-                        <option>Mosumola Lawanson</option>
-                        <option value="1">Michael Lawanson</option>
-                        <option value="2">Joshua Lawanson</option>
-                        {/* <option value="3">Three</option> */}
-                    </Form.Select>
-                        {/* <h6 >Mosumola Lawanson</h6>
-                        <img src={USER} alt='User'/>
-                        <i class='bx bxs-chevron-down'></i> */}
+                <div className={classes.formSectionHeaderContainer}>
+                    <div className={classes.formSectionHeader}>
+                        <div style={{textAlign:'left'}}>
+                            <p style={{margin:'0'}}>Welcome</p>
+                            <h3>
+                                Ololade Lawanson
+                            </h3>
+                            
+                        </div>
+                        <div>
+                            <h3 style={{color:'black'}}>Infractions</h3>
+                        </div>
+                        <div className={classes.users}>
+                        <Form.Select aria-label="Default select example">
+                            <option>Mosumola Lawanson</option>
+                            <option value="1">Michael Lawanson</option>
+                            <option value="2">Joshua Lawanson</option>
+                            {/* <option value="3">Three</option> */}
+                        </Form.Select>
+                            {/* <h6 >Mosumola Lawanson</h6>
+                            <img src={USER} alt='User'/>
+                            <i class='bx bxs-chevron-down'></i> */}
+                        </div>
                     </div>
                 </div>
                 

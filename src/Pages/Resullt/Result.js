@@ -36,18 +36,24 @@ const Result = () => {
     const [isLoadings, setIsLoadings] = useState(false);
     const [onLoadings, setOnLoadings] = useState(false);
     const [inLoadings, setInLoadings] = useState(false);
+    const [amLoadings, setAmLoadings] = useState(false);
     const [selectedChild, setSelectedChild] = useState("")
     const [selectedTerm, setSelectedTerm] = useState("")
+    const [selectedClass, setSelectedClass] = useState("")
     const [selectedSession, setSelectedSession] = useState("")
     const [parentName, setParentName] = useState("")
     const [selectedChildren, setSelectedChildren] = useState("")
     const [term, setTerm] = useState([]);
     const [childrenSession, setChildrenSession] = useState([]);
     const [childrenTerm, setChildrenTerm] = useState([]);
+    const [childrenClasses, setChildrenClasses] = useState([]);
 
 
     const handleChildrenChange = (event) => {
         setSelectedChild(event.target.value)
+    }
+    const handleClassChange = (event) => {
+        setSelectedClass(event.target.value)
     }
 
     const readData = async () => {
@@ -140,6 +146,7 @@ const Result = () => {
                     student_id :selectedChild,
                     term_id : selectedTerm,
                     session_id : selectedSession,
+                    class_id : selectedClass,
                 },
                 headers:headers
             });
@@ -153,7 +160,8 @@ const Result = () => {
                 childrenScores: scores,
                 selectedChild: selectedChild,
                 selectedTerm : selectedTerm,
-                selectedSession:selectedSession
+                selectedSession:selectedSession,
+                selectedClass: selectedClass,
             }});
             console.log("scores", scores);
             console.log('selected children', scores[0]?.id)
@@ -168,6 +176,34 @@ const Result = () => {
             setIsLoadings(false);
         }
     }
+    const fetchClasses = async () => {
+        setAmLoadings(true);
+        try {
+            const response = await axios.get(`${BASE_URL}/get-student-class?student_id=${selectedChild}`,
+            {headers});
+            // console.log('response', response)
+            const classes = response.data?.data;
+            setChildrenClasses(classes);
+            console.log("session:", classes);
+            // setSelectedChildren(session[0]?.id);
+            
+        } catch (error) {
+            let errorMessage = error.response?.data?.message || 'An error occurred';
+            if (error.message === 'Network Error') {
+                errorMessage = 'Connection error. Please check your internet connection.';
+            }
+            toast.error(errorMessage);
+        } finally {
+            setAmLoadings(false);
+        }
+    }
+
+    useEffect(() => {
+        if (bearer) {
+            fetchClasses(selectedChild);
+        }
+      }, [selectedChild, bearer]);
+
     const fetchSession = async () => {
         setOnLoadings(true);
         try {
@@ -263,6 +299,27 @@ const Result = () => {
                         <div>
                             <h3 style={{ color: 'black' }}>Result</h3>
                         </div>
+                        <div>
+                        <Form.Group className={classes.group}>
+                                <Form.Label>Select child</Form.Label>
+                                <Form.Select aria-label="Default select example" 
+                                    value={selectedChild} 
+                                    onChange={handleChildrenChange}
+                                >
+                                    {/* <option>Mosumola Lawanson</option> */}
+                                    {children.map((item) =>(
+                                        <option key={item.id} value={item.id}>
+                                            {item.first_name} {item.last_name}
+                                            {item.gender === 'male' ? (
+                                                <img src={MaleIcon} alt='Male'/> 
+                                            ) : (
+                                                <img src={FemaleIcon} alt='Female'/>
+                                            )}
+                                        </option>
+                                    ))}
+                                </Form.Select>
+                            </Form.Group>
+                        </div>
                         {/* <div className={classes.users}>
                         <Form.Select aria-label="Default select example" 
                             value={selectedChild} 
@@ -287,20 +344,15 @@ const Result = () => {
                     <div className={classes.sessionresult}>
                         <div className={classes.users}>
                             <Form.Group className={classes.group}>
-                                <Form.Label>Select child</Form.Label>
+                                <Form.Label>Select class</Form.Label>
                                 <Form.Select aria-label="Default select example" 
-                                    value={selectedChild} 
-                                    onChange={handleChildrenChange}
+                                    value={selectedClass} 
+                                    onChange={handleClassChange}
                                 >
-                                    {/* <option>Mosumola Lawanson</option> */}
-                                    {children.map((item) =>(
+                                    <option>Select class</option>
+                                    {childrenClasses.map((item) =>(
                                         <option key={item.id} value={item.id}>
-                                            {item.first_name} {item.last_name}
-                                            {item.gender === 'male' ? (
-                                                <img src={MaleIcon} alt='Male'/> 
-                                            ) : (
-                                                <img src={FemaleIcon} alt='Female'/>
-                                            )}
+                                            {item.description}
                                         </option>
                                     ))}
                                 </Form.Select>

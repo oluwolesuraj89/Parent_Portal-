@@ -11,21 +11,23 @@ const Announcements = () => {
         <div>
             <MainDashboard />
             <div className={classes.formSection}>
-                <div className={classes.formSectionHeader}>
-                    <div style={{ textAlign: 'left' }}>
-                        <p style={{ margin: '0' }}>Welcome</p>
-                        <h3>
-                            Ololade Lawanson
-                        </h3>
+                <div className={classes.formSectionHeaderContainer}>
+                    <div className={classes.formSectionHeader}>
+                        <div style={{ textAlign: 'left' }}>
+                            <p style={{ margin: '0' }}>Welcome</p>
+                            <h3>
+                                Ololade Lawanson
+                            </h3>
 
-                    </div>
-                    <div>
-                        <h3 style={{ color: 'black' }}>Attendance</h3>
-                    </div>
-                    <div className={classes.users}>
-                        <h6 >Mosumola Lawanson</h6>
-                        <img src={USER} alt='User' />
-                        <i class='bx bxs-chevron-down'></i>
+                        </div>
+                        <div>
+                            <h3 style={{ color: 'black' }}>Attendance</h3>
+                        </div>
+                        <div className={classes.users}>
+                            <h6 >Mosumola Lawanson</h6>
+                            <img src={USER} alt='User' />
+                            <i class='bx bxs-chevron-down'></i>
+                        </div>
                     </div>
                 </div>
 

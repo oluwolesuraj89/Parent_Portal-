@@ -5,7 +5,7 @@ import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Button } from 'react-bootstrap';
 // import RegLogo from '../../Images/RegistrationLogo.svg'
-import { Link } from 'react-router-dom'
+import { Link,  } from 'react-router-dom'
 import MainDashboard from '../Main Dashboard/MainDashoard';
 import FemaleIcon from '../../assets/promix/MyUser.svg'
 import MaleIcon from '../../assets/promix/MaleIcon.svg'
@@ -14,9 +14,14 @@ import Payment2 from '../../assets/promix/detailsIcon2.svg'
 import Curve from '../../assets/promix/curve1.svg'
 import Boy from '../../assets/promix/FineBoy.svg'
 import Form from 'react-bootstrap/Form';
+import Spinner from 'react-bootstrap/Spinner';
 import { BASE_URL } from '../../Promix/api/api';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Card from 'react-bootstrap/Card';
+import Placeholder from 'react-bootstrap/Placeholder';
+import Bg1 from '../../assets/download.svg'
+
 
 
 
@@ -169,7 +174,7 @@ const Dashboard = () => {
                             value={selectedChild} 
                             onChange={handleChildrenChange}
                         >
-                            {/* <option>Mosumola Lawanson</option> */}
+                            <option key="">Select a Child</option>
                             {children.map((item) =>(
                                 <option key={item.id} value={item.id}>
                                     {item.first_name} {item.last_name}
@@ -231,14 +236,21 @@ const Dashboard = () => {
                             </div>
                         </div>
                         <div className={classes.sideImg}>
-                            
-                        {childrenDetails && childrenDetails.image ? (
-                            <img src={childrenDetails.image} alt='img' className={classes.imgss}/>
-                        ) : (
-                            <img src={Boy} alt='img' className={classes.imgss}/>
-                        )}
-                            {/* <img src={Boy} alt='img' className={classes.imgs}/> */}
-                        </div>
+    {isLoading ? (
+        <Card style={{ width: '18rem' }}>
+        <Card.Img variant="top" src={Bg1} />
+        </Card>
+    ) : (
+        <>
+            {childrenDetails && childrenDetails.image ? (
+                <img src={childrenDetails.image} alt='img' className={classes.imgss}/>
+            ) : (
+                <img src={Boy} alt='img' className={classes.imgss}/>
+            )}
+        </>
+    )}
+</div>
+
                         <div className={classes.flex2}></div>
                     </div>
                     <div className={classes.group1}>

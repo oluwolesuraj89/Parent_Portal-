@@ -83,6 +83,7 @@ p{
     font-weight: 400;
 }
 .sideImg{
+    display: flex;
     width:90%;
     /* height: 240; */
     overflow: hidden;
