@@ -31,7 +31,7 @@ const ResultSheet = () => {
     // const [caScore, setCaScore] = useState([]);
     // const [children, setChildren] = useState('');
 
-    // console.log('scores', grades)
+    console.log('childrenScores', childrenScores)
     // console.log('student', childrenDetails)
     // console.log('class', childrenScores?.student?.class)
     
@@ -70,7 +70,7 @@ const ResultSheet = () => {
     };
     const fetchGradeForCa = (itemId) => {
         const Alldata = grades[0];
-        console.log(Alldata);
+        // console.log(Alldata);
         const SubjectId = itemId;
         const foundItem = Alldata.filter(item => item['subject'] == itemId);
         
@@ -78,7 +78,7 @@ const ResultSheet = () => {
     };
     const fetchCommentForCa = (itemId) => {
         const Alldata = grades[0];
-        console.log(Alldata);
+        // console.log(Alldata);
         const SubjectId = itemId;
         const foundItem = Alldata.filter(item => item['subject'] == itemId);
         
@@ -89,8 +89,23 @@ const ResultSheet = () => {
         const columnToSum = 'score';
         const SubjectId = itemId;
         const foundItem = Alldata.filter(item => item['subject_id'] == itemId);
+        // Calculate the total sum
         const totalSum = foundItem.reduce((acc, curr) => acc + parseInt(curr[columnToSum]), 0);
         return  totalSum || 0;
+    };
+
+    const fetchAverageScoreForCa = (itemId) => {
+        const Alldata = details[0];
+        const columnToSum = 'score';
+        const SubjectId = itemId;
+        const foundItem = Alldata.filter(item => item['subject_id'] == itemId);
+        // Calculate the total sum
+        const totalSum = foundItem.reduce((acc, curr) => acc + parseInt(curr[columnToSum]), 0);
+        // Calculate the average
+        const averageScore = foundItem.length > 0 ? totalSum / foundItem.length : 0;
+        // Convert to whole number if averageScore is decimal
+        const roundedAverageScore = Math.round(averageScore);
+        return roundedAverageScore;
     };
 
     const fetchAllCa = async () => {
@@ -117,6 +132,8 @@ const ResultSheet = () => {
             fetchAllCa(selectedClass);
         }
       }, [selectedClass, bearer]);
+
+      let totalSubjects = 0;
     
     return (
         <div className={classes.generalCont}>         
@@ -160,7 +177,7 @@ const ResultSheet = () => {
                         <tr>
                             <td>CLASS:</td>
                             {/* <td className={classes.deep}>{childrenDetails[0]?.student?.class}</td> */}
-                            <td className={classes.deep}>{childrenScores?.student?.class}</td>
+                            <td className={classes.deep}>Pry {selectedClass}</td>
                         </tr>
                     </table>
                     </div>
@@ -202,14 +219,16 @@ const ResultSheet = () => {
                                 <td className={classes.smaller}>CLASS AVERAGE</td>
                                 <td className={classes.smaller}>CLASS HIGHEST</td>
                                 <td className={classes.smaller}>CLASS LOWEST</td>
-                                <td className={classes.smaller}>GRADE</td>
+                                {/* <td className={classes.smaller}>GRADE</td> */}
                                 <td className={classes.smaller}>1ST TERM TOTAL</td>
                                 <td className={classes.smaller}>GRADE</td>
                                 <td className={classes.smaller}>GS/NGS</td>
                                 <td className={classes.remarkRow}>REMARK</td>
                             </tr>
-
-                            {subjects[0].map((item, index)=>(
+                            
+                            {subjects[0].map((item, index)=>{
+                                totalSubjects ++
+                            return(
                             <tr key={index}>
                                 <td className={classes.rowing}>{index + 1}</td>
                                 <td className={classes.rowing1}>{item?.name}</td>
@@ -222,17 +241,18 @@ const ResultSheet = () => {
 
                           
                                 <td className={classes.rowing}>{fetchTotalScoreForCa(item.id)}</td>
-                                <td className={classes.rowing}>12</td>
+                                <td className={classes.rowing}>{fetchAverageScoreForCa(item.id)}</td>
                                 <td className={classes.rowing}>12</td>
                                 <td className={classes.rowing}>C6</td>
-                                <td className={classes.rowing}>62</td>
+                                {/* <td className={classes.rowing}>62</td> */}
                                 <td className={classes.rowing}>C6</td>
                                 <td className={classes.rowing}>{fetchGradeForCa(item.id)}</td>
                                 <td className={classes.rowing}>GS</td>
                                 <td className={classes.rowing}>{fetchCommentForCa(item.id)}</td>
                                 {/* <td>12</td> */}
                             </tr>
-                            ))}
+                            );
+                            })}
 
                             
                         </tbody>
@@ -264,7 +284,7 @@ const ResultSheet = () => {
 
                                     <tbody>
                                         <tr>
-                                            <td className={classes.noSub}>17</td>
+                                            <td className={classes.noSub}>{totalSubjects}</td>
                                             <td> </td>
                                             <td> </td>
                                             <td> </td>
@@ -282,8 +302,8 @@ const ResultSheet = () => {
                             </table>
                         </div>
 
-                        <div className={classes.next}>
-                            <div>
+                        {/* <div > */}
+                            <div className={classes.next}>
                                 <div className={classes.key}>
                                     <p className={classes.keyTxt}>KEY TO GRADES </p>
                                 </div>
@@ -304,11 +324,11 @@ const ResultSheet = () => {
                                                 <td>VERY GOOD</td>
                                             </tr>
 
-                                            <tr>
+                                            {/* <tr>
                                                 <td>75% to 79.99%</td>
                                                 <td>B2</td>
                                                 <td>VERY GOOD</td>
-                                            </tr>
+                                            </tr> */}
 
                                             <tr>
                                                 <td>70% to 74.99%</td>
@@ -340,11 +360,11 @@ const ResultSheet = () => {
                                                 <td>PASS</td>
                                             </tr>
 
-                                            <tr>
+                                            {/* <tr>
                                                 <td>50% to 54.99%</td>
                                                 <td>E8</td>
                                                 <td>WEAK PASS</td>
-                                            </tr>
+                                            </tr> */}
                                             <tr>
                                                 <td>50% to 54.99%</td>
                                                 <td>E8</td>
@@ -361,7 +381,7 @@ const ResultSheet = () => {
                                     </table>
                                 </div>
                             </div>
-                        </div>
+                        {/* </div> */}
                     </div>
 
                     <div className={classes.last}>

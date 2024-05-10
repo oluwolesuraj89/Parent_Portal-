@@ -154,37 +154,38 @@ const MakePayment = () => {
 
     return (
         <div style={{backgroundColor:'#E9ECEF'}}>
-            < MainDashboard schoolName={childrenDetails?.school?.name}/>
-            
+            < MainDashboard/>
             <div className={classes.formSection} >
-                <div className={classes.formSectionHeader}>
-                    <div style={{textAlign:'left'}}>
-                        <p style={{margin:'0'}}>Welcome</p>
-                        <h3>
-                            {parentName}
-                        </h3>
-                        
-                    </div>
-                    <div>
-                        <h3 style={{color:'black'}}>Payment</h3>
-                    </div>
-                    <div className={classes.users}>
-                    <Form.Select aria-label="Default select example" 
-                            value={selectedChild} 
-                            onChange={handleChildrenChange}
-                        >
-                            {/* <option>Mosumola Lawanson</option> */}
-                            {children.map((item) =>(
-                                <option key={item.id} value={item.id}>
-                                    {item.first_name} {item.last_name}
-                                    {item.gender === 'male' ? (
-                                        <img src={MaleIcon} alt='Male'/> 
-                                    ) : (
-                                        <img src={FemaleIcon} alt='Female'/>
-                                    )}
-                                </option>
-                            ))}
-                            </Form.Select>
+                <div className={classes.formSectionHeaderContainer}>
+                    <div className={classes.formSectionHeader}>
+                        <div style={{textAlign:'left'}}>
+                            <p style={{margin:'0'}}>Welcome</p>
+                            <h3>
+                                {parentName}
+                            </h3>
+                            
+                        </div>
+                        <div>
+                            <h3 style={{color:'black'}}>Payment</h3>
+                        </div>
+                        <div className={classes.users}>
+                        <Form.Select aria-label="Default select example" 
+                                value={selectedChild} 
+                                onChange={handleChildrenChange}
+                            >
+                                {/* <option>Mosumola Lawanson</option> */}
+                                {children.map((item) =>(
+                                    <option key={item.id} value={item.id}>
+                                        {item.first_name} {item.last_name}
+                                        {item.gender === 'male' ? (
+                                            <img src={MaleIcon} alt='Male'/> 
+                                        ) : (
+                                            <img src={FemaleIcon} alt='Female'/>
+                                        )}
+                                    </option>
+                                ))}
+                                </Form.Select>
+                        </div>
                     </div>
                 </div>
                 
