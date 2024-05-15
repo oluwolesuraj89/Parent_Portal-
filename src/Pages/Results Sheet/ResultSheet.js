@@ -148,7 +148,7 @@ const ResultSheet = () => {
                 <div className={classes.HeaderLine}/>
 
                 <div className={classes.underLineTxt}>
-                    <p className={classes.co}>JUNIOR SECONDARY SCHOOL (JSS) REPORT SHEET</p>
+                    <p className={classes.co}>REPORT SHEET</p>
                     <p className={classes.co}>{details[0]?.term?.description}</p>
                 </div>
 
@@ -235,12 +235,12 @@ const ResultSheet = () => {
                           
                                 <td className={classes.rowing}>{fetchTotalScoreForCa(item.id)}</td>
                                 <td className={classes.rowing}>{fetchAverageScoreForCa(item.id)}</td>
-                                <td className={classes.rowing}>12</td>
-                                <td className={classes.rowing}>C6</td>
+                                <td className={classes.rowing}></td>
+                                <td className={classes.rowing}></td>
                                 {/* <td className={classes.rowing}>62</td> */}
-                                <td className={classes.rowing}>C6</td>
+                                <td className={classes.rowing}></td>
                                 <td className={classes.rowing}>{fetchGradeForCa(item.id)}</td>
-                                <td className={classes.rowing}>GS</td>
+                                <td className={classes.rowing}></td>
                                 <td className={classes.rowing}>{fetchCommentForCa(item.id)}</td>
                                 {/* <td>12</td> */}
                             </tr>

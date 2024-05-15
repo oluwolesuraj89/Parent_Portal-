@@ -103,7 +103,6 @@ const Attendance = () => {
             {headers});
             const details = response.data?.data;
             setChildrenDetails(details);
-            console.log(details, 'details here ')
         } catch (error) {
             let errorMessage = error.response?.data?.message || 'An error occurred';
             if (error.message === 'Network Error') {
@@ -128,16 +127,13 @@ const Attendance = () => {
         }
       }, [selectedChild, bearer]);
 
-      console.log(selectedChild, "selected student");
-
-        
         const fetchedAttendanceData = async () => {
             setIsLoading(true);
             try {
                 const response = await axios.get(`${BASE_URL}/attendance?student_id=${selectedChild}`,
                 {headers});
                 const data = response.data?.data;
-                console.log(data, "Date details here");
+                // console.log(data, "Date details here");
                 if (data && data.length > 0) {
                     const events = data.map(item => new Date(item.date)); // Assuming API returns date in a standard format
                     setCalendarEvents(events);
@@ -171,6 +167,7 @@ const Attendance = () => {
             }
           }, [selectedChild, bearer]);
 
+          console.log(calendarEvents, "mdhd");
     
 
     return (
@@ -255,12 +252,12 @@ const Attendance = () => {
                         <div>
                             <p className={classes.chldavrgtxtclndr}>Calendar view of your child's attendance</p>
                             <div className={classes.calendar}>
-                            <Calendar value={new Date()} tileClassName={({ date, view }) => {
-                                // Customize CSS class based on the presence of events (attendance)
+                            <Calendar prev2Label={false} next2Label={false} value={new Date()} tileClassName={({ date, view }) => {
+                                
                                 if (calendarEvents.find(event => event.getDate() === date.getDate())) {
-                                    return 'present'; // CSS class for days with attendance
+                                    return 'present'; 
                                 } else {
-                                    return 'absent'; // CSS class for days without attendance
+                                    return 'absent'; 
                                 }
                             }} />
                             </div>
