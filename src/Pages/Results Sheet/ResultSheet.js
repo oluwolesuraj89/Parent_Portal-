@@ -20,21 +20,14 @@ const ResultSheet = () => {
     const [details, setDetails] = useState([childrenScores?.studentScores]);
     const [subjects, getSubjects] = useState([childrenScores?.subjects]);
     const [grades, getGrades] = useState([childrenScores?.grade]);
-    const [allvaraibles, getAllDatas] = useState([childrenScores]);
     const [childrenDetails, setChildrenDetails] = useState([childrenScores?.student]);
+    const [schoolGrade, setSchoolGrade] = useState([childrenScores?.schoolGrade]);
     const [caLoading, setCaLoading] = useState(false);
-    // const [loading, setLoading] = useState(false);
-    // const [scoLoading, setScoLoading] = useState(false);
-    // const [selectedChild, setSelectedChild] = useState('');
     const [bearer, setBearer] = useState('');
     const [childrenCa, setChildrenCa] = useState([]);
-    // const [caScore, setCaScore] = useState([]);
-    // const [children, setChildren] = useState('');
 
-    console.log('childrenScores', childrenScores)
-    // console.log('student', childrenDetails)
-    // console.log('class', childrenScores?.student?.class)
     
+    console.log(schoolGrade, "hshdlk");
 
     const readData = async () => {
         try {
@@ -311,72 +304,16 @@ const ResultSheet = () => {
                                     <table className={classes.keyTable}>
 
                                      <tbody>   
-                                            <tr>
-                                                <td>85% and Above</td>
-                                                <td>A1</td>
-                                                <td>EXCELLENT</td>
-                                            </tr>
-                                        
-                                        
-                                            <tr>
-                                                <td>80% to 84.99%</td>
-                                                <td>B2</td>
-                                                <td>VERY GOOD</td>
-                                            </tr>
-
-                                            {/* <tr>
-                                                <td>75% to 79.99%</td>
-                                                <td>B2</td>
-                                                <td>VERY GOOD</td>
-                                            </tr> */}
-
-                                            <tr>
-                                                <td>70% to 74.99%</td>
-                                                <td>B3</td>
-                                                <td>GOOD</td>
-                                            </tr>
-
-                                            <tr>
-                                                <td>70% to 74.99%</td>
-                                                <td>C4</td>
-                                                <td>GOOD CREDIT</td>
-                                            </tr>
-
-                                            <tr>
-                                                <td>60% to 64.99%</td>
-                                                <td>C5</td>
-                                                <td>FAIR CREDIT</td>
-                                            </tr>
-
-                                            <tr>
-                                                <td>60% to 64.99%</td>
-                                                <td>C6</td>
-                                                <td>WEAK CREDIT</td>
-                                            </tr>
-
-                                            <tr>
-                                                <td>55% to 59.99%</td>
-                                                <td>D7</td>
-                                                <td>PASS</td>
-                                            </tr>
-
-                                            {/* <tr>
-                                                <td>50% to 54.99%</td>
-                                                <td>E8</td>
-                                                <td>WEAK PASS</td>
-                                            </tr> */}
-                                            <tr>
-                                                <td>50% to 54.99%</td>
-                                                <td>E8</td>
-                                                <td>WEAK PASS</td>
-                                            </tr>
-
-                                            <tr>
-                                                <td>50% BELOW</td>
-                                                <td>F9</td>
-                                                <td>FAIL</td>
-                                            </tr>
-                                            
+                                        {childrenScores?.schoolGrade.map((item, index) => (
+                                            <div key={index}>
+                                                <tr>
+                                                    <td>{item?.percent_from} to {item?.percent_upto}</td>
+                                                    <td>{item?.grade_name}</td>
+                                                    <td>{item?.comments}</td>
+                                                </tr>
+                                                
+                                            </div>
+                                        ))}
                                         </tbody>
                                     </table>
                                 </div>

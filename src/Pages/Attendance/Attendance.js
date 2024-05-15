@@ -80,9 +80,15 @@ const Attendance = () => {
             setChildren(result);
             setSelectedChild(result[0]?.id);
         } catch (error) {
-            let errorMessage = error.response?.data?.message || 'An error occurred';
-            if (error.message === 'Network Error') {
-                errorMessage = 'Connection error. Please check your internet connection.';
+            let errorMessage = 'An error occurred. Please try again.';
+            if (error.response && error.response.data && error.response.data.message) {
+                if (typeof error.response.data.message === 'string') {
+                    errorMessage = error.response.data.message;
+                } else if (Array.isArray(error.response.data.message)) {
+                    errorMessage = error.response.data.message.join('; ');
+                } else if (typeof error.response.data.message === 'object') {
+                    errorMessage = JSON.stringify(error.response.data.message);
+                }
             }
             toast.error(errorMessage);
         } finally {
@@ -143,10 +149,16 @@ const Attendance = () => {
                 // setChildrenSubjects(details?.classes?.assigned);
                 // console.log(details?.classes?.assigned, "hereee");
             } catch (error) {
-                let errorMessage = error.response?.data?.message || 'An error occurred';
-                if (error.message === 'Network Error') {
-                    errorMessage = 'Connection error. Please check your internet connection.';
+                let errorMessage = 'An error occurred. Please try again.';
+            if (error.response && error.response.data && error.response.data.message) {
+                if (typeof error.response.data.message === 'string') {
+                    errorMessage = error.response.data.message;
+                } else if (Array.isArray(error.response.data.message)) {
+                    errorMessage = error.response.data.message.join('; ');
+                } else if (typeof error.response.data.message === 'object') {
+                    errorMessage = JSON.stringify(error.response.data.message);
                 }
+            }
                 toast.error(errorMessage);
             } finally {
                 setIsLoading(false);
