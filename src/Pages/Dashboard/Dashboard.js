@@ -284,7 +284,7 @@ const Dashboard = () => {
                                     </div>
                                     <div>
                                         <small>Class Teacher</small>
-                                        <h6>{childrenDetails.teacher.name}</h6>
+                                        <h6>{childrenDetails?.teacher?.name}</h6>
                                     </div>
                                     <div>
                                         <small>Team</small>
