@@ -127,7 +127,40 @@ const ResultSheet = () => {
       }, [selectedClass, bearer]);
 
       let totalSubjects = 0;
-    
+
+      // Initialize the grade counts
+    const gradeCounts = {
+        A1: 0,
+        B2: 0,
+        B3: 0,
+        C4: 0,
+        C5: 0,
+        C6: 0,
+        D7: 0,
+        E8: 0,
+        F9: 0,
+    };
+
+    subjects[0].forEach((item) => {
+        totalSubjects++;
+            const grade = fetchGradeForCa(item.id);
+            if (gradeCounts.hasOwnProperty(grade)) {
+                gradeCounts[grade]++;
+            }
+    });
+    // let totalSubjects = 0;
+    let totalScore = 0;
+
+    subjects[0].forEach((item) => {
+        totalSubjects++;
+        totalScore += fetchTotalScoreForCa(item.id); // Add each subject's total score to the overall total
+        const grade = fetchGradeForCa(item.id);
+        if (gradeCounts.hasOwnProperty(grade)) {
+            gradeCounts[grade]++;
+        }
+    });
+    // Calculate the overall average
+    const overallAverage = totalScore / totalSubjects;
     return (
         <div className={classes.generalCont}>         
             <div className={classes.mainDiv}>
@@ -220,7 +253,7 @@ const ResultSheet = () => {
                             </tr>
                             
                             {subjects[0].map((item, index)=>{
-                                totalSubjects ++
+                                // totalSubjects ++;
                             return(
                             <tr key={index}>
                                 <td className={classes.rowing}>{index + 1}</td>
@@ -247,6 +280,7 @@ const ResultSheet = () => {
                             );
                             })}
 
+                            
                             
                         </tbody>
                         </table>
@@ -278,17 +312,16 @@ const ResultSheet = () => {
                                     <tbody>
                                         <tr>
                                             <td className={classes.noSub}>{totalSubjects}</td>
-                                            <td> </td>
-                                            <td> </td>
-                                            <td> </td>
-                                            {/* <td> </td> */}
-                                            <td> </td>
-                                            <td className={classes.noSub}>1</td>
-                                            <td className={classes.noSub}>3</td>
-                                            <td className={classes.noSub}>4</td>
-                                            <td className={classes.noSub}>4</td>
-                                            <td className={classes.noSub}>5</td>
-                                            <td className={classes.noSub}>4</td>
+                                            <td className={classes.noSub}>{gradeCounts.A1}</td>
+                                            <td className={classes.noSub}>{gradeCounts.B2}</td>
+                                            <td className={classes.noSub}>{gradeCounts.B3}</td>
+                                            <td className={classes.noSub}>{gradeCounts.C4}</td>
+                                            <td className={classes.noSub}>{gradeCounts.C5}</td>
+                                            <td className={classes.noSub}>{gradeCounts.C6}</td>
+                                            <td className={classes.noSub}>{gradeCounts.D7}</td>
+                                            <td className={classes.noSub}>{gradeCounts.E8}</td>
+                                            <td className={classes.noSub}>{gradeCounts.F9}</td>
+                                            <td className={classes.credit}>{gradeCounts.A1 + gradeCounts.B2 + gradeCounts.B3 + gradeCounts.C4 + gradeCounts.C5 + gradeCounts.C6}</td>
                                         </tr>
                                     </tbody>
                                     
@@ -302,14 +335,21 @@ const ResultSheet = () => {
                                 </div>
                                 <div className={classes.keysTale}>
                                     <table className={classes.keyTable}>
-
+                                        {/* <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                            </tr>
+                                        </thead> */}
                                      <tbody>   
                                         {childrenScores?.schoolGrade.map((item, index) => (
                                             <div key={index}>
-                                                <tr>
-                                                    <td>{item?.percent_from} to {item?.percent_upto}</td>
-                                                    <td>{item?.grade_name}</td>
-                                                    <td>{item?.comments}</td>
+
+                                                <tr className={classes.grades}>
+                                                    <td className={classes.grades1}>{item?.percent_from} to {item?.percent_upto}</td>
+                                                    <td className={classes.grades2}>{item?.grade_name}</td>
+                                                    <td className={classes.grades1}>{item?.comments}</td>
                                                 </tr>
                                                 
                                             </div>
@@ -325,11 +365,11 @@ const ResultSheet = () => {
                             <table>
                                 <tr>
                                     <td className={classes.local}>TOTAL SCORE:</td>
-                                    <td className={classes.inside}>920.5</td>
+                                    <td className={classes.inside}>{totalScore}</td>
                                 </tr>
                                 <tr>
                                     <td className={classes.local}>AVERAGE:</td>
-                                    <td className={classes.inside}>54.15%</td>
+                                    <td className={classes.inside}>{overallAverage}%</td>
                                 </tr>
                                 <tr>
                                     <td className={classes.local}>OVERALL GRADE:</td>
