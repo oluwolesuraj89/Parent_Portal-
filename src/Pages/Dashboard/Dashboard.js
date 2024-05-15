@@ -5,7 +5,7 @@ import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Button } from 'react-bootstrap';
 // import RegLogo from '../../Images/RegistrationLogo.svg'
-import { Link } from 'react-router-dom'
+import { Link,  } from 'react-router-dom'
 import MainDashboard from '../Main Dashboard/MainDashoard';
 import FemaleIcon from '../../assets/promix/MyUser.svg'
 import MaleIcon from '../../assets/promix/MaleIcon.svg'
@@ -14,9 +14,14 @@ import Payment2 from '../../assets/promix/detailsIcon2.svg'
 import Curve from '../../assets/promix/curve1.svg'
 import Boy from '../../assets/promix/FineBoy.svg'
 import Form from 'react-bootstrap/Form';
+import Spinner from 'react-bootstrap/Spinner';
 import { BASE_URL } from '../../Promix/api/api';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Card from 'react-bootstrap/Card';
+import Placeholder from 'react-bootstrap/Placeholder';
+import Bg1 from '../../assets/download.svg'
+
 
 
 
@@ -95,10 +100,17 @@ const Dashboard = () => {
             const result = response.data?.data
             setChildren(result);
             setSelectedChild(result[0]?.id);
+            console.log('All children', result)
         } catch (error) {
-            let errorMessage = error.response?.data?.message || 'An error occurred';
-            if (error.message === 'Network Error') {
-                errorMessage = 'Connection error. Please check your internet connection.';
+            let errorMessage = 'An error occurred. Please try again.';
+            if (error.response && error.response.data && error.response.data.message) {
+                if (typeof error.response.data.message === 'string') {
+                    errorMessage = error.response.data.message;
+                } else if (Array.isArray(error.response.data.message)) {
+                    errorMessage = error.response.data.message.join('; ');
+                } else if (typeof error.response.data.message === 'object') {
+                    errorMessage = JSON.stringify(error.response.data.message);
+                }
             }
             toast.error(errorMessage);
         } finally {
@@ -114,13 +126,23 @@ const Dashboard = () => {
             {headers});
             const details = response.data?.data
             setChildrenDetails(details);
-            console.log(details, "wehereh");
+            // console.log(details, "wehereh");
+            console.log(details, "Children Details");
             setChildrenSubjects(details?.classes?.assigned);
-            console.log(details?.classes?.assigned, "hereee");
+            // console.log(details?.classes?.assigned, "hereee");
+            // console.log("childrenDetails:", childrenDetails);
+            // console.log("school:", childrenDetails?.school);
+            // console.log("school name:", childrenDetails?.school?.name);
         } catch (error) {
-            let errorMessage = error.response?.data?.message || 'An error occurred';
-            if (error.message === 'Network Error') {
-                errorMessage = 'Connection error. Please check your internet connection.';
+            let errorMessage = 'An error occurred. Please try again.';
+            if (error.response && error.response.data && error.response.data.message) {
+                if (typeof error.response.data.message === 'string') {
+                    errorMessage = error.response.data.message;
+                } else if (Array.isArray(error.response.data.message)) {
+                    errorMessage = error.response.data.message.join('; ');
+                } else if (typeof error.response.data.message === 'object') {
+                    errorMessage = JSON.stringify(error.response.data.message);
+                }
             }
             toast.error(errorMessage);
         } finally {
@@ -145,7 +167,7 @@ const Dashboard = () => {
     
     return (
         <div >
-            < MainDashboard schoolName={childrenDetails?.school?.name}/>
+            < MainDashboard/>
             
             <div className={classes.formSection} >
             <div className={classes.formSectionHeaderContainer}>
@@ -165,7 +187,7 @@ const Dashboard = () => {
                             value={selectedChild} 
                             onChange={handleChildrenChange}
                         >
-                            {/* <option>Mosumola Lawanson</option> */}
+                            <option key="">Select a Child</option>
                             {children.map((item) =>(
                                 <option key={item.id} value={item.id}>
                                     {item.first_name} {item.last_name}
@@ -227,14 +249,21 @@ const Dashboard = () => {
                             </div>
                         </div>
                         <div className={classes.sideImg}>
-                            
-                        {childrenDetails && childrenDetails.image ? (
-                            <img src={childrenDetails.image} alt='img' className={classes.imgss}/>
-                        ) : (
-                            <img src={Boy} alt='img' className={classes.imgss}/>
-                        )}
-                            {/* <img src={Boy} alt='img' className={classes.imgs}/> */}
-                        </div>
+    {isLoading ? (
+        <Card style={{ width: '18rem' }}>
+        <Card.Img variant="top" src={Bg1} />
+        </Card>
+    ) : (
+        <>
+            {childrenDetails && childrenDetails.image ? (
+                <img src={childrenDetails.image} alt='img' className={classes.imgss}/>
+            ) : (
+                <img src={Boy} alt='img' className={classes.imgss}/>
+            )}
+        </>
+    )}
+</div>
+
                         <div className={classes.flex2}></div>
                     </div>
                     <div className={classes.group1}>
@@ -245,6 +274,10 @@ const Dashboard = () => {
                                     <div>
                                         <small>Name</small>
                                         <h6>{childrenDetails.first_name} {childrenDetails.last_name}</h6>
+                                    </div>
+                                    <div>
+                                        <small>school</small>
+                                        <h6>{childrenDetails?.school?.name}</h6>
                                     </div>
                                     <div>
                                         <small>Class</small>
@@ -268,12 +301,13 @@ const Dashboard = () => {
                                         <small>Height</small>
                                         <h6>100cm</h6>
                                     </div>
+                                    
+                                </div>    
+                                <div className={classes.stuDatCard}>
                                     <div>
                                         <small>House color</small>
                                         <h6>Yellow</h6>
                                     </div>
-                                </div>    
-                                <div className={classes.stuDatCard}>
                                     <div>
                                         <small>Genotype</small>
                                         <h6>AA</h6>
@@ -284,7 +318,7 @@ const Dashboard = () => {
                                     </div>
                                     <div>
                                         <small>Class Teacher</small>
-                                        <h6>{childrenDetails?.teacher?.name}</h6>
+                                        <h6>{childrenDetails.teacher?.name}</h6>
                                     </div>
                                     <div>
                                         <small>Team</small>

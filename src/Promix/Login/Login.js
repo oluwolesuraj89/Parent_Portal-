@@ -97,12 +97,15 @@ function Login() {
                                     left: "-10px",
                                     marginTop: '-40px',
                                     position: 'relative',
-                                    zIndex: 2
+                                    zIndex: 2,
+                                    // displayf:'flex',
+                                    // justifyContent:'space-between',
+                                    // alignItems:'center'
                                 }}
                                 onClick={togglePasswordVisibility}
                             >
                                 {showPassword ? (
-                                    <img src={crossedEyeIcon} alt="Hide Password" style={{ height: "20px", width: "20px" }} />
+                                    <img src={crossedEyeIcon} alt="Hide Password" style={{ height: "20px", width: "20px"}} />
                                 ) : (
                                     '👁️'
                                 )}

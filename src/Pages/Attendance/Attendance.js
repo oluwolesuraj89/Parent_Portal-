@@ -80,9 +80,15 @@ const Attendance = () => {
             setChildren(result);
             setSelectedChild(result[0]?.id);
         } catch (error) {
-            let errorMessage = error.response?.data?.message || 'An error occurred';
-            if (error.message === 'Network Error') {
-                errorMessage = 'Connection error. Please check your internet connection.';
+            let errorMessage = 'An error occurred. Please try again.';
+            if (error.response && error.response.data && error.response.data.message) {
+                if (typeof error.response.data.message === 'string') {
+                    errorMessage = error.response.data.message;
+                } else if (Array.isArray(error.response.data.message)) {
+                    errorMessage = error.response.data.message.join('; ');
+                } else if (typeof error.response.data.message === 'object') {
+                    errorMessage = JSON.stringify(error.response.data.message);
+                }
             }
             toast.error(errorMessage);
         } finally {
@@ -143,10 +149,16 @@ const Attendance = () => {
                 // setChildrenSubjects(details?.classes?.assigned);
                 // console.log(details?.classes?.assigned, "hereee");
             } catch (error) {
-                let errorMessage = error.response?.data?.message || 'An error occurred';
-                if (error.message === 'Network Error') {
-                    errorMessage = 'Connection error. Please check your internet connection.';
+                let errorMessage = 'An error occurred. Please try again.';
+            if (error.response && error.response.data && error.response.data.message) {
+                if (typeof error.response.data.message === 'string') {
+                    errorMessage = error.response.data.message;
+                } else if (Array.isArray(error.response.data.message)) {
+                    errorMessage = error.response.data.message.join('; ');
+                } else if (typeof error.response.data.message === 'object') {
+                    errorMessage = JSON.stringify(error.response.data.message);
                 }
+            }
                 toast.error(errorMessage);
             } finally {
                 setIsLoading(false);
@@ -166,37 +178,39 @@ const Attendance = () => {
         <div>
             < MainDashboard schoolName={childrenDetails?.school?.name}/>
             <div className={classes.formSection}>
-                <div className={classes.formSectionHeader}>
-                    <div style={{ textAlign: 'left' }}>
-                        <p style={{ margin: '0' }}>Welcome</p>
-                        <h3>
-                            {parentName}
-                        </h3>
+                <div className={classes.formSectionHeaderContainer}>
+                    <div className={classes.formSectionHeader}>
+                        <div style={{ textAlign: 'left' }}>
+                            <p style={{ margin: '0' }}>Welcome</p>
+                            <h3>
+                                {parentName}
+                            </h3>
 
-                    </div>
-                    <div>
-                        <h3 style={{ color: 'black' }}>Attendance</h3>
-                    </div>
-                    <div className={classes.users}>
-                        <Form.Select aria-label="Default select example" 
-                            value={selectedChild} 
-                            onChange={handleChildrenChange}
-                        >
-                        {/* <option>Mosumola Lawanson</option> */}
-                        {children.map((item) =>(
-                            <option key={item.id} value={item.id}>
-                                {item.first_name} {item.last_name}
-                                {item.gender === 'male' ? (
-                                    <img src={MaleIcon} alt='Male'/> 
-                                ) : (
-                                    <img src={FemaleIcon} alt='Female'/>
-                                )}
-                            </option>
-                        ))}
-                        </Form.Select>
-                        {/* <h6 >Mosumola Lawanson</h6>
-                        <img src={USER} alt='User'/>
-                        <i class='bx bxs-chevron-down'></i> */}
+                        </div>
+                        <div>
+                            <h3 style={{ color: 'black' }}>Attendance</h3>
+                        </div>
+                        <div className={classes.users}>
+                            <Form.Select aria-label="Default select example" 
+                                value={selectedChild} 
+                                onChange={handleChildrenChange}
+                            >
+                            {/* <option>Mosumola Lawanson</option> */}
+                            {children.map((item) =>(
+                                <option key={item.id} value={item.id}>
+                                    {item.first_name} {item.last_name}
+                                    {item.gender === 'male' ? (
+                                        <img src={MaleIcon} alt='Male'/> 
+                                    ) : (
+                                        <img src={FemaleIcon} alt='Female'/>
+                                    )}
+                                </option>
+                            ))}
+                            </Form.Select>
+                            {/* <h6 >Mosumola Lawanson</h6>
+                            <img src={USER} alt='User'/>
+                            <i class='bx bxs-chevron-down'></i> */}
+                        </div>
                     </div>
                 </div>
 

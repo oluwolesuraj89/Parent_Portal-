@@ -8,11 +8,20 @@
     --Black: #343A40;
     --blackGray: #6C757D;
 }
-
+.generalCont{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--White);
+}
 .mainDiv{
-    padding-left: 9rem;
-    padding-right: 9rem;
-    padding-top: 48px;
+    /* padding-left: 9rem; */
+    /* padding-right: 9rem; */
+    width: 100%;
+    max-width: 100%;
+    padding: 48px 10% 5% 10%;
+    /* padding-top: 48px; */
+
 }
 .logoPlaceholder{
     width: 129px;
@@ -20,13 +29,35 @@
 }
 .header{
     display: flex;
-    gap: 211px;
+    gap: 221px;
+    margin-bottom: 29px;
 }
 .headerTxt{
     justify-content: center;
     text-align: center;
     line-height: 25px;
     
+}
+.sideImg{
+    width: 109px;
+    height: 109px;
+    overflow: hidden;
+}
+.sideImg2{
+    width: 110px;
+    /* height: 250px; */
+    overflow: hidden;
+    border-radius: 8px;
+}
+.imgss{
+    width: 110px;
+    height: 150px;
+    object-fit: cover;
+}
+.imgs{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 .fedTxt{
     color: var(--Black);
@@ -42,6 +73,7 @@
     font-size: 18px;
     color: var(--Black);
     font-weight: 700; 
+    margin: 0;
 }
 .emailtxt{
     font-size: 14px;
@@ -53,13 +85,9 @@
     width: 100%;
 }
 .underLineTxt{
-    line-height: 15px;
-    padding-top: 20px;
+    padding-top: 16px;
     text-align: center;
-    margin-left: -100px;
     font-size: 18px;
-    color: pink;
-    /* color: var(--White); */
 }
 .co{
     color: var(--Black);
@@ -170,16 +198,19 @@
     text-align: center;   
 }
 .info{
-    display: flex;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
     width: 100%;
     gap: 5px;
 }
+.info table{
+    width: 100% !important;
+}
 .performance{
-    padding-top: 30px;
+    margin-top: 12%;
 }
 .lativeTable{
-    /* border: 1px solid var(--Black); */
-    width: 60%;
+    width: 100%;
 }
 .lativeTable td, th{
     border: 1px solid var(--Black);
@@ -195,47 +226,47 @@
     text-align: center;
 }
 .lativeTable .credit{
-    padding-left: 60px;
-    padding-right: 60px;
+    padding: 8px;
     white-space: nowrap;
+    text-align: center;
 }
 .lativeTable .noSub{
-    padding-top: 15px;
-    padding-bottom: 8px;
+    /* padding-top: 15px; */
+    padding: 8px;
     text-align: center;
-    padding-left: 10px;
-    padding-right: 20px;
+    /* padding-left: 10px; */
+    /* padding-right: 20px; */
 }
 .lativeTable .noSub1{
-    padding-top: 15px;
-    padding-bottom: 8px;
+    padding: 8px;
     text-align: center;
-    padding-left: 20px;
-    padding-right: 20px;
     white-space: nowrap ;
 }
 .next{
+    width: 100%;
     display: flex;
-    /* justify-content: center; */
-    width: 40%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .key{
-    width: 173px;
-    height: 27px;
+    /* max-width: 100%; */
     border: 1px solid var(--Black);
     text-align: center;
-    /* padding-top: 5px; */
     margin-top: 10px;
     justify-self: center;
     justify-content: center;
     margin-bottom: 8px;
-    margin-left: 30%;
+    padding: 8px 45px;
+    /* margin-left: 30%; */
 }
 .keyTxt{
     color: var(--Black);
     color: #000;
     font-size: 16px;
+    margin: 0;
 }
+
 
 .keyTable td{
     border: 1px solid var(--Black);
@@ -245,18 +276,14 @@
 .keysTale{
     border: 1px solid var(--Black);
     padding: 10px;
-    width: fit-content;
+    width: 100%;
     margin: 0;
-    width: fit-content;
+    /* width: fit-content; */
 }
 .keyTable th,
 .keyTable td {
   /* border: 1px solid #000; */
-  /* padding: 15px; */
-  padding-left: 35px;
-  padding-right: 28px;
-  padding-top: 8px;
-  padding-bottom: 8px;
+  padding: 8px;
   white-space: nowrap;
 }
 .last{
@@ -331,4 +358,13 @@
 }
 .excellenceTxt{
     margin-top: 10px;
+}
+
+@media print{
+    .mainDiv{
+        width: 100%;
+        max-width: 100%;
+        /* padding: 48px 20% 5% 5%; */
+        /* display: none; */
+    }
 }
