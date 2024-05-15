@@ -61,14 +61,20 @@
   .mainContainerx2 {
     /* background-color: rgba(0, 0, 0, 0.8); */
     background-color: black;
-    width: 40%;
+    width: 100%;
+    /* max-width: 571px; */
+    /* height: 523px; */
+    /* padding: 20px 0; */
+    /* border-radius: 20px; */
     color: var(--White);
     display: flex;
     justify-content: center;
     align-items: center;
     margin-left: 30px;
     border-radius: 8px;
-    padding: 2% 0;
+    margin-right: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
   }
 
   .SignUptxt {
@@ -77,7 +83,7 @@
     font-size: 40px;
     margin-bottom: 10px;
     margin-top: 20px;
-    color: #343A40  !important; 
+    color: #343A40 !important; 
     margin-left: -400px!important;   
   }
 
@@ -142,8 +148,8 @@
   }
   .listOf{
     font-size: 18px;
-    font-weight: 400;
-    padding-left: 25px;
+    font-weight: lighter;
+    /* color: #ffffff; */
     line-height: 36px;
   }
 
