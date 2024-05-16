@@ -82,11 +82,11 @@ function Login() {
                     <Form className={classes.formz}>
                         <Form.Group className={classes.formGroup}>
                             <Form.Label>Email Address</Form.Label>
-                            <Form.Control onChange={(e) => setEmail(e.target.value)} type='text'  placeholder="Enter your email address" style={{ backgroundColor: 'rgba(0, 0, 0, 0.8)', color: "#fff" }} />
+                            <Form.Control onChange={(e) => setEmail(e.target.value)} type='text'  placeholder="Enter your email address" style={{ backgroundColor: '#ffff', color: "#000" }} />
                         </Form.Group>
                         <Form.Group className={classes.formGroup}>
                             <Form.Label  >Password</Form.Label>
-                            <Form.Control onChange={(e) => setPassword(e.target.value)} type={showPassword ? 'text' : 'password'} placeholder="Enter your password address" style={{ backgroundColor: 'rgba(0, 0, 0, 0.8)', color: "#fff", }} onKeyPress={handleKeyPress} />
+                            <Form.Control onChange={(e) => setPassword(e.target.value)} type={showPassword ? 'text' : 'password'} placeholder="Enter your password address" style={{ backgroundColor: '#ffff', color: "#000", }} onKeyPress={handleKeyPress} />
                             <button
                                 type="button"
                                 style={{
@@ -95,14 +95,17 @@ function Login() {
                                     cursor: 'pointer',
                                     float: 'right',
                                     left: "-10px",
-                                    marginTop: '-30px',
+                                    marginTop: '-40px',
                                     position: 'relative',
-                                    zIndex: 2
+                                    zIndex: 2,
+                                    // displayf:'flex',
+                                    // justifyContent:'space-between',
+                                    // alignItems:'center'
                                 }}
                                 onClick={togglePasswordVisibility}
                             >
                                 {showPassword ? (
-                                    <img src={crossedEyeIcon} alt="Hide Password" style={{ height: "20px", width: "20px" }} />
+                                    <img src={crossedEyeIcon} alt="Hide Password" style={{ height: "20px", width: "20px"}} />
                                 ) : (
                                     '👁️'
                                 )}

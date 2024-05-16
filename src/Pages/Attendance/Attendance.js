@@ -80,9 +80,15 @@ const Attendance = () => {
             setChildren(result);
             setSelectedChild(result[0]?.id);
         } catch (error) {
-            let errorMessage = error.response?.data?.message || 'An error occurred';
-            if (error.message === 'Network Error') {
-                errorMessage = 'Connection error. Please check your internet connection.';
+            let errorMessage = 'An error occurred. Please try again.';
+            if (error.response && error.response.data && error.response.data.message) {
+                if (typeof error.response.data.message === 'string') {
+                    errorMessage = error.response.data.message;
+                } else if (Array.isArray(error.response.data.message)) {
+                    errorMessage = error.response.data.message.join('; ');
+                } else if (typeof error.response.data.message === 'object') {
+                    errorMessage = JSON.stringify(error.response.data.message);
+                }
             }
             toast.error(errorMessage);
         } finally {
@@ -97,7 +103,6 @@ const Attendance = () => {
             {headers});
             const details = response.data?.data;
             setChildrenDetails(details);
-            console.log(details, 'details here ')
         } catch (error) {
             let errorMessage = error.response?.data?.message || 'An error occurred';
             if (error.message === 'Network Error') {
@@ -122,16 +127,13 @@ const Attendance = () => {
         }
       }, [selectedChild, bearer]);
 
-      console.log(selectedChild, "selected student");
-
-        
         const fetchedAttendanceData = async () => {
             setIsLoading(true);
             try {
                 const response = await axios.get(`${BASE_URL}/attendance?student_id=${selectedChild}`,
                 {headers});
                 const data = response.data?.data;
-                console.log(data, "Date details here");
+                // console.log(data, "Date details here");
                 if (data && data.length > 0) {
                     const events = data.map(item => new Date(item.date)); // Assuming API returns date in a standard format
                     setCalendarEvents(events);
@@ -143,10 +145,16 @@ const Attendance = () => {
                 // setChildrenSubjects(details?.classes?.assigned);
                 // console.log(details?.classes?.assigned, "hereee");
             } catch (error) {
-                let errorMessage = error.response?.data?.message || 'An error occurred';
-                if (error.message === 'Network Error') {
-                    errorMessage = 'Connection error. Please check your internet connection.';
+                let errorMessage = 'An error occurred. Please try again.';
+            if (error.response && error.response.data && error.response.data.message) {
+                if (typeof error.response.data.message === 'string') {
+                    errorMessage = error.response.data.message;
+                } else if (Array.isArray(error.response.data.message)) {
+                    errorMessage = error.response.data.message.join('; ');
+                } else if (typeof error.response.data.message === 'object') {
+                    errorMessage = JSON.stringify(error.response.data.message);
                 }
+            }
                 toast.error(errorMessage);
             } finally {
                 setIsLoading(false);
@@ -159,6 +167,7 @@ const Attendance = () => {
             }
           }, [selectedChild, bearer]);
 
+          console.log(calendarEvents, "mdhd");
     
 
     return (
@@ -166,37 +175,39 @@ const Attendance = () => {
         <div>
             < MainDashboard schoolName={childrenDetails?.school?.name}/>
             <div className={classes.formSection}>
-                <div className={classes.formSectionHeader}>
-                    <div style={{ textAlign: 'left' }}>
-                        <p style={{ margin: '0' }}>Welcome</p>
-                        <h3>
-                            {parentName}
-                        </h3>
+                <div className={classes.formSectionHeaderContainer}>
+                    <div className={classes.formSectionHeader}>
+                        <div style={{ textAlign: 'left' }}>
+                            <p style={{ margin: '0' }}>Welcome</p>
+                            <h3>
+                                {parentName}
+                            </h3>
 
-                    </div>
-                    <div>
-                        <h3 style={{ color: 'black' }}>Attendance</h3>
-                    </div>
-                    <div className={classes.users}>
-                        <Form.Select aria-label="Default select example" 
-                            value={selectedChild} 
-                            onChange={handleChildrenChange}
-                        >
-                        {/* <option>Mosumola Lawanson</option> */}
-                        {children.map((item) =>(
-                            <option key={item.id} value={item.id}>
-                                {item.first_name} {item.last_name}
-                                {item.gender === 'male' ? (
-                                    <img src={MaleIcon} alt='Male'/> 
-                                ) : (
-                                    <img src={FemaleIcon} alt='Female'/>
-                                )}
-                            </option>
-                        ))}
-                        </Form.Select>
-                        {/* <h6 >Mosumola Lawanson</h6>
-                        <img src={USER} alt='User'/>
-                        <i class='bx bxs-chevron-down'></i> */}
+                        </div>
+                        <div>
+                            <h3 style={{ color: 'black' }}>Attendance</h3>
+                        </div>
+                        <div className={classes.users}>
+                            <Form.Select aria-label="Default select example" 
+                                value={selectedChild} 
+                                onChange={handleChildrenChange}
+                            >
+                            {/* <option>Mosumola Lawanson</option> */}
+                            {children.map((item) =>(
+                                <option key={item.id} value={item.id}>
+                                    {item.first_name} {item.last_name}
+                                    {item.gender === 'male' ? (
+                                        <img src={MaleIcon} alt='Male'/> 
+                                    ) : (
+                                        <img src={FemaleIcon} alt='Female'/>
+                                    )}
+                                </option>
+                            ))}
+                            </Form.Select>
+                            {/* <h6 >Mosumola Lawanson</h6>
+                            <img src={USER} alt='User'/>
+                            <i class='bx bxs-chevron-down'></i> */}
+                        </div>
                     </div>
                 </div>
 
@@ -241,12 +252,12 @@ const Attendance = () => {
                         <div>
                             <p className={classes.chldavrgtxtclndr}>Calendar view of your child's attendance</p>
                             <div className={classes.calendar}>
-                            <Calendar value={new Date()} tileClassName={({ date, view }) => {
-                                // Customize CSS class based on the presence of events (attendance)
+                            <Calendar prev2Label={false} next2Label={false} value={new Date()} tileClassName={({ date, view }) => {
+                                
                                 if (calendarEvents.find(event => event.getDate() === date.getDate())) {
-                                    return 'present'; // CSS class for days with attendance
+                                    return 'present'; 
                                 } else {
-                                    return 'absent'; // CSS class for days without attendance
+                                    return 'absent'; 
                                 }
                             }} />
                             </div>

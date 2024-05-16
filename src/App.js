@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import SignUp from './Promix/Signup/Signup.js';
 import Login from './Promix/Login/Login.js';
 import Dashboard from './Pages/Dashboard/Dashboard.js';
-import PaymentsHistory from './Pages/Payments/PaymentsHistory.js';
+// import PaymentsHistory from './Pages/Payments/PaymentsInvoice.js';
 import MakePayment from './Pages/Payments/MakePayment.js';
 import Result from './Pages/Resullt/Result.js';
 import ResultSheet from './Pages/Results Sheet/ResultSheet.js';
@@ -12,6 +12,7 @@ import Announcements from './Pages/Announcements/Announcements.js';
 import Profile from './Pages/Profile/Profile.js';
 // import Infractions from "./Pages/Infactions/Infractions.js";
 // import Infractions2 from "./Pages/Infactions2/Infractions2.js";
+import PaymentsInvoice from './Pages/Payments/PaymentsInvoice.js';
 
 function App() {
   return (
@@ -19,12 +20,15 @@ function App() {
         <Route path='/' element={<Login/>}/>
         <Route path='/signup' element={<SignUp/>} />
         <Route path='/dashboard' element={<Dashboard/>} />
-        <Route path='/payments_hisroy' element={<PaymentsHistory/>}/>
+        <Route path='/payments_invoice' element={<PaymentsInvoice/>}/>
         <Route path='/make_payment' element={<MakePayment/>}/>
         <Route path='/results' element={<Result/>} />
         <Route path='/attendance' element={<Attendance/>} />
         <Route path='/annoucements' element={<Announcements/>} />
         <Route path='/profile' element={<Profile/>} />
+        <Route path='/result_sheet' element={<ResultSheet/>} />
+        <Route path='/infractions' element={<Infractions/>} />
+        <Route path='/infractions2' element={<Infractions2/>} />
       </Routes>
   );
 }

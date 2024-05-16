@@ -12,3 +12,34 @@ code {
     monospace;
 }
 
+/* Styling for both previous and next buttons */
+.react-calendar__navigation button.react-calendar__navigation__prev-button,
+.react-calendar__navigation button.react-calendar__navigation__next-button {
+  background-color: #E9ECEF; 
+  border-radius: 89px;
+  color: #343A40;
+  font-weight: 400;
+  font-size: 30px;
+  margin-top: 5px;
+}
+
+/* Styling for the arrow icons inside the buttons */
+.react-calendar__navigation button.react-calendar__navigation__prev-button::before,
+.react-calendar__navigation button.react-calendar__navigation__next-button::before {
+  color: lawngreen; /* Your color for the arrow icons */
+}
+.react-calendar .present {
+  background-color: #343a40;
+  color: white;
+}
+/* .react-calendar__tile--active {
+  background-color: transparent ;
+    color: #000;
+} */
+/* .react-calendar__tile--now {
+  background-color: transparent !important;
+    color: #000 !important;
+} */
+
+
+

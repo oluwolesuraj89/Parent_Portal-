@@ -70,8 +70,8 @@ function SignUp() {
                         <Form.Control type='password' id="date" placeholder="Enter your password" />
                     </Form.Group>
                     <Button variant="success" className={classes.snupbtn}>Sign Up</Button>
+               <p className={classes.lgin}>Already have an account? <Link to={'/'} style={{textDecoration:'none'}}><span style={{color:'black'}}>Log In</span></Link></p>
                     </Form>
-               <p className={classes.lgin}>Already have an account? <Link to={'/login'} style={{textDecoration:'none'}}><span style={{color:'black'}}>Log In</span></Link></p>
                 {/* <p className={classes.lgin}>Don't have an account? <Link to={'/login'} style={{textDecoration:'none'}}><span>Log In</span></Link></p> */}
             </div>
         </div>

@@ -34,44 +34,48 @@ const Infractions = () => {
             <MainDashboard/>
             
             <div className={classes.formSection} >
-                <div className={classes.formSectionHeader}>
-                    <div style={{textAlign:'left'}}>
-                        <p style={{margin:'0'}}>Welcome</p>
-                        <h3>
-                            Ololade Lawanson
-                        </h3>
-                        
-                    </div>
-                    <div>
-                        <h3 style={{color:'black'}}>Infractions</h3>
-                    </div>
-                    <div className={classes.users}>
-                    <Form.Select aria-label="Default select example">
-                        <option>Mosumola Lawanson</option>
-                        <option value="1">Michael Lawanson</option>
-                        <option value="2">Joshua Lawanson</option>
-                        {/* <option value="3">Three</option> */}
-                    </Form.Select>
-                        {/* <h6 >Mosumola Lawanson</h6>
-                        <img src={USER} alt='User'/>
-                        <i class='bx bxs-chevron-down'></i> */}
+                <div className={classes.formSectionHeaderContainer}>
+                    <div className={classes.formSectionHeader}>
+                        <div style={{textAlign:'left'}}>
+                            <p style={{margin:'0'}}>Welcome</p>
+                            <h3>
+                                Ololade Lawanson
+                            </h3>
+                            
+                        </div>
+                        <div>
+                            <h3 style={{color:'black'}}>Infractions</h3>
+                        </div>
+                        <div className={classes.users}>
+                        <Form.Select aria-label="Default select example">
+                            <option>Mosumola Lawanson</option>
+                            <option value="1">Michael Lawanson</option>
+                            <option value="2">Joshua Lawanson</option>
+                            {/* <option value="3">Three</option> */}
+                        </Form.Select>
+                            {/* <h6 >Mosumola Lawanson</h6>
+                            <img src={USER} alt='User'/>
+                            <i class='bx bxs-chevron-down'></i> */}
+                        </div>
                     </div>
                 </div>
                 
                 <div className={classes.chartCont}>
-                   <p>Infraction 1</p>
-                   <p className={classes.damages}>Damage to School Property</p>
-                   <p className={classes.onthe}>On the 10th of April, while playing with her friends during break time, Mosunmola threw a stone at one of the glass windows of class 2C, and broke the glass window.</p>
-                   <p className={classes.damages}>Action</p>
-                   <p className={classes.onthe}>Please visit the school as soon as possible to see the school principal.</p>
-                   <div className={classes.line}/>
-                   <div/>
-                   <p className={classes.InfractionsTxt}>Infraction 2</p>
-                   <p className={classes.damages}>Bullying a fellow student</p>
-                   <p className={classes.onthe}>On the 26th of March, Mosunmola and three other girls bullied a fellow student in her class. Mosunmola and her friends hit this student till she sustained bruises on her hands and legs.</p>
-                   <p className={classes.damages}>Action</p>
-                   <p  className={classes.onthe}>Please visit the school as soon as possible to see the school principal.</p>
-                   <div className={classes.line}/>
+                    <div className={classes.Infraction1}>
+                        <p>Infraction 1</p>
+                        <p className={classes.damages}>Damage to School Property</p>
+                        <p className={classes.onthe}>On the 10th of April, while playing with her friends during break time, Mosunmola threw a stone at one of the glass windows of class 2C, and broke the glass window.</p>
+                        <p className={classes.damages}>Action</p>
+                        <p className={classes.onthe}>Please visit the school as soon as possible to see the school principal.</p>
+                   </div>
+                   <div className={classes.Infraction2}>
+                        <p className={classes.InfractionsTxt}>Infraction 2</p>
+                        <p className={classes.damages}>Bullying a fellow student</p>
+                        <p className={classes.onthe}>On the 26th of March, Mosunmola and three other girls bullied a fellow student in her class. Mosunmola and her friends hit this student till she sustained bruises on her hands and legs.</p>
+                        <p className={classes.damages}>Action</p>
+                        <p  className={classes.onthe} style={{margin:'0'}}>Please visit the school as soon as possible to see the school principal.</p>
+                   </div>
+                   
                 </div>
             </div>
 
