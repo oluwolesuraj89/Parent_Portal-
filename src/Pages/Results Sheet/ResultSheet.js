@@ -59,7 +59,7 @@ const ResultSheet = () => {
         const caId = scoreId;
         const foundItem = Alldata.filter(item => item['subject_id'] == itemId && item['status'] == scoreId);
         
-        return  foundItem?.[0]?.['score'] || "";
+        return  foundItem?.[0]?.['score'] || 0;
     };
     const fetchGradeForCa = (itemId) => {
         const Alldata = grades[0];
