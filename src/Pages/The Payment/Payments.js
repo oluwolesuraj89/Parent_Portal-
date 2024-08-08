@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 // import OnbImg from '../../Images/image bg.png';
-import classes from './PaymentsInvoice.module.css'
+import classes from './Payments.module.css'
 // import loanicon from '../../Images/moneys.png'
 // import loaniconblue from '../../Images/moneysblue.png'
 // import loanicongreen from '../../Images/receipt-2.png'
@@ -37,11 +37,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Spinner, Badge } from 'react-bootstrap';
 
-const PaymentsInvoice = () => {
+const Payments = () => {
     const [invoice, setInvoice] = useState([]);
-    const [amount, setAmount] = useState([]);
-    const [session, setSession] = useState([]);
-    const [secndterm, setSecnd] = useState([]);
     const [selectedChild, setSelectedChild] = useState("");
     const [bearer, setBearer] = useState('');
     const [parentName, setParentName] = useState('');
@@ -89,7 +86,7 @@ const PaymentsInvoice = () => {
     const fetchInvoice = async () => {
         setLoading(true);
         try {
-            const response = await axios.get(`${BASE_URL}/get-invoices?student_id=${selectedChild}`, { headers });
+            const response = await axios.get(`${BASE_URL}/get-payments?student_id=${selectedChild}`, { headers });
             const invoices = response.data?.data
             setInvoice(invoices);
             // setSelectedInvoice(Invoices);
@@ -185,7 +182,7 @@ const PaymentsInvoice = () => {
         maximumFractionDigits: 2
     });
 
-    const totalAmountPaid = amount.reduce((total, item) => total + parseFloat(item.amount), 0);
+    const totalAmountPaid = invoice.reduce((total, item) => total + parseFloat(item.amount), 0);
 
     const formattedSecondTerm = isNaN(parseFloat(secondterm)) ? '0.00' : parseFloat(secondterm).toLocaleString('en-US', {
         minimumIntegerDigits: 1,
@@ -193,7 +190,7 @@ const PaymentsInvoice = () => {
         maximumFractionDigits: 2
     });
 
-    const totalSecondTerm = secndterm.reduce((total, item) => total + parseFloat(item.amount), 0);
+    const totalSecondTerm = invoice.reduce((total, item) => total + parseFloat(item.amount), 0);
 
     const formattedSessionFees = isNaN(parseFloat(sessionfees)) ? '0.00' : parseFloat(sessionfees).toLocaleString('en-US', {
         minimumIntegerDigits: 1,
@@ -201,7 +198,9 @@ const PaymentsInvoice = () => {
         maximumFractionDigits: 2
     });
 
-    const totalSessionFees = session.reduce((total, item) => total + parseFloat(item.amount), 0);
+    const totalSessionFees = invoice.reduce((total, item) => total + parseFloat(item.amount), 0);
+
+
 
     return (
         <div style={{ backgroundColor: '#E9ECEF' }}>
@@ -218,7 +217,7 @@ const PaymentsInvoice = () => {
 
                         </div>
                         <div>
-                            <h3 style={{ color: 'black' }}>Invoice</h3>
+                            <h3 style={{ color: 'black' }}>Payment</h3>
                         </div>
                         <div className={classes.users}>
                             <Form.Select aria-label="Default select example"
@@ -312,7 +311,7 @@ const PaymentsInvoice = () => {
                                 </tr>
                             </thead>
                             {loading ? (
-                                <p style={{ marginTop: '10px' }}><Spinner size='sm' style={{ marginRight: 5 }} />Fetching invoices ...</p>
+                                <p style={{ marginTop: '10px' }}><Spinner size='sm' style={{ marginRight: 5 }} />Fetching Payments ...</p>
                             ) : invoice.length > 0 ? (
                                 <tbody>
                                     {invoice.map((item, index) => (
@@ -343,7 +342,7 @@ const PaymentsInvoice = () => {
                             ) : (
                                 <tbody>
                                     <tr>
-                                        <td colSpan="6">No invoice available for the selected child</td>
+                                        <td colSpan="6">No Payment available for the selected child</td>
                                     </tr>
                                 </tbody>
                             )}
@@ -359,4 +358,4 @@ const PaymentsInvoice = () => {
     );
 }
 
-export default PaymentsInvoice;
+export default Payments;

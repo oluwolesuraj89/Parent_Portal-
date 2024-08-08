@@ -13,6 +13,7 @@ import Profile from './Pages/Profile/Profile.js';
 import Infractions from "./Pages/Infactions/Infractions.js";
 import Infractions2 from "./Pages/Infactions2/Infractions2.js";
 import PaymentsInvoice from './Pages/Payments/PaymentsInvoice.js';
+import Payments from './Pages/The Payment/Payments.js';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path='/signup' element={<SignUp/>} />
         <Route path='/dashboard' element={<Dashboard/>} />
         <Route path='/payments_invoice' element={<PaymentsInvoice/>}/>
+        <Route path='/payments' element={<Payments/>}/>
         <Route path='/make_payment' element={<MakePayment/>}/>
         <Route path='/results' element={<Result/>} />
         <Route path='/attendance' element={<Attendance/>} />

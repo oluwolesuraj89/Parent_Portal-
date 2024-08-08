@@ -69,6 +69,8 @@ const MainDashboard = () => {
         if (pathname.includes('dashboard')) {
             setActiveLink('Dashboard');
         } else if (pathname.includes('payments_invoice')) {
+            setActiveLink('Invoice');
+        } else if (pathname.includes('payments')) {
             setActiveLink('Payment');
         } else if (pathname.includes('results')) {
             setActiveLink('Results');
@@ -148,6 +150,12 @@ const MainDashboard = () => {
                     </Link>
                     <Link
                         to={'/payments_invoice'}
+                        className={activeLink === 'Invoice' ? classes.active : ''}
+                    >
+                        <p> <img src={dashIcon2} alt='icon' /> Invoice</p>
+                    </Link>
+                    <Link
+                        to={'/payments'}
                         className={activeLink === 'Payment' ? classes.active : ''}
                     >
                         <p> <img src={dashIcon2} alt='icon' /> Payment</p>
