@@ -10,8 +10,8 @@ import ResultSheet from './Pages/Results Sheet/ResultSheet.js';
 import Attendance from './Pages/Attendance/Attendance.js';
 import Announcements from './Pages/Announcements/Announcements.js';
 import Profile from './Pages/Profile/Profile.js';
-// import Infractions from "./Pages/Infactions/Infractions.js";
-// import Infractions2 from "./Pages/Infactions2/Infractions2.js";
+import Infractions from "./Pages/Infactions/Infractions.js";
+import Infractions2 from "./Pages/Infactions2/Infractions2.js";
 import PaymentsInvoice from './Pages/Payments/PaymentsInvoice.js';
 
 function App() {

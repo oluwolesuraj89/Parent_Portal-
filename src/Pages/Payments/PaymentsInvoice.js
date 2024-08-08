@@ -89,6 +89,7 @@ const PaymentsInvoice = () => {
             // setSelectedInvoice(Invoices);
             // setSelectedInvoice(Invoices[0]?.id);
             console.log("Invoice here:", invoices);
+
         } catch (error) {
             let errorMessage = error.response?.data?.message || 'An error occurred';
             if (error.message === 'Network Error') {
@@ -107,6 +108,7 @@ const PaymentsInvoice = () => {
             const result = response.data?.data
             setChildren(result);
             setSelectedChild(result[0]?.id);
+            console.log(result);
         } catch (error) {
             let errorMessage = error.response?.data?.message || 'An error occurred';
             if (error.message === 'Network Error') {
@@ -168,6 +170,8 @@ const PaymentsInvoice = () => {
         minimumFractionDigits: 2,
         maximumFractionDigits: 2
     });
+
+    const totalOutstanding = invoice.reduce((total, item) => total + parseFloat(item.amount), 0);
     
     return (
         <div style={{backgroundColor:'#E9ECEF'}}>
@@ -229,7 +233,12 @@ const PaymentsInvoice = () => {
                             <img src={Payment2} alt='payment' className={classes.icon}/>
                             
                             <div style={{marginTop:'55px'}}>
-                                <p>N0.00</p>
+                                <p>{totalOutstanding.toLocaleString('en-US', {
+                                    minimumIntegerDigits: 1,
+                                    minimumFractionDigits: 2,
+                                    maximumFractionDigits: 2,
+                                })}
+                                            </p>
                                 <h6>Outstanding Payment</h6>
                             </div>
                         </div>    
